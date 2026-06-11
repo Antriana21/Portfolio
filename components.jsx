@@ -29,8 +29,10 @@ function Cursor() {
 function Header({ onToggleGrid, gridOn }) {
   return (
     <header className="site-head">
-      <a className="brand" href="#top" data-cursor="link" data-label="Top">
+      <a className="brand-logo" href="#top" data-cursor="link" data-label="Top">
         <img src="assets/logo.png" alt="Antriana Panagi logo" />
+      </a>
+      <a className="brand" href="#top" data-cursor="link" data-label="Top">
         <span className="nm">Antriana Panagi</span>
       </a>
       <nav>
