@@ -73,12 +73,24 @@ function Hero() {
   );
 }
 
-/* ---------- marquee ---------- */
+/* ---------- stats strip ---------- */
 function Marquee() {
-  const words = ["Branding", "Typography", "Editorial", "Packaging", "Layout", "Art Direction"];
-  const Star = () => (<span className="sep"><svg viewBox="0 0 40 40" fill="none"><path d="M20 0c1 11 9 19 20 20-11 1-19 9-20 20-1-11-9-19-20-20C11 19 19 11 20 0Z" fill="currentColor" /></svg></span>);
-  const set = (k) => words.map((w, i) => (<React.Fragment key={k + i}><span className="item">{w}</span><Star /></React.Fragment>));
-  return (<div className="marquee" aria-hidden="true"><div className="track">{set("a")}{set("b")}</div></div>);
+  const stats = [
+    { n: "8",  l: "Projects",    col: 2 },
+    { n: "3",  l: "Disciplines", col: 5 },
+    { n: "3+", l: "Years",       col: 8 },
+    { n: "2",  l: "Internships", col: 11 },
+  ];
+  return (
+    <div className="statsbar">
+      {stats.map((s, i) => (
+        <div className="sb-item" key={i} style={{gridColumnStart: s.col, gridRow: 1}}>
+          <span className="sb-n display">{s.n}</span>
+          <span className="sb-l">{s.l}</span>
+        </div>
+      ))}
+    </div>
+  );
 }
 
 Object.assign(window, { SmartImg, Cursor, Header, Hero, Marquee });
