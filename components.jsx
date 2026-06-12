@@ -76,7 +76,7 @@ function Hero() {
 /* ---------- stats strip ---------- */
 function Marquee() {
   const stats = [
-    { n: "8",  l: "Projects",    col: 2 },
+    { n: "7",  l: "Projects",    col: 2 },
     { n: "3",  l: "Disciplines", col: 5 },
     { n: "3+", l: "Years",       col: 8 },
     { n: "2",  l: "Internships", col: 11 },

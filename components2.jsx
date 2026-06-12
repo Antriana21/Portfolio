@@ -167,6 +167,10 @@ function Overlay({ project, index, total, onClose, onNav }) {
             <button className="close" onClick={onClose} data-cursor="hover"><span className="x">✕</span> Close</button>
             <span className="cnt">{String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}</span>
           </div>
+          <div className="ov-nav">
+            <button onClick={() => onNav(-1)} data-cursor="hover"><div className="lab">← Previous</div><div className="nm display">{prevP && prevP.title}</div></button>
+            <button className="nxt" onClick={() => onNav(1)} data-cursor="hover"><div className="lab">Next →</div><div className="nm display">{nextP && nextP.title}</div></button>
+          </div>
           <div className="ov-hero">
             <div className="cat">{p.cat} · {p.year}</div>
             <h2 className="display">{p.title}</h2>
@@ -176,22 +180,18 @@ function Overlay({ project, index, total, onClose, onNav }) {
               <div><div className="k">Role</div><div className="v">Design · {SITE.name}</div></div>
             </div>
           </div>
-          <div className="ov-gallery">
-            {(p.imgs || [p.img]).map((src, i) => (
-              <div className="ov-gi" key={i}>
-                <SmartImg src={src} alt={`${p.title} — ${i + 1}`} label={p.cat} />
-              </div>
-            ))}
-          </div>
           <div className="ov-body">
             <p className="desc display">{p.desc}</p>
             <div className="col2">
               {(p.body || []).map((t, i) => <p key={i}>{t}</p>)}
             </div>
           </div>
-          <div className="ov-nav">
-            <button onClick={() => onNav(-1)} data-cursor="hover"><div className="lab">← Previous</div><div className="nm display">{prevP && prevP.title}</div></button>
-            <button className="nxt" onClick={() => onNav(1)} data-cursor="hover"><div className="lab">Next →</div><div className="nm display">{nextP && nextP.title}</div></button>
+          <div className="ov-gallery">
+            {(p.imgs || [p.img]).map((src, i) => (
+              <div className="ov-gi" key={i}>
+                <SmartImg src={src} alt={`${p.title} — ${i + 1}`} label={p.cat} />
+              </div>
+            ))}
           </div>
         </div>
       )}
