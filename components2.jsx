@@ -34,7 +34,7 @@ function Work({ onOpen }) {
   return (
     <section className="work page" id="work">
       <div className="sechead">
-        <div><span className="sh-no">§ 01 — Index</span><h2 className="display">Selected Work</h2></div>
+        <div><span className="sh-no">§ 01 | Index</span><h2 className="display">Selected Work</h2></div>
         <div className="sh-r">Branding · Editorial<br />Packaging · Motion<br />({String(list.length).padStart(2, "0")})</div>
       </div>
 
@@ -54,7 +54,7 @@ function Work({ onOpen }) {
 
       {/* floating preview */}
       <div className={"preview" + (hover ? " on" : "")} ref={prevEl} aria-hidden="true">
-        {hover && <SmartImg src={hover.img} alt={hover.title} label={hover.cat} />}
+        {hover && <SmartImg src={hover.img} alt={hover.title} label={hover.cat} imgStyle={hover.thumbPos ? {objectPosition: hover.thumbPos} : undefined} />}
       </div>
     </section>
   );
@@ -89,11 +89,11 @@ function About() {
   return (
     <section className="about page" id="about">
       <div className="sechead">
-        <div><span className="sh-no">§ 02 — Profile</span><h2 className="display">About</h2></div>
+        <div><span className="sh-no">§ 02 | Profile</span><h2 className="display">About</h2></div>
         <div className="sh-r">Cyprus University<br />of Technology<br />BA · 2020–24</div>
       </div>
       <div className="about-grid">
-        <p className="lead display">Clean, intentional design — <span className="hl">built on a grid,</span> finished with care.</p>
+        <p className="lead display">Clean, intentional design, <span className="hl">built on a grid,</span> finished with care.</p>
         <p className="bio">{SITE.bio}</p>
         <div className="skills">{SKILLS.map((s) => <span className="chip" key={s}>{s}</span>)}</div>
         <div className="side">
@@ -124,7 +124,7 @@ function Contact() {
   return (
     <section className="contact page" id="contact">
       <div className="sechead">
-        <div><span className="sh-no">§ 03 — Contact</span></div>
+        <div><span className="sh-no">§ 03 | Contact</span></div>
         <div className="sh-r">Available for<br />Freelance &amp;<br />Full-time</div>
       </div>
       <div className="ct-top">
@@ -151,14 +151,18 @@ function Contact() {
 /* ---------- PROJECT OVERLAY ---------- */
 function Overlay({ project, index, total, onClose, onNav }) {
   const open = !!project;
+  const galleryRef = useRef(null);
+  useEffect(() => { if (galleryRef.current) galleryRef.current.scrollLeft = 0; }, [project]);
   useEffect(() => { document.body.style.overflow = open ? "hidden" : ""; return () => { document.body.style.overflow = ""; }; }, [open]);
   useEffect(() => {
     const onKey = (e) => { if (!open) return; if (e.key === "Escape") onClose(); if (e.key === "ArrowRight") onNav(1); if (e.key === "ArrowLeft") onNav(-1); };
     window.addEventListener("keydown", onKey); return () => window.removeEventListener("keydown", onKey);
   }, [open, onClose, onNav]);
   const p = project || {};
+  const imgs = p.imgs || (p.img ? [p.img] : []);
   const nextP = project ? PROJECTS[(index + 1) % PROJECTS.length] : null;
   const prevP = project ? PROJECTS[(index - 1 + PROJECTS.length) % PROJECTS.length] : null;
+  const scroll = (dir) => { if (galleryRef.current) galleryRef.current.scrollBy({ left: dir * 480, behavior: "smooth" }); };
   return (
     <div className={"overlay" + (open ? " open" : "")} aria-hidden={!open}>
       {project && (
@@ -186,12 +190,18 @@ function Overlay({ project, index, total, onClose, onNav }) {
               {(p.body || []).map((t, i) => <p key={i}>{t}</p>)}
             </div>
           </div>
-          <div className="ov-gallery">
-            {(p.imgs || [p.img]).map((src, i) => (
-              <div className="ov-gi" key={i}>
-                <SmartImg src={src} alt={`${p.title} — ${i + 1}`} label={p.cat} />
-              </div>
-            ))}
+          <div className="ov-gallery-wrap">
+            <div className="ov-gallery" ref={galleryRef}>
+              {imgs.map((src, i) => (
+                <div className="ov-gi" key={i}>
+                  <SmartImg src={src} alt={`${p.title} ${i + 1}`} label={p.cat} />
+                </div>
+              ))}
+            </div>
+            {imgs.length > 1 && (<>
+              <button className="ov-arr ov-arr-l" onClick={() => scroll(-1)} data-cursor="hover">‹</button>
+              <button className="ov-arr ov-arr-r" onClick={() => scroll(1)} data-cursor="hover">›</button>
+            </>)}
           </div>
         </div>
       )}

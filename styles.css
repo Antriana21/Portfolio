@@ -257,15 +257,17 @@ body[data-cur="hide"] .cursor-dot,body[data-cur="hide"] .cursor-ring{opacity:0;}
 .ov-hero .sub .k{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-55);margin-bottom:5px;}
 .ov-hero .sub .v{font-size:.92rem;}
 /* overlay image filmstrip */
-.ov-gallery{display:flex;gap:3px;overflow-x:auto;margin:0 var(--mar);margin-bottom:clamp(32px,5vw,64px);
-  scrollbar-width:thin;scrollbar-color:var(--ink-20) transparent;}
-.ov-gallery::-webkit-scrollbar{height:4px;}
-.ov-gallery::-webkit-scrollbar-thumb{background:var(--ink-20);border-radius:2px;}
-.ov-gallery .ov-gi{flex:none;height:clamp(280px,52vh,620px);overflow:hidden;
-  border:1px solid var(--ink-12);background:#f1f0ef;}
+.ov-gallery-wrap{position:relative;margin:0 var(--mar);margin-bottom:clamp(32px,5vw,64px);}
+.ov-gallery{display:flex;gap:3px;overflow-x:auto;scrollbar-width:none;will-change:scroll-position;}
+.ov-gallery::-webkit-scrollbar{display:none;}
+.ov-gallery .ov-gi{flex:none;height:clamp(280px,52vh,620px);overflow:hidden;border:1px solid var(--ink-12);background:#f1f0ef;}
 .ov-gallery .ov-gi img{height:100%;width:auto;max-width:none;display:block;}
 .ov-gallery .ov-gi .ph{height:100%;width:200px;}
-@media(max-width:820px){.ov-gallery .ov-gi{height:clamp(180px,48vw,340px);}}
+.ov-arr{position:absolute;top:50%;transform:translateY(-50%);background:#e8e8e8;color:#555;border:none;border-radius:50%;width:48px;height:48px;font-size:1.5rem;display:flex;align-items:center;justify-content:center;cursor:none;box-shadow:none;transition:background .18s;z-index:10;}
+.ov-arr:hover{background:#ddd;}
+.ov-arr-l{left:16px;}
+.ov-arr-r{right:16px;}
+@media(max-width:820px){.ov-gallery .ov-gi{height:clamp(180px,48vw,340px);}.ov-arr{width:38px;height:38px;font-size:.9rem;}}
 .ov-body{display:grid;grid-template-columns:1fr 1.4fr;gap:clamp(28px,5vw,68px);padding:clamp(38px,6vw,78px) var(--mar);}
 .ov-body .desc{font-family:var(--display);font-size:clamp(22px,2.6vw,36px);line-height:1.22;}
 .ov-body .col2 p{color:var(--ink-55);line-height:1.7;margin-bottom:16px;max-width:52ch;}

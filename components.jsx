@@ -2,10 +2,14 @@
 const { useState, useEffect, useRef, useCallback } = React;
 
 /* ---------- smart image with placeholder fallback ---------- */
-function SmartImg({ src, alt, label }) {
+function SmartImg({ src, alt, label, imgStyle }) {
   const [failed, setFailed] = useState(!src);
   if (failed) return <div className="ph" aria-label={alt}><span className="pht">{label || alt}</span></div>;
-  return <img src={src} alt={alt} loading="lazy" onError={() => setFailed(true)} />;
+  const isGif = src && src.toLowerCase().endsWith('.gif');
+  const style = isGif
+    ? { transform: 'translateZ(0)', willChange: 'transform', ...imgStyle }
+    : imgStyle;
+  return <img src={src} alt={alt} loading={isGif ? "eager" : "lazy"} decoding="async" onError={() => setFailed(true)} style={style} />;
 }
 
 /* ---------- custom cursor ---------- */
