@@ -3,13 +3,41 @@ const { useState, useEffect, useRef, useCallback } = React;
 
 /* ---------- smart image with placeholder fallback ---------- */
 function SmartImg({ src, alt, label, imgStyle }) {
+  const isMp4 = !!(src && src.toLowerCase().includes('.mp4'));
+  const isGif = !!(src && src.toLowerCase().includes('.gif'));
   const [failed, setFailed] = useState(!src);
+  const [playing, setPlaying] = useState(false);
+  const videoRef = useRef(null);
+
+  const toggleVideo = () => {
+    const v = videoRef.current; if (!v) return;
+    playing ? v.pause() : v.play();
+    setPlaying(p => !p);
+  };
+
   if (failed) return <div className="ph" aria-label={alt}><span className="pht">{label || alt}</span></div>;
-  const isGif = src && src.toLowerCase().endsWith('.gif');
-  const style = isGif
-    ? { transform: 'translateZ(0)', willChange: 'transform', ...imgStyle }
-    : imgStyle;
-  return <img src={src} alt={alt} loading={isGif ? "eager" : "lazy"} decoding="async" onError={() => setFailed(true)} style={style} />;
+
+  if (isMp4) {
+    return (
+      <div className="vid-wrap" onClick={toggleVideo}>
+        <video ref={videoRef} src={src} loop muted playsInline onError={() => setFailed(true)} />
+        {!playing && <div className="vid-overlay"><span className="vid-play-btn">▶</span></div>}
+      </div>
+    );
+  }
+
+  if (isGif) {
+    return (
+      <div className="gif-wrap" onClick={() => setPlaying(p => !p)}>
+        {playing
+          ? <img src={src} alt={alt} onError={() => setFailed(true)} style={imgStyle} />
+          : <div className="gif-poster"><span className="gif-play-btn">▶</span><span className="gif-label">GIF</span></div>
+        }
+      </div>
+    );
+  }
+
+  return <img src={src} alt={alt} loading="lazy" onError={() => setFailed(true)} style={imgStyle} />;
 }
 
 /* ---------- custom cursor ---------- */
