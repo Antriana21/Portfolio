@@ -25,16 +25,33 @@ var gi = (d, n, e) => Array.from({ length: n }, (_, i) => `assets/${d}/${String(
 
 var PROJECTS = window.PROJECTS = [
   {
+    id: "rebrand",
+    title: "One Net Rebrand",
+    cat: "Brand Identity · Print",
+    group: "branding",
+    year: "2026",
+    span: 7,
+    img: "assets/rebrand/stationery-mockup.jpg",
+    imgs: [
+      "assets/rebrand/stationery-mockup.jpg",
+      "assets/rebrand/mockup.jpg",
+      "assets/rebrand/Launch%20day%20final%20video%20final.mp4",
+      "assets/rebrand/its%20an%20evolution.mp4",
+      "assets/rebrand/combined%20expertise.mp4",
+    ],
+    desc: "A full rebrand for One Net — identity, print collateral and launch campaign.",
+    body: ["A comprehensive identity refresh spanning stationery, print and digital, built to carry One Net into its next chapter.", "From letterhead to launch video, every touchpoint designed as part of one coherent system."],
+  },
+  {
     id: "social-media",
     title: "Social Media",
     cat: "Social Media",
     group: "editorial",
     year: "2026",
     span: 5,
-    thumbPos: "center 35%",
-    img: "assets/social-media/Screenshot%202026-06-15%20090419.png",
+    thumbStyle: { objectFit: "contain", background: "#ffffff" },
+    img: "assets/social-media/Screenshot%202026-06-15%20141723.png",
     imgs: [
-      "assets/social-media/Screenshot%202026-06-15%20090419.png",
       "assets/social-media/01.jpg",
       "assets/social-media/abela%20drive%20-%20file%20sync.mp4",
       "assets/social-media/zwana%20nexus%20statistics.mp4",
