@@ -54,7 +54,7 @@ function Work({ onOpen }) {
 
       {/* floating preview */}
       <div className={"preview" + (hover ? " on" : "")} ref={prevEl} aria-hidden="true">
-        {hover && <SmartImg src={hover.img} alt={hover.title} label={hover.cat} imgStyle={hover.thumbStyle || (hover.thumbPos ? {objectPosition: hover.thumbPos} : undefined)} />}
+        {hover && <SmartImg src={hover.img} alt={hover.title} label={hover.cat} eager imgStyle={hover.thumbStyle || (hover.thumbPos ? {objectPosition: hover.thumbPos} : undefined)} />}
       </div>
     </section>
   );
@@ -79,7 +79,7 @@ function Row({ p, n, onOpen, onEnter }) {
         <span className="wy">{p.year}</span>
         <span className="wgo">↗</span>
       </div>
-      <div className="wthumb"><SmartImg src={p.img} alt={p.title} label={p.cat} imgStyle={p.thumbStyle || (p.thumbPos ? {objectPosition: p.thumbPos} : undefined)} /></div>
+      <div className="wthumb"><SmartImg src={p.img} alt={p.title} label={p.cat} eager imgStyle={p.thumbStyle || (p.thumbPos ? {objectPosition: p.thumbPos} : undefined)} /></div>
     </article>
   );
 }

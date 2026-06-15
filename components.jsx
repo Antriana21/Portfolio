@@ -2,7 +2,7 @@
 const { useState, useEffect, useRef, useCallback } = React;
 
 /* ---------- smart image with placeholder fallback ---------- */
-function SmartImg({ src, alt, label, imgStyle }) {
+function SmartImg({ src, alt, label, imgStyle, eager }) {
   const isMp4 = !!(src && src.toLowerCase().includes('.mp4'));
   const isGif = !!(src && src.toLowerCase().includes('.gif'));
   const [failed, setFailed] = useState(!src);
@@ -37,7 +37,7 @@ function SmartImg({ src, alt, label, imgStyle }) {
     );
   }
 
-  return <img src={src} alt={alt} loading="lazy" onError={() => setFailed(true)} style={imgStyle} />;
+  return <img src={src} alt={alt} loading={eager ? "eager" : "lazy"} onError={() => setFailed(true)} style={imgStyle} />;
 }
 
 /* ---------- custom cursor ---------- */

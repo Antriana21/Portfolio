@@ -122,9 +122,9 @@ var PROJECTS = window.PROJECTS = [
     group: "branding",
     year: "2024",
     span: 7, tall: true, thumbPos: "left center",
-    img: "assets/my-brand/brand guidelines_ .jpg",
+    img: "assets/my-brand/brand%20guidelines_%20.jpg",
     imgs: [
-      "assets/my-brand/brand guidelines_ .jpg",
+      "assets/my-brand/brand%20guidelines_%20.jpg",
       "assets/my-brand/brand guidelines-02.jpg",
       "assets/my-brand/brand guidelines-03.jpg",
       "assets/my-brand/brand guidelines-04.jpg",
