@@ -35,6 +35,7 @@ var PROJECTS = window.PROJECTS = [
     imgs: [
       "assets/rebrand/stationery-mockup.jpg",
       "assets/rebrand/mockup.jpg",
+      "assets/rebrand/Roll_up_Mockup.jpg",
       "assets/rebrand/Launch%20day%20final%20video%20final.mp4",
       "assets/rebrand/its%20an%20evolution.mp4",
       "assets/rebrand/combined%20expertise.mp4",
