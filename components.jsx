@@ -3,7 +3,7 @@ const { useState, useEffect, useRef, useCallback } = React;
 
 /* ---------- smart image with placeholder fallback ---------- */
 function SmartImg({ src, alt, label, imgStyle, eager }) {
-  const isMp4 = !!(src && src.toLowerCase().includes('.mp4'));
+  const isMp4 = !!(src && (src.toLowerCase().includes('.mp4') || src.toLowerCase().includes('.mov')));
   const isGif = !!(src && src.toLowerCase().includes('.gif'));
   const [failed, setFailed] = useState(!src);
   const [playing, setPlaying] = useState(false);
