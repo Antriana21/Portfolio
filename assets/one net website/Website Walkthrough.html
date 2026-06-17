@@ -60,10 +60,6 @@
   }
   .btn:hover{background:rgba(22,240,223,.18); border-color:var(--teal);}
   .btn svg{width:18px;height:18px;}
-  #scrub{ flex:1; height:6px; -webkit-appearance:none; appearance:none; background:rgba(255,255,255,.16); border-radius:999px; cursor:pointer; }
-  #scrub::-webkit-slider-thumb{ -webkit-appearance:none; width:14px; height:14px; border-radius:50%; background:var(--teal); cursor:pointer; }
-  #scrub::-moz-range-thumb{ width:14px; height:14px; border:0; border-radius:50%; background:var(--teal); cursor:pointer; }
-  #time{ font-size:12px; letter-spacing:.05em; min-width:96px; text-align:right; }
   #label{ font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--teal); min-width:180px; }
   #chapters{
     position:fixed; left:0; right:0; bottom:62px; z-index:101;
@@ -111,8 +107,6 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 4v4h4"/></svg>
     </div>
     <span id="label">Home</span>
-    <input id="scrub" type="range" min="0" max="1000" value="0">
-    <span id="time">0:00 / 3:00</span>
   </div>
 </div>
 
@@ -140,8 +134,6 @@
   var stage      = document.getElementById('stage');
   var outro      = document.getElementById('outro');
   var loading    = document.getElementById('loading');
-  var scrub      = document.getElementById('scrub');
-  var timeEl     = document.getElementById('time');
   var labelEl    = document.getElementById('label');
   var playBtn    = document.getElementById('playBtn');
   var playIcon   = document.getElementById('playIcon');
@@ -229,8 +221,6 @@
 
     updateChapters(inOutro ? PAGES.length - 1 : ai);
     labelEl.textContent = inOutro ? 'One Net' : ((ai + 1) + ' / ' + PAGES.length + '  —  ' + PAGES[ai].title);
-    scrub.value = Math.round((t / TOTAL) * 1000);
-    timeEl.textContent = fmt(t) + ' / ' + fmt(TOTAL);
     var u = document.getElementById('urlText');
     if(u){ u.textContent = inOutro ? 'onenet.group' : ('onenet.group/' + (ai === 0 ? '' : PAGES[ai].file)); }
   }
@@ -285,12 +275,6 @@
   function updateChapters(ai){
     dots.forEach(function(d, i){ d.classList.toggle('on', i === ai); });
   }
-
-  scrub.addEventListener('input', function(){
-    cur = (scrub.value / 1000) * TOTAL;
-    render(cur);
-    try{ localStorage.setItem(STORE, cur); }catch(e){}
-  });
 
   mount(0); mount(1);
   var booted = false;

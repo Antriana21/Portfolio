@@ -8,7 +8,27 @@ function SmartImg({ src, alt, label, imgStyle, eager }) {
   const isHtml = !!(src && src.toLowerCase().endsWith('.html'));
   const [failed, setFailed] = useState(!src);
   const [playing, setPlaying] = useState(false);
+  const [htmlPlaying, setHtmlPlaying] = useState(false);
   const videoRef = useRef(null);
+  const htmlWrapRef = useRef(null);
+  const htmlFrameRef = useRef(null);
+
+  useEffect(() => {
+    if (!isHtml) return;
+    const FRAME_W = 1920, FRAME_H = 1124;
+    const apply = () => {
+      const wrap = htmlWrapRef.current;
+      const frame = htmlFrameRef.current;
+      if (!wrap || !frame) return;
+      const h = wrap.offsetHeight;
+      const scale = h / FRAME_H;
+      frame.style.transform = `scale(${scale})`;
+    };
+    apply();
+    const ro = new ResizeObserver(apply);
+    if (htmlWrapRef.current) ro.observe(htmlWrapRef.current);
+    return () => ro.disconnect();
+  }, [isHtml, htmlPlaying]);
 
   const toggleVideo = () => {
     const v = videoRef.current; if (!v) return;
@@ -19,12 +39,17 @@ function SmartImg({ src, alt, label, imgStyle, eager }) {
   if (failed) return <div className="ph" aria-label={alt}><span className="pht">{label || alt}</span></div>;
 
   if (isHtml) {
+    if (!htmlPlaying) {
+      return (
+        <div className="vid-wrap html-embed-poster" onClick={e => { e.stopPropagation(); setHtmlPlaying(true); }}>
+          <div className="vid-overlay"><span className="vid-play-btn">▶</span></div>
+        </div>
+      );
+    }
     return (
-      <a className="html-card" href={src} target="_blank" rel="noopener" data-cursor="hover">
-        <span className="html-card-play">▶</span>
-        <span className="html-card-label">Website Walkthrough</span>
-        <span className="html-card-sub">3:00 · Interactive Demo</span>
-      </a>
+      <div className="html-embed-wrap" ref={htmlWrapRef}>
+        <iframe ref={htmlFrameRef} src={src} className="html-embed-frame" scrolling="no" />
+      </div>
     );
   }
 
