@@ -1,0 +1,1736 @@
+<!DOCTYPE html><html lang="en" class=" qzpcivh idc0_350 vvpuajmut"><head>
+
+
+
+
+
+
+<title>One Net — one network. one vision. one future.</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  /* ————— HOME-SPECIFIC ————— */
+  .hero{padding-top: clamp(40px, 6vw, 90px); padding-bottom: clamp(40px, 6vw, 90px); position:relative;}
+  .hero-top{display:flex; justify-content:space-between; align-items:flex-start; padding-bottom:48px; gap:40px;}
+  .hero-top-right{ text-align:right; max-width:380px;}
+  .hero-top-right p{font-size:14px; color:var(--text-muted); line-height:1.55;}
+  .hero-headline h1{color:#011A5C; font-weight:400;}
+  html[data-theme="dark"] .hero-headline h1{color:#ffffff;}
+  .hero-headline h1 em{font-style:normal; color:#898995; font-weight:400;}
+  .hero-headline h1 .tealword{
+    background: linear-gradient(95deg, #011A5C 0%, #0a2676 40%, #16F0DF 100%);
+    -webkit-background-clip: text; background-clip:text; -webkit-text-fill-color:transparent;
+  }
+  .hero-sub{
+    display:flex; justify-content:space-between; align-items:flex-end; gap:48px; margin-top:28px;
+  }
+  .hero-sub p{color: var(--text-soft); font-size:17px; line-height:1.55; max-width:52ch;}
+  .hero-sub .cta{display:flex; gap:12px; justify-content:flex-end; flex:none; margin-left:auto;}
+
+  @media (max-width: 560px){
+    .hero-sub{flex-direction:column; align-items:flex-start;}
+    .hero-sub .cta{justify-content:flex-start; margin-left:0;}
+  }
+
+  /* hero platform panel */
+  .hero-art{
+    margin-top: clamp(60px, 8vw, 100px);
+    position:relative; border-radius: 20px; overflow:hidden;
+    background:
+      radial-gradient(60% 80% at 50% 0%, rgba(22,240,223,.25) 0%, transparent 60%),
+      radial-gradient(50% 70% at 80% 100%, rgba(22,240,223,.12) 0%, transparent 70%),
+      linear-gradient(180deg, #011A5C 0%, #000b2c 100%);
+    color:white; padding: clamp(40px, 6vw, 80px); min-height: 560px;
+  }
+  .hero-art .grid{
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,.05) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 55%, black, transparent);
+    -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 55%, black, transparent);
+  }
+  .hero-art .content{position:relative; z-index:2; display:grid; grid-template-columns: 1.1fr 1fr; gap:40px; align-items:end; height:100%;}
+  .hero-art .meta{font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--vibrant);}
+  .hero-art h3{font-size: clamp(28px, 3.2vw, 52px); font-weight:400; letter-spacing:-.025em; color:white; margin-top:14px; line-height:1.02;}
+  .hero-art h3 .hl{color:var(--vibrant);}
+  .hero-art .kpis{display:grid; grid-template-columns: repeat(4, 1fr); gap:18px;}
+  .hero-art .kpi{border-top:1px solid rgba(255,255,255,.18); padding-top:14px;}
+  .hero-art .kpi .n{font-size: clamp(28px, 3vw, 42px); font-weight:300; letter-spacing:-.02em;}
+  .hero-art .kpi .n sup{font-size:.5em; color:var(--vibrant); margin-left:2px;}
+  .hero-art .kpi .l{font-family:var(--mono); font-size:10px; text-transform:uppercase; letter-spacing:.1em; color:rgba(255,255,255,.6); margin-top:4px;}
+  .orbits{ display:none; }
+
+  /* WHO WE ARE */
+  .who{background: var(--paper); border-top:1px solid var(--border);}
+  .who-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    align-items:start;
+  }
+  .who-grid .eyebrow{grid-column: 1;}
+  .who-grid > div{grid-column: 2 / span 3;}
+  .who p.lead{font-size: clamp(22px, 2.2vw, 32px); line-height:1.35; letter-spacing:-.015em; color:var(--text-strong); font-weight:400;}
+  .who p.lead strong{font-weight:700;}
+  .who p.lead .teal{color: var(--vibrant);}
+  .who-tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:28px;}
+
+  /* INDUSTRIES */
+  .industries{background: var(--paper-2);}
+  .industries h2{color:var(--text-strong); max-width:14ch;}
+  .industries .head{display:flex; justify-content:space-between; align-items:flex-end; gap:40px; margin-bottom: 56px;}
+  .industries .head p{color:var(--text-muted); max-width:380px; font-size:15px;}
+  .ind-grid{display:grid; grid-template-columns: repeat(4, 1fr); gap:18px;}
+  .ind{
+    background: var(--surface); border:1px solid var(--border); border-radius: var(--radius);
+    padding: 28px 24px; display:flex; flex-direction:column; gap:20px;
+    min-height: 340px; position:relative; overflow:hidden;
+    transition: transform .3s, border-color .3s;
+  }
+  .ind:hover{transform: translateY(-3px); border-color: var(--border-strong);}
+  .ind .num{font-family:var(--mono); font-size:11px; letter-spacing:.1em; color:var(--text-muted);}
+  .ind h3{font-weight:500; letter-spacing:-.015em; color:var(--text-strong); font-size:26px;}
+  .ind .services{margin-top:auto; display:flex; flex-direction:column; gap:2px; border-top:1px solid var(--border); padding-top:14px;}
+  .ind .services a{display:flex; justify-content:space-between; align-items:center; font-size:13px; padding:7px 0; color:var(--text-strong); border-bottom:1px solid var(--border);}
+  .ind .services a:last-child{border-bottom:none;}
+  .ind .services a::after{content:"→"; color:var(--text-muted);}
+  .ind .services a:hover{color:#02248a;}
+  .ind-glyph{
+    height:56px; width:56px; border-radius:10px;
+    background: var(--vibrant);
+    display:grid; place-items:center;
+  }
+  .ind-glyph svg{width:28px; height:28px; stroke:var(--sea); stroke-width:1.5; fill:none;}
+
+  /* PILLARS */
+  .pillars{background: var(--sea); color:white; position:relative; overflow:hidden;}
+  .pillars::before{
+    content:""; position:absolute; inset:0;
+    background-image:
+      radial-gradient(50% 60% at 80% 0%, rgba(22,240,223,.12), transparent 70%),
+      radial-gradient(40% 50% at 10% 100%, rgba(22,240,223,.08), transparent 70%);
+    pointer-events:none;
+  }
+  .pillars .head{display:flex; justify-content:space-between; align-items:flex-end; margin-bottom: 64px; gap:40px;}
+  .pillars h2{max-width:18ch; color:white;}
+  .pillars h2 .teal{color:var(--vibrant);}
+  .pillars .head p{max-width:360px; color:rgba(255,255,255,.7); font-size:15px;}
+  .pillar-row{
+    border-top:1px solid rgba(255,255,255,.14);
+    display:grid; grid-template-columns: 60px 220px 1fr auto;
+    gap: 40px; align-items:flex-start;
+    padding: 32px 0 36px;
+    transition: background .3s;
+  }
+  .pillar-row:last-child{border-bottom:1px solid rgba(255,255,255,.14);}
+  .pillar-row:hover{background: rgba(22,240,223,.04);}
+  .pillar-num{font-family:var(--mono); font-size:12px; letter-spacing:.1em; color:var(--vibrant);}
+  .pillar-title h3{font-size: clamp(26px, 2.6vw, 40px); font-weight:400; letter-spacing:-.025em; color:white;}
+  .pillar-title .tag{
+    font-family:var(--mono); font-size:10px; color:var(--vibrant);
+    text-transform:uppercase; letter-spacing:.12em;
+    border:1px solid rgba(22,240,223,.3); padding:3px 8px; border-radius:999px;
+    display:inline-block; margin-top:10px;
+  }
+  .pillar-body p.desc{font-size: 15px; color:rgba(255,255,255,.8); max-width:62ch; margin-bottom:18px; line-height:1.55;}
+  .pillar-body ul{list-style:none; padding:0; margin:0; display:grid; grid-template-columns: 1fr 1fr; gap: 8px 28px;}
+  .pillar-body li{font-size:13.5px; color:rgba(255,255,255,.9); line-height:1.5; display:flex; gap:10px; padding:4px 0;}
+  .pillar-body li::before{content:""; width:5px; height:5px; background:var(--vibrant); border-radius:50%; flex:none; margin-top:8px;}
+  .pillar-body li b{color:white; font-weight:600;}
+  .pillar-action{display:inline-flex; align-items:center; gap:10px; color: var(--vibrant); font-size:14px; font-weight:500; white-space:nowrap; padding-top:12px;}
+  .pillar-action svg{width:14px; height:14px;}
+
+  /* WHY */
+  .why h2{color:var(--text-strong); max-width:16ch;}
+  .why-lead{max-width:56ch; color:var(--text-muted); font-size:17px; margin-top:28px; line-height:1.55;}
+  .why-grid{display:grid; grid-template-columns: 1fr 1fr 1fr; gap:24px; margin-top:56px;}
+  .why-card{
+    background: var(--surface); border:1px solid var(--border); border-radius: var(--radius);
+    padding: 28px 26px; min-height: 280px; display:flex; flex-direction:column; gap:18px;
+  }
+  .why-card .num{font-family:var(--mono); color:var(--text-muted); font-size:11px; letter-spacing:.1em;}
+  .why-card h3{color:var(--text-strong); font-weight:500; letter-spacing:-.02em; font-size:24px;}
+  .why-card p{color: var(--text-soft); font-size:14.5px; line-height:1.55;}
+  .why-rule{height:1px; background: var(--border); margin-top: auto;}
+
+  /* STATS */
+  .stats{padding-block: clamp(60px, 8vw, 110px); background: var(--paper); border-top:1px solid var(--border);}
+  .stats-grid{display:grid; grid-template-columns: repeat(4, 1fr); gap:40px;}
+  .stat .num{font-size: clamp(54px, 7vw, 96px); font-weight:300; letter-spacing:-.04em; color:var(--text-strong); line-height:.95;}
+  .stat .num sup{font-size:.4em; vertical-align:top; font-weight:500; color:var(--vibrant); margin-left:4px;}
+  .stat .lbl{font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--text-muted); margin-top:14px;}
+
+  /* GLOBAL */
+  .global{background: var(--sea-ink); color:white; position:relative; overflow:hidden;}
+  .global::before{content:""; position:absolute; inset:0; background-image: radial-gradient(50% 70% at 50% 50%, rgba(22,240,223,.08), transparent 60%);}
+  .global-grid{
+    display:grid;
+    grid-template-columns: 1fr 1.05fr;
+    gap: clamp(32px, 5vw, 72px);
+    align-items:center;
+    margin-bottom: 56px;
+  }
+  .global .head{
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+    margin-bottom: 0;
+  }
+  .global .head > .content-col{display:flex; flex-direction:column; gap:24px;}
+  .global h2{color:white;} .global h2 .teal{color:var(--vibrant);}
+  .global .head p{color:rgba(255,255,255,.72); max-width:44ch; font-size:15.5px;}
+  .globe-wrap{position:relative; height: 480px; overflow:visible;
+    background: transparent;
+    display:grid; place-items:center;}
+  .globe-canvas{display:block; width:100%; height:100%;}
+  .globe-corners{display:none;}
+  .globe-corners .br{align-self:flex-end;}
+  .globe-corners span span{color:var(--vibrant);}
+  .global-cta{margin-top: 60px; display:flex; justify-content:space-between; align-items:center; gap:30px; flex-wrap:wrap; padding-top:32px; border-top:1px solid rgba(255,255,255,.14);}
+  .global-cta .locs{display:flex; flex-wrap:wrap; gap:8px;}
+  .global-cta .loc{font-family:var(--mono); font-size:12px; color:rgba(255,255,255,.8); border:1px solid rgba(255,255,255,.18); padding:6px 10px; border-radius:4px; letter-spacing:.04em;}
+  .global-cta .loc.hq{color:var(--vibrant); border-color:rgba(22,240,223,.4);}
+
+  /* PRINCIPALS */
+  .principals{background: var(--bg-2); border-top:1px solid var(--border);}
+  .principals .head{display:flex; flex-direction:column; gap:22px; margin-bottom: 48px;}
+  .principals h2{color:var(--text-strong); max-width:18ch;}
+  .principals .head p{color:var(--text-muted); max-width:52ch; font-size:16px; line-height:1.55;}
+  .marquee{overflow:hidden; position:relative;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+            mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);}
+  .marquee-track{display:flex; width:max-content; animation: marquee 72s linear infinite; will-change:transform;}
+  .marquee:hover .marquee-track{animation-play-state: paused;}
+  .principal{
+    flex:0 0 auto; width:216px; margin-right:16px;
+    background: var(--sea-ink); border:1px solid rgba(255,255,255,.07); border-radius: var(--radius);
+    min-height: 112px; display:flex; align-items:center; justify-content:center;
+    padding: 26px 28px; transition: border-color .2s, transform .2s;
+  }
+  .principal:hover{border-color: rgba(22,240,223,.35);}
+  html[data-theme="light"] .principal:hover{
+    border-color: rgba(22,240,223,.95);
+    box-shadow: 0 0 0 1px rgba(22,240,223,.6), 0 0 18px rgba(22,240,223,.35);
+  }
+  .principal img{max-width:100%; max-height:46px; width:auto; height:auto; object-fit:contain;}
+  .principal img.lg{max-height:82px;}
+  .principal img.md{max-height:46px;}
+  .principal img.sm{max-height:34px; max-width:70%;}
+  .principal:has(img.lg), .principal:has(img.md), .principal:has(img.sm){padding:18px 10px;}
+  @keyframes marquee{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+  @media (prefers-reduced-motion: reduce){ .marquee-track{animation:none;} }
+
+  /* FINAL */
+  .finale{background: var(--paper); padding-block: clamp(80px, 10vw, 160px);}
+  .finale .eyebrow{margin-bottom:24px;}
+  .finale h2{color:var(--text-strong); font-size: clamp(52px, 8vw, 120px); letter-spacing:-.035em; font-weight:400; max-width:16ch;}
+  .finale h2 em{font-style:normal; color:var(--text-muted); font-weight:300;}
+  .finale-bottom{display:flex; justify-content:space-between; align-items:flex-end; gap:40px; margin-top: 60px; padding-top:40px; border-top:1px solid var(--border);}
+  .finale-bottom p{color:var(--text-muted); font-size:15px; max-width:36ch; line-height:1.55;}
+  .finale-ctas{display:flex; gap:14px; flex-wrap:wrap;}
+
+  @media (max-width: 960px){
+    .hero-art .content{grid-template-columns:1fr;}
+    .hero-art .kpis{grid-template-columns: repeat(2, 1fr);}
+    .who-grid{grid-template-columns: 1fr;}
+    .ind-grid{grid-template-columns: 1fr 1fr;}
+    .pillar-row{grid-template-columns: 1fr; gap:18px;}
+    .pillar-body ul{grid-template-columns: 1fr;}
+    .why-grid{grid-template-columns: 1fr;}
+    .stats-grid{grid-template-columns: 1fr 1fr;}
+    .global .head{grid-template-columns: 1fr;}
+  }
+  @media (max-width: 820px){
+    .global-grid{grid-template-columns: 1fr;}
+    .finale-bottom{flex-direction:column; align-items:flex-start;}
+  }
+
+  /* ———— HERO CAROUSEL ———— */
+  .hero-carousel{
+    padding-block: 0 clamp(48px, 8vw, 90px);
+    background: var(--bg);
+    overflow:hidden;
+    position: relative;
+  }
+
+  .carousel-frame{position:relative; z-index: 1;}
+  .carousel-foot{position: relative; z-index: 1;}
+
+  /* Slide base — each slide is the animation stage */
+  .cslide-home{position: relative;}
+  .cslide-home > .slide-bg{
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .cslide-home > .wrap, .cslide-home .hero{position: relative; z-index: 1;}
+
+  /* ——— Slide 1: HOME — floating orbs (hidden) ——— */
+  .slide-home .slide-bg::before,
+  .slide-home .slide-bg::after{ display:none; }
+
+  /* ——— Slide 3: ZWANA — fleet deployment list ——— */
+  .slide-zwana .slide-bg{position:absolute; inset:0; display:flex; align-items:center; justify-content:flex-end; padding-right: 10%;}
+  .slide-zwana .slide-bg svg.stack{ width: 30%; max-width: 300px; height:auto; opacity:.55; }
+  .slide-zwana .stack .frame{ fill:none; stroke: var(--border-strong); stroke-width:1.5; }
+  .slide-zwana .stack .rowbox{ fill: rgba(150,170,210,.04); stroke: var(--border-strong); stroke-width:1; }
+  .slide-zwana .stack .bar{ fill: rgba(150,170,210,.20); }
+  .slide-zwana .stack .dot{ fill: rgba(150,170,210,.35); }
+  .slide-zwana .stack .scan{ display:none; }
+
+  /* ——— Slide 4: CONNECTIVITY — orbiting nodes (hidden) ——— */
+  .slide-conn .slide-bg .orbit{ display:none; }
+
+  /* ——— Slide 2: OFFER — signal waves on right ——— */
+  .slide-offer .slide-bg{display:grid; place-items:center end; padding-right: 10%;}
+  .slide-offer .slide-bg .arc{
+    position:absolute;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    border: 2px solid var(--vibrant);
+    border-top-color: transparent; border-right-color: transparent;
+    opacity: 0;
+    right: 10%; left: auto;
+    animation: arcExpand 12s ease-out infinite;
+  }
+  .slide-offer .slide-bg .arc:nth-child(2){animation-delay: 3s;}
+  .slide-offer .slide-bg .arc:nth-child(3){animation-delay: 6s;}
+  .slide-offer .slide-bg .arc:nth-child(4){animation-delay: 9s;}
+
+  /* ——— Slide 2: OFFER — arc waves (hidden) ——— */
+  .slide-offer .slide-bg .arc{ display:none; }
+
+  /* ——— Slide 5: IT PARTNERING background (hidden) ——— */
+  .slide-it .slide-bg{ display:none; }
+
+  /* ——— Slide 6: CYBERSECURITY background (hidden) ——— */
+  .slide-cyber .slide-bg{ display:none; }
+
+  /* ——— Slide 7: SAAS — dashboard UI ——— */
+  .slide-saas .slide-bg{
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:flex-end;
+    padding-right: 6%;
+  }
+  .slide-saas .slide-bg svg.dash{
+    width: 40%; max-width: 430px; height:auto; opacity:.5;
+  }
+  .slide-saas .dash .frame{ fill:none; stroke: var(--border-strong); stroke-width:1.5; }
+  .slide-saas .dash .divide{ stroke: var(--border-strong); stroke-width:1; }
+  .slide-saas .dash .panel{ fill: rgba(150,170,210,.05); }
+  .slide-saas .dash .nav{ fill: rgba(150,170,210,.18); }
+  .slide-saas .dash .nav.active{ fill: var(--vibrant); animation: navGlow 3s ease-in-out infinite; }
+  .slide-saas .dash .card{ fill: rgba(150,170,210,.07); stroke: var(--border-strong); stroke-width:1; }
+  .slide-saas .dash .tick{ fill: rgba(150,170,210,.30); }
+  .slide-saas .dash .area{ fill: rgba(22,240,223,.12); }
+  .slide-saas .dash .curve{
+    fill:none; stroke: var(--vibrant); stroke-width:2.5;
+    stroke-dasharray: 620; stroke-dashoffset: 620;
+    animation: curveDraw 9s ease-in-out infinite;
+  }
+  .slide-saas .dash .row{ fill: rgba(150,170,210,.14); }
+  .slide-saas .dash .rowk{ fill: rgba(22,240,223,.45); }
+  @keyframes navGlow{ 0%,100%{opacity:.45;} 50%{opacity:1;} }
+  @keyframes curveDraw{
+    0%   { stroke-dashoffset: 620; }
+    55%  { stroke-dashoffset: 0; }
+    100% { stroke-dashoffset: -620; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .cslide-home .slide-bg *,
+    .cslide-home .slide-bg::before,
+    .cslide-home .slide-bg::after{ animation: none !important; }
+  }
+
+  .carousel-frame{position:relative;}
+  .carousel-viewport{
+    overflow:hidden;
+  }
+  .carousel-track{
+    display:flex;
+    transition: transform .6s cubic-bezier(.65,0,.35,1);
+    will-change: transform;
+    align-items: stretch;
+  }
+
+  .cslide{
+    flex: 0 0 100%;
+    min-width: 100%;
+    text-decoration:none;
+    display:flex;
+  }
+
+  /* Home slide — render as transparent so original hero layout shines through */
+  .cslide-home{
+    flex: 0 0 100%; min-width: 100%;
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    min-height: auto;
+    color: inherit;
+    overflow: visible;
+  }
+  .cslide-home::before{display:none;}
+  .cslide-home:hover{transform:none;}
+  .cslide-home .hero{padding-block: clamp(40px, 6vw, 70px) clamp(20px, 4vw, 40px); width:100%;}
+  .cslide-home .wrap{padding-left: clamp(60px, 8vw, 120px);}
+
+  /* Offer slide — hidden by default, shown via Tweak */
+  .cslide-offer{display:none;}
+  .offer-eyebrow{
+    color: var(--vibrant) !important;
+    font-weight: 600;
+  }
+  html[data-theme="light"] .offer-eyebrow{color:#16F0DF !important;}
+  .cslide-offer .hero-top{
+    display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap;
+  }
+  .offer-date{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: .06em;
+    color: var(--text-strong);
+    border: 1px solid var(--border-strong);
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: var(--surface);
+  }
+  .offer-date svg{width:14px; height:14px;}
+
+  /* Service slide — dark panel */
+  .cslide-service{
+    color:white;
+    margin-inline: var(--gutter);
+    border-radius: 20px;
+    overflow:hidden;
+    background:
+      radial-gradient(60% 80% at 50% 0%, rgba(22,240,223,.22) 0%, transparent 60%),
+      radial-gradient(50% 70% at 80% 100%, rgba(22,240,223,.10) 0%, transparent 70%),
+      linear-gradient(180deg, #011A5C 0%, #000b2c 100%);
+    padding: clamp(40px, 6vw, 80px);
+    position:relative;
+    min-height: 560px;
+    display:flex; flex-direction:column;
+    transition: transform .3s;
+    /* shrink flex basis to allow margins */
+    flex: 0 0 calc(100% - var(--gutter) * 2);
+    min-width: calc(100% - var(--gutter) * 2);
+  }
+  .cslide-service::before{
+    content:""; position:absolute; inset:0;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,.05) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 55%, black, transparent);
+    -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 55%, black, transparent);
+    pointer-events:none;
+  }
+  .cslide-service:hover{transform: translateY(-2px);}
+  .cslide-inner{
+    max-width: 60ch;
+    position:relative; z-index:2;
+    display:flex; flex-direction:column; gap:0;
+  }
+  .cslide-service h3{
+    font-size: clamp(40px, 5.2vw, 76px); font-weight:400; letter-spacing:-.028em;
+    color:white; line-height:1.02;
+  }
+  .cslide-service h3 em{
+    font-style:normal; font-weight:400;
+    background: linear-gradient(95deg, #ffffff 0%, #a6f9f1 50%, #16F0DF 100%);
+    -webkit-background-clip:text; background-clip:text;
+    -webkit-text-fill-color:transparent; color:transparent;
+  }
+  .cslide-service .tag-line{
+    margin-top:18px; color:rgba(255,255,255,.9); font-size:17px; font-weight:500;
+  }
+  .cslide-service .desc{
+    margin-top:18px; color:rgba(255,255,255,.65); font-size:15px; line-height:1.55;
+    max-width:56ch;
+  }
+  .cslide-cta{
+    margin-top: 32px;
+    display:inline-flex; align-items:center; gap:10px;
+    color:var(--vibrant); font-size:14px; font-weight:600;
+    align-self:flex-start;
+  }
+  .cslide-cta svg{width:14px; height:14px;}
+  .cslide-service:hover .cslide-cta{gap:14px;}
+
+  /* per-slide decorations */
+  .cslide-orbits{
+    position:absolute; right:-100px; bottom:-100px; width:520px; height:520px; opacity:.4; pointer-events:none;
+  }
+  .cslide-orbits .ring{
+    position:absolute; inset:0; border-radius:50%;
+    border:1px dashed rgba(22,240,223,.4);
+  }
+  .cslide-orbits .ring.r2{inset:14%; border-color:rgba(22,240,223,.3);}
+  .cslide-orbits .ring.r3{inset:28%; border-color:rgba(22,240,223,.22);}
+
+  .cslide-orbits.c-net{right:-60px; bottom:auto; top:50%; transform:translateY(-50%);}
+  .cslide-orbits.c-net .wave{
+    position:absolute; inset:0;
+    border:1px solid rgba(22,240,223,.3);
+    border-radius:50%;
+    border-color: rgba(22,240,223,.5) transparent transparent transparent;
+    transform: rotate(45deg);
+  }
+  .cslide-orbits.c-net .wave.w2{inset:15%; border-color: rgba(22,240,223,.35) transparent transparent transparent;}
+  .cslide-orbits.c-net .wave.w3{inset:30%; border-color: rgba(22,240,223,.25) transparent transparent transparent;}
+
+  .cslide-orbits.c-grid{
+    background-image: radial-gradient(rgba(22,240,223,.6) 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
+    mask-image: radial-gradient(circle at 50% 50%, black, transparent 70%);
+    -webkit-mask-image: radial-gradient(circle at 50% 50%, black, transparent 70%);
+  }
+
+  .cslide-orbits.c-shield{display:grid; place-items:center;}
+  .cslide-orbits.c-shield .shield{
+    width:280px; height:340px;
+    background: radial-gradient(ellipse at top, rgba(22,240,223,.35), transparent 70%);
+    clip-path: polygon(50% 0, 100% 18%, 100% 65%, 50% 100%, 0 65%, 0 18%);
+    border:1px solid rgba(22,240,223,.3);
+  }
+
+  .cslide-orbits.c-saas{display:flex; align-items:flex-end; justify-content:flex-end; gap:14px; padding:80px;}
+  .cslide-orbits.c-saas .block{
+    width:80px; height:200px; background:rgba(22,240,223,.18); border-radius:12px;
+    border:1px solid rgba(22,240,223,.4);
+  }
+  .cslide-orbits.c-saas .block.b2{height:280px; background:rgba(22,240,223,.12);}
+  .cslide-orbits.c-saas .block.b3{height:160px; background:rgba(22,240,223,.22);}
+
+  /* nav arrows */
+  .carousel-arrow{
+    position:absolute; top:50%; transform:translateY(-50%);
+    z-index:5;
+    width:52px; height:52px; border-radius:50%;
+    background: var(--surface); border:1px solid var(--border-strong);
+    color:var(--text-strong);
+    display:grid; place-items:center; cursor:pointer;
+    box-shadow: 0 8px 22px rgba(0,0,0,.12);
+    transition: background .2s, transform .2s;
+  }
+  .carousel-arrow:hover{background:var(--sea); color:white; border-color:var(--sea); transform:translateY(-50%) scale(1.05);}
+  html[data-theme="dark"] .carousel-arrow:hover{background:var(--vibrant); color:var(--sea-ink); border-color:var(--vibrant);}
+  .carousel-arrow svg{width:22px; height:22px;}
+  .carousel-arrow.prev{left: 16px;}
+  .carousel-arrow.next{right: 16px;}
+
+  /* dots + counter */
+  .carousel-foot{
+    margin-top:36px;
+    display:flex; align-items:center; justify-content:space-between; gap:24px;
+  }
+  .dots{display:flex; gap:8px;}
+  .dots button{
+    width:24px; height:4px; border-radius:2px;
+    background: var(--border-strong); border:none; cursor:pointer;
+    padding:0;
+    transition: background .25s, width .25s;
+  }
+  .dots button.on{background: var(--vibrant); width:48px;}
+  .carousel-counter{font-family:var(--mono); font-size:12px; color:var(--text-muted); letter-spacing:.1em;}
+  .carousel-counter #carousel-current{color:var(--text-strong); font-weight:600;}
+  .carousel-counter .of{opacity:.5;}
+
+  @media (max-width: 960px){
+    .cslide-service{padding: 32px 24px; min-height: 480px;}
+    .cslide-orbits{display:none;}
+    .carousel-arrow{width:42px; height:42px;}
+    .carousel-arrow.prev{left:8px;}
+    .carousel-arrow.next{right:8px;}
+  }
+</style>
+<style>
+  /* ———— tweaks panel ———— */
+  #tweaks-panel{
+    position:fixed; right:16px; bottom:16px; z-index:999;
+    background: var(--surface); border:1px solid var(--border-strong);
+    border-radius: 12px; padding:16px 18px; width:260px;
+    box-shadow: 0 20px 50px rgba(0,0,0,.18);
+    font-size:13px; color:var(--text);
+    display:none;
+  }
+  #tweaks-panel.on{display:block;}
+  #tweaks-panel h4{font-family:var(--mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--text-muted); margin:0 0 14px; font-weight:500;}
+  #tweaks-panel .tw-row{margin:10px 0;}
+  #tweaks-panel .tw-row label{display:block; font-size:11px; font-weight:600; color:var(--text-muted); margin-bottom:6px; font-family:var(--mono); text-transform:uppercase; letter-spacing:.08em;}
+  #tweaks-panel .tw-chips{display:flex; flex-wrap:wrap; gap:4px;}
+  #tweaks-panel .tw-chip{
+    font-family:var(--mono); font-size:10px; padding:5px 9px;
+    border-radius:999px; border:1px solid var(--border-strong); color:var(--text);
+    cursor:pointer; background:var(--bg); letter-spacing:.04em;
+  }
+  #tweaks-panel .tw-chip.on{background:var(--sea); color:white; border-color:var(--sea);}
+  html[data-theme="dark"] #tweaks-panel .tw-chip.on{background:var(--vibrant); color:var(--sea-ink); border-color:var(--vibrant);}
+</style>
+<script>
+// Pre-paint: apply theme immediately before render
+(function(){
+  try{
+    var saved = localStorage.getItem('theme');
+    var prefers = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', saved || (prefers ? 'dark' : 'light'));
+  }catch(e){}
+})();
+</script>
+<template id="__bundler_thumbnail" data-bg-color="#011A5C">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#011A5C"/>
+    <g transform="translate(470 280)">
+      <path d="M0 60 L100 0 L200 60 L200 180 L100 240 L0 180 Z" fill="#16F0DF" opacity="0.9"/>
+      <path d="M60 90 L160 30 L260 90 L260 210 L160 270 L60 210 Z" fill="#ffffff" opacity="0.6"/>
+    </g>
+    <text x="600" y="640" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="56" font-weight="300" letter-spacing="2">one net</text>
+  </svg>
+</template>
+</head>
+<body style="cursor: crosshair;" data-cc-id="cc-1">
+
+<header class="topbar">
+  <div class="wrap topbar-inner" data-cc-id="cc-1">
+    <a class="logo" href="index.html">
+      <img class="logo-light" src="assets/onenet-horizontal-blue.svg?v=3" alt="One Net">
+      <img class="logo-dark" src="assets/onenet-horizontal-white-full.png" alt="One Net">
+    </a>
+    <nav class="nav">
+      <a href="it-partnering.html">IT Partnering</a>
+      <a href="cybersecurity.html">Cybersecurity</a>
+      <a href="zwana.html">Zwana</a>
+      <a href="saas.html">SaaS</a>
+      <a href="connectivity.html">Connectivity</a>
+    </nav>
+    <div class="actions" data-cc-id="cc-10">
+      <a class="pill" href="https://status.onenet.group/" target="_blank" rel="noopener" data-cc-id="cc-11"><span class="dot"></span>Service Status</a>
+      <a class="pill" href="https://abela.io/sessions/signin" target="_blank" rel="noopener">abela.io</a>
+      <button class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
+        <svg class="ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+        <svg class="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <a class="btn-primary" href="contact.html">Get in touch
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ———— HERO CAROUSEL ———— -->
+<section class="hero-carousel">
+  <div class="carousel-frame">
+    <button class="carousel-arrow prev" aria-label="Previous slide">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <button class="carousel-arrow next" aria-label="Next slide">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 6l6 6-6 6"/></svg>
+    </button>
+
+    <div class="carousel-viewport">
+      <div class="carousel-track" id="carousel-track">
+
+        <!-- Slide 1: HOME -->
+        <div class="cslide cslide-home slide-home">
+          <div class="slide-bg"></div>
+          <section class="hero">
+            <div class="wrap">
+              <div class="hero-top">
+                <span class="eyebrow">One Net</span>
+              </div>
+              <div class="hero-headline">
+                <h1 id="hero-h1">
+                  enabling<br>
+                  <em>a digital society</em><br>
+                  <span class="tealword">at sea.</span>
+                </h1>
+              </div>
+              <div class="hero-sub">
+                <p>We build, manage, and secure end-to-end digital infrastructure for maritime and enterprise organizations, so your operations stay connected and your fleet never stops.</p>
+                <div class="cta">
+                  <a class="btn-big" href="#pillars">Discover what we do
+                    <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px; height:12px;"><path d="M12 5v14M5 12l7 7 7-7"/></svg></span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Slide 2: OFFER -->
+        <div class="cslide cslide-home cslide-offer slide-offer" id="offer-slide">
+          <div class="slide-bg"><span class="arc"></span><span class="arc"></span><span class="arc"></span><span class="arc"></span></div>
+          <section class="hero">
+            <div class="wrap">
+              <div class="hero-top">
+                <span class="eyebrow offer-eyebrow">Limited offer / Q4 bundle</span>
+              </div>
+              <div class="hero-headline">
+                <h1>
+                  From 01 Oct<br>
+                  <em>to 31 Dec 2026.</em><br>
+                  <span class="tealword">One bundle.</span>
+                </h1>
+              </div>
+              <div class="hero-sub">
+                <p>Deploy the full digital infrastructure stack — platform, multi-orbit connectivity, 24/7 NOC — at a single bundled rate. Available for new fleets and renewals through Q4.</p>
+                <div class="cta">
+                  <a class="btn-big" href="contact.html">Get bundle pricing
+                    <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px; height:12px;"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Slide 3: Zwana -->
+        <div class="cslide cslide-home slide-zwana">
+          <div class="slide-bg"><svg class="stack" viewBox="0 0 300 440" preserveAspectRatio="xMidYMid meet">
+            <g stroke="rgba(120,150,200,.08)" stroke-width="1">
+              <line x1="0" y1="120" x2="300" y2="120"/><line x1="0" y1="300" x2="300" y2="300"/>
+              <line x1="150" y1="0" x2="150" y2="440"/>
+            </g>
+            <rect class="frame" x="44" y="36" width="212" height="372" rx="6"/>
+            <!-- rows -->
+            <g>
+              <rect class="rowbox" x="52" y="44"  width="196" height="34" rx="4"/><circle class="dot d1" cx="70" cy="61"  r="4"/><rect class="bar" x="86" y="57"  width="150" height="8" rx="4"/>
+              <rect class="rowbox" x="52" y="88"  width="196" height="34" rx="4"/><circle class="dot d2" cx="70" cy="105" r="4"/><rect class="bar" x="86" y="101" width="108" height="8" rx="4"/>
+              <rect class="rowbox" x="52" y="132" width="196" height="34" rx="4"/><circle class="dot d3" cx="70" cy="149" r="4"/><rect class="bar" x="86" y="145" width="140" height="8" rx="4"/>
+              <rect class="rowbox" x="52" y="176" width="196" height="34" rx="4"/><circle class="dot d4" cx="70" cy="193" r="4"/><rect class="bar" x="86" y="189" width="92"  height="8" rx="4"/>
+              <rect class="rowbox" x="52" y="220" width="196" height="34" rx="4"/><circle class="dot d5" cx="70" cy="237" r="4"/><rect class="bar" x="86" y="233" width="132" height="8" rx="4"/>
+              <rect class="rowbox" x="52" y="264" width="196" height="34" rx="4"/><circle class="dot d6" cx="70" cy="281" r="4"/><rect class="bar" x="86" y="277" width="150" height="8" rx="4"/>
+              <rect class="rowbox" x="52" y="308" width="196" height="34" rx="4"/><circle class="dot d7" cx="70" cy="325" r="4"/><rect class="bar" x="86" y="321" width="118" height="8" rx="4"/>
+              <rect class="rowbox" x="52" y="352" width="196" height="34" rx="4"/><circle class="dot d8" cx="70" cy="369" r="4"/><rect class="bar" x="86" y="365" width="138" height="8" rx="4"/>
+            </g>
+          </svg></div>
+          <section class="hero">
+            <div class="wrap">
+              <div class="hero-top">
+                <span class="eyebrow">Zwana Nexus / Platform</span>
+              </div>
+              <div class="hero-headline">
+                <h1>
+                  One platform.<br>
+                  <em>Every vessel.</em><br>
+                  <span class="tealword">Zero compromise.</span>
+                </h1>
+              </div>
+              <div class="hero-sub">
+                <p>The intelligent hardware and software platform at the heart of every vessel’s digital ecosystem. Interoperable. Scalable. Modular.</p>
+                <div class="cta">
+                  <a class="btn-big" href="zwana.html">Explore Zwana
+                    <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px; height:12px;"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Slide 4: Connectivity -->
+        <div class="cslide cslide-home slide-conn">
+          <div class="slide-bg"><div class="orbit"><span class="node"></span></div><div class="orbit o2"><span class="node"></span></div></div>
+          <section class="hero">
+            <div class="wrap">
+              <div class="hero-top">
+                <span class="eyebrow">Connectivity / Network</span>
+              </div>
+              <div class="hero-headline">
+                <h1>
+                  Always on.<br>
+                  <em>Everywhere</em><br>
+                  <span class="tealword">you operate.</span>
+                </h1>
+              </div>
+              <div class="hero-sub">
+                <p>Enterprise-grade connectivity spanning SD-WAN, multi-orbit satellite, LEO, cellular, and L-band — each tailored with seamless automatic failover.</p>
+                <div class="cta">
+                  <a class="btn-big" href="connectivity.html">Explore Connectivity
+                    <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px; height:12px;"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Slide 5: IT Partnering -->
+        <div class="cslide cslide-home slide-it">
+          <div class="slide-bg" aria-hidden="true">
+            <span class="dotgrid"></span>
+            <svg class="gear g1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+            <svg class="gear g2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+            <svg class="gear g3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+            <svg class="gear g4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+            <svg class="gear g5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+            <svg class="gear g6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+            <span class="tick t1"></span><span class="tick t2"></span><span class="tick t3"></span><span class="tick t4"></span>
+            <span class="spark s1"></span><span class="spark s2"></span><span class="spark s3"></span><span class="spark s4"></span>
+          </div>
+          <section class="hero">
+            <div class="wrap">
+              <div class="hero-top">
+                <span class="eyebrow">IT Partnering / abela IT</span>
+              </div>
+              <div class="hero-headline">
+                <h1>
+                  Maritime IT,<br>
+                  <em>handled</em><br>
+                  <span class="tealword">shore-side.</span>
+                </h1>
+              </div>
+              <div class="hero-sub">
+                <p>A comprehensive managed IT service built for maritime — integrating vessel infrastructure, remote monitoring, automation, and compliance under one solution.</p>
+                <div class="cta">
+                  <a class="btn-big" href="it-partnering.html">Explore IT Partnering
+                    <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px; height:12px;"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Slide 6: Cybersecurity -->
+        <div class="cslide cslide-home slide-cyber">
+          <div class="slide-bg"></div>
+          <section class="hero">
+            <div class="wrap">
+              <div class="hero-top">
+                <span class="eyebrow">Cybersecurity / Sentrify</span>
+              </div>
+              <div class="hero-headline">
+                <h1>
+                  Maritime threats.<br>
+                  <em>Maritime</em><br>
+                  <span class="tealword">defenses.</span>
+                </h1>
+              </div>
+              <div class="hero-sub">
+                <p>The only cybersecurity service designed specifically for the vessel environment. World-class technology with maritime expertise, IMO 2021 and IACS aligned.</p>
+                <div class="cta">
+                  <a class="btn-big" href="cybersecurity.html">Explore Sentrify
+                    <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px; height:12px;"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Slide 7: SaaS -->
+        <div class="cslide cslide-home slide-saas">
+          <div class="slide-bg">
+            <svg class="dash" viewBox="0 0 600 440" preserveAspectRatio="xMidYMid meet">
+              <!-- faint background grid -->
+              <g stroke="rgba(120,150,200,.08)" stroke-width="1">
+                <line x1="0" y1="110" x2="600" y2="110"/><line x1="0" y1="330" x2="600" y2="330"/>
+                <line x1="150" y1="0" x2="150" y2="440"/><line x1="450" y1="0" x2="450" y2="440"/>
+              </g>
+
+              <!-- window -->
+              <rect class="panel" x="14" y="22" width="572" height="396" rx="12"/>
+              <rect class="frame" x="14" y="22" width="572" height="396" rx="12"/>
+              <line class="divide" x1="14" y1="66" x2="586" y2="66"/>
+              <line class="divide" x1="142" y1="66" x2="142" y2="418"/>
+              <!-- window controls -->
+              <circle class="tick" cx="34" cy="44" r="4"/><circle class="tick" cx="50" cy="44" r="4"/><circle class="tick" cx="66" cy="44" r="4"/>
+              <rect class="card" x="360" y="36" width="200" height="16" rx="8"/>
+
+              <!-- sidebar nav -->
+              <rect class="nav" x="26" y="92" width="98" height="14" rx="5"/>
+              <rect class="nav" x="26" y="120" width="98" height="14" rx="5"/>
+              <rect class="nav active" x="26" y="148" width="98" height="14" rx="5"/>
+              <rect class="nav" x="26" y="176" width="98" height="14" rx="5"/>
+              <rect class="nav" x="26" y="204" width="98" height="14" rx="5"/>
+
+              <!-- stat cards -->
+              <rect class="card" x="160" y="86" width="128" height="46" rx="6"/>
+              <rect class="card" x="300" y="86" width="128" height="46" rx="6"/>
+              <rect class="card" x="440" y="86" width="120" height="46" rx="6"/>
+              <rect class="tick" x="172" y="98" width="44" height="7" rx="3"/>
+              <rect class="tick" x="312" y="98" width="44" height="7" rx="3"/>
+              <rect class="tick" x="452" y="98" width="44" height="7" rx="3"/>
+
+              <!-- main chart -->
+              <path class="area" d="M168,278 C 250,278 255,206 335,206 S 432,258 502,240 L560,232 L560,300 L168,300 Z"/>
+              <path class="curve" d="M168,278 C 250,278 255,206 335,206 S 432,258 502,240 L560,232"/>
+
+              <!-- table rows -->
+              <rect class="rowk" x="160" y="330" width="58" height="12" rx="4"/>
+              <rect class="row"  x="232" y="330" width="96" height="12" rx="4"/>
+              <rect class="row"  x="342" y="330" width="96" height="12" rx="4"/>
+              <rect class="row"  x="452" y="330" width="108" height="12" rx="4"/>
+              <rect class="rowk" x="160" y="356" width="58" height="12" rx="4"/>
+              <rect class="row"  x="232" y="356" width="96" height="12" rx="4"/>
+              <rect class="row"  x="342" y="356" width="96" height="12" rx="4"/>
+              <rect class="row"  x="452" y="356" width="108" height="12" rx="4"/>
+              <rect class="rowk" x="160" y="382" width="58" height="12" rx="4"/>
+              <rect class="row"  x="232" y="382" width="96" height="12" rx="4"/>
+              <rect class="row"  x="342" y="382" width="96" height="12" rx="4"/>
+              <rect class="row"  x="452" y="382" width="108" height="12" rx="4"/>
+            </svg>
+          </div>
+          <section class="hero">
+            <div class="wrap">
+              <div class="hero-top">
+                <span class="eyebrow">Software as a Service / abela</span>
+              </div>
+              <div class="hero-headline">
+                <h1>
+                  Software<br>
+                  <em>that runs</em><br>
+                  <span class="tealword">your fleet.</span>
+                </h1>
+              </div>
+              <div class="hero-sub">
+                <p>Purpose-built maritime software, from fleet-wide telemetry and file management to crew internet and ship-and-shore email.</p>
+                <div class="cta">
+                  <a class="btn-big" href="saas.html">Explore abela
+                    <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px; height:12px;"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap carousel-foot">
+    <div class="dots" id="carousel-dots"></div>
+    <div class="carousel-counter"><span id="carousel-current">01</span> <span class="of">/ <span id="carousel-total">06</span></span></div>
+  </div>
+</section>
+
+
+<!-- ———— WHO WE ARE ———— -->
+<section class="who">
+  <div class="wrap">
+    <div class="who-grid">
+      <span class="eyebrow">Who we are</span>
+      <div>
+        <p class="lead">
+          End-to-end digital infrastructure for the <strong>maritime</strong> and <strong>enterprise</strong> sectors,
+          from <strong>multi-orbit satellite connectivity</strong> and <strong>maritime cybersecurity</strong> to
+          <strong>managed IT partnering</strong> and <strong>fleet operations software</strong>.
+          All powered by <span class="teal"><strong>Zwana Nexus</strong></span>, our unified edge computing platform.
+        </p>
+        <div class="who-tags">
+          <span class="tag">Interoperable</span>
+          <span class="tag">Scalable</span>
+          <span class="tag">Modular</span>
+          <span class="tag">24/7</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ———— INDUSTRIES ———— -->
+<section class="industries" id="industries">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <span class="eyebrow" style="margin-bottom:20px; display:flex;">Industries we serve</span>
+        <h2>Built for mission-critical<br>operations.</h2>
+      </div>
+    </div>
+
+    <div class="ind-grid">
+      <div class="ind">
+        <div class="num">01 / 04</div>
+        <div class="ind-glyph"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><path d="M12 6.5V19M8 10h8M7 15a5.5 5.5 0 0 0 10 0"/></svg></div>
+        <h3>Maritime</h3>
+        <div class="services">
+          <a href="zwana.html">Zwana</a>
+          <a href="connectivity.html">Connectivity</a>
+          <a href="cybersecurity.html">Cybersecurity</a>
+          <a href="saas.html">SaaS</a>
+          <a href="it-partnering.html">IT Partnering</a>
+        </div>
+      </div>
+      <div class="ind">
+        <div class="num">02 / 04</div>
+        <div class="ind-glyph"><svg viewBox="0 0 24 24"><path d="M5 20V9l7-4 7 4v11M9 20v-6h6v6M12 9v2"></path></svg></div>
+        <h3>Offshore<br>&amp; Energy</h3>
+        <div class="services">
+          <a href="zwana.html">Zwana</a>
+          <a href="connectivity.html">Connectivity</a>
+          <a href="cybersecurity.html">Cybersecurity</a>
+          <a href="saas.html">SaaS</a>
+        </div>
+      </div>
+      <div class="ind">
+        <div class="num">03 / 04</div>
+        <div class="ind-glyph"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 16 0 8 8 0 0 1-16 0zM4 12h16M12 4a11 11 0 0 1 0 16M12 4a11 11 0 0 0 0 16"></path></svg></div>
+        <h3>Remote<br>Enterprises</h3>
+        <div class="services">
+          <a href="connectivity.html">Connectivity</a>
+          <a href="it-partnering.html">IT Partnering</a>
+          <a href="cybersecurity.html">Cybersecurity</a>
+          <a href="saas.html">SaaS</a>
+        </div>
+      </div>
+      <div class="ind">
+        <div class="num">04 / 04</div>
+        <div class="ind-glyph"><svg viewBox="0 0 24 24"><path d="M3 16h11V7H3v9zm11-6h4l3 3v3h-7M6 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM17 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path></svg></div>
+        <h3>Logistics<br>&amp; Transport</h3>
+        <div class="services">
+          <a href="connectivity.html">Connectivity</a>
+          <a href="it-partnering.html">IT Partnering</a>
+          <a href="saas.html">SaaS</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ———— FIVE PILLARS ———— -->
+<section class="pillars" id="pillars">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <span class="eyebrow on-dark" style="margin-bottom:24px; display:flex;">What we do</span>
+        <h2>Five pillars.<br><span class="teal">One integrated platform.</span></h2>
+      </div>
+      <p>Each pillar runs as a standalone service — or stacks into a unified fleet-wide system under Zwana Nexus. No silos. No finger-pointing.</p>
+    </div>
+
+    <div class="pillar-row">
+      <div class="pillar-num">01</div>
+      <div class="pillar-title">
+        <h3>IT Partnering</h3><div class="tag">Managed IT</div>
+      </div>
+      <div class="pillar-body">
+        <p class="desc">A comprehensive managed IT service built for maritime, integrating vessel infrastructure management, remote monitoring, and regulatory compliance into one centralised, fleet-wide solution powered by Zwana Nexus.</p>
+        <ul>
+          <li><span><b>Shore-to-Ship Monitoring.</b> Unified visibility and control of every vessel's IT environment.</span></li>
+          <li><span><b>Maritime Compliance.</b> Managed in alignment with IMO 2021 and IACS UR E26/E27.</span></li>
+          <li><span><b>Bandwidth-Aware Automation.</b> Intelligent patching and deployments optimised for satellite.</span></li>
+          <li><span><b>24/7 NOC.</b> Proactive monitoring, incident response, and remote remediation.</span></li>
+        </ul>
+      </div>
+      <a class="pillar-action" href="it-partnering.html">Learn more
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M10 7h7v7"></path></svg>
+      </a>
+    </div>
+
+    <div class="pillar-row">
+      <div class="pillar-num">02</div>
+      <div class="pillar-title">
+        <h3>Sentrify</h3><div class="tag">Cybersecurity</div>
+      </div>
+      <div class="pillar-body">
+        <p class="desc">Sentrify is the only cybersecurity service designed specifically for the vessel environment and its connectivity challenges. Managed protection combining world-class technology with maritime expertise.</p>
+        <ul>
+          <li><span><b>SentinelOne EDR.</b> AI-driven behavioural threat detection and response.</span></li>
+          <li><span><b>WatchGuard UTM.</b> Deep packet inspection, IPS/IDS, gateway antivirus, web &amp; content filtering, application control, and SD-WAN integration.</span></li>
+          <li><span><b>24/7 vSOC.</b> Continuous fleet-wide threat surveillance and incident response.</span></li>
+          <li><span><b>Compliance Ready.</b> IMO 2021, IACS UR E26/E27, BIMCO, and classification societies.</span></li>
+        </ul>
+      </div>
+      <a class="pillar-action" href="cybersecurity.html">Learn more
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M10 7h7v7"></path></svg>
+      </a>
+    </div>
+
+    <div class="pillar-row">
+      <div class="pillar-num">03</div>
+      <div class="pillar-title">
+        <h3>Zwana Nexus</h3><div class="tag">Platform</div>
+      </div>
+      <div class="pillar-body">
+        <p class="desc">The intelligent hardware and software platform at the heart of every vessel's digital ecosystem. Interoperable, scalable, and modular. One unified platform, zero compromise.</p>
+        <ul>
+          <li><span><b>Edge Computing.</b> Enterprise-grade server with virtualisation and real-time analytics onboard.</span></li>
+          <li><span>Built-in Security. WatchGuard UTM,  EDR, and vSOC in every configuration.</span></li>
+          <li><span><b>Any Connectivity.</b> Interoperable with every satellite and GSM provider via SD-WAN.</span></li>
+          <li><span><b>Fleet-wide Management.</b> Centrally managed from shore with zero-touch deployment.</span></li>
+        </ul>
+      </div>
+      <a class="pillar-action" href="zwana.html">Learn more
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M10 7h7v7"></path></svg>
+      </a>
+    </div>
+
+    <div class="pillar-row">
+      <div class="pillar-num">04</div>
+      <div class="pillar-title">
+        <h3>Software as a Service</h3><div class="tag">abela</div>
+      </div>
+      <div class="pillar-body">
+        <p class="desc">Purpose-built maritime software, from fleet-wide telemetry and file management to crew internet and ship-and-shore email. Pick what you need, we manage the rest.</p>
+        <ul>
+          <li><span><b>abela.io.</b> Fleet management platform with real-time dashboard and analytics.</span></li>
+          <li><span><b>abela pulse.</b> Captain-facing bridge dashboard for connectivity, security, and IT health.</span></li>
+          <li><span><b>abela drive.</b> Satellite-optimised file synchronisation built for intermittent connectivity.</span></li>
+          <li><span><b>Dualog Mail / GTMail.</b> Reliable ship-and-shore email optimised for satellite delivery.</span></li>
+          <li><span><b>Crew Internet.</b> Managed crew internet access with pre-paid credits and bandwidth control.</span></li>
+        </ul>
+      </div>
+      <a class="pillar-action" href="saas.html">Learn more
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M10 7h7v7"></path></svg>
+      </a>
+    </div>
+
+    <div class="pillar-row">
+      <div class="pillar-num">05</div>
+      <div class="pillar-title">
+        <h3>Connectivity</h3><div class="tag">Network</div>
+      </div>
+      <div class="pillar-body">
+        <p class="desc">Enterprise-grade connectivity spanning SD-WAN, multi-orbit VSAT, LEO, cellular, and L-band, each tailored to your environment with seamless automatic failover.</p>
+        <ul>
+          <li><span><b>Multi-orbit VSAT.</b> Ku, Ka, C-band with high-throughput GX beams.</span></li>
+          <li><span><b>LEO Constellations.</b> Starlink and OneWeb with sub-50ms latency.</span></li>
+          <li><span><b>LTE/5G Roaming.</b> 140+ countries with multi-SIM hybrid failover.</span></li>
+          <li><span><b>SD-WAN Intelligence.</b> Automatic path selection, link bonding, and policy-based failover.</span></li>
+        </ul>
+      </div>
+      <a class="pillar-action" href="connectivity.html">Learn more
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M10 7h7v7"></path></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ———— WHY ———— -->
+<section class="why">
+  <div class="wrap">
+    <span class="eyebrow" style="margin-bottom:22px; display:flex;">Why One Net</span>
+    <h2>Not a vendor.<br>A partner.</h2>
+    <p class="why-lead">We don't sell boxes and walk away. We design, deploy, manage, and evolve your fleet's entire digital ecosystem, with you at every step.</p>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="num">01</div>
+        <h3>Integrated by design.</h3>
+        <p>Connectivity, security, IT, and software all run on one platform, Zwana Nexus. No silos, no compatibility issues, no finger-pointing between vendors.</p>
+        <div class="why-rule"></div>
+      </div>
+      <div class="why-card">
+        <div class="num">02</div>
+        <h3>Built for the sea.</h3>
+        <p>Every product is engineered for satellite bandwidth, harsh maritime environments, and the realities of operating thousands of miles from shore.</p>
+        <div class="why-rule"></div>
+      </div>
+      <div class="why-card">
+        <div class="num">03</div>
+        <h3>Fully managed.</h3>
+        <p>Our 24/7 NOC and SOC teams handle monitoring, maintenance, and incident response, so your crew can focus on what they do best.</p>
+        <div class="why-rule"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ———— STATS ———— -->
+<section class="stats">
+  <div class="wrap">
+    <div class="stats-grid">
+      <div class="stat"><div class="num">4,000<sup>+</sup></div><div class="lbl">Vessels served annually</div></div>
+      <div class="stat"><div class="num">95<sup>%</sup></div><div class="lbl">Client satisfaction</div></div>
+      <div class="stat"><div class="num">7</div><div class="lbl">Strategic hubs</div></div>
+      <div class="stat"><div class="num">24<sup>/7</sup></div><div class="lbl">Customer support</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ———— GLOBAL ———— -->
+<section class="global">
+  <div class="wrap">
+    <div class="global-grid">
+      <div class="head">
+        <span class="eyebrow on-dark" style="display:flex;">Global presence</span>
+        <div class="content-col">
+          <h2>24/7<br><span class="teal">Global Operations.</span></h2>
+          <p>With headquarters in Cyprus and strategic hubs in key maritime regions, One Net provides continuous support through dedicated engineering and operations teams. Proactive monitoring. Rapid response. Long-term partnership.</p>
+        </div>
+      </div>
+
+      <div class="globe-wrap">
+        <canvas id="globe-canvas" class="globe-canvas"></canvas>
+        <div class="globe-corners">
+          <span>N 34.6786° · E 33.0460° · <span>HQ</span></span>
+          <span class="br"><span>7 HUBS</span> · 150+ PEOPLE · 24/7</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="global-cta">
+      <div class="locs">
+        <span class="loc hq">Cyprus · HQ</span>
+        <span class="loc">Australia</span><span class="loc">China</span><span class="loc">Germany</span>
+        <span class="loc">Greece</span><span class="loc">Singapore</span><span class="loc">UAE</span>
+      </div>
+      <a class="btn-big teal" href="contact.html">Talk to an expert
+        <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px; height:12px;"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ———— PRINCIPALS ———— -->
+<section class="principals">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow" style="display:flex;">Our principals</span>
+      <h2>Best-in-class technology,<br>integrated by One Net.</h2>
+      <p>We partner with the world's leading connectivity, security, and infrastructure vendors — then engineer, deploy, and manage them as one platform for your fleet.</p>
+    </div>
+  </div>
+  <div class="marquee">
+    <div class="marquee-track">
+      <a class="principal" href="https://www.acronis.com/en/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Acronis"><img src="assets/principals/acronis.png" alt="Acronis"></a>
+      <a class="principal" href="https://www.dell.com/en-us" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Dell Technologies"><img src="assets/principals/dell.png" alt="Dell Technologies"></a>
+      <a class="principal" href="https://dualog.com/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Dualog"><img src="assets/principals/dualog.png?v=2" alt="Dualog" class="md"></a>
+      <a class="principal" href="https://www.eutelsat.com/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Eutelsat"><img src="assets/principals/eutelsat.png" alt="Eutelsat"></a>
+      <a class="principal" href="https://gtmaritime.com/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="GT Maritime"><img src="assets/principals/gtmaritime.png" alt="GT Maritime"></a>
+      <a class="principal" href="https://www.inmarsat.com/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Inmarsat"><img src="assets/principals/inmarsat.png?v=2" alt="Inmarsat" class="sm"></a>
+      <a class="principal" href="https://intelliantech.com/en/home" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Intellian"><img src="assets/principals/intellian.png" alt="Intellian"></a>
+      <a class="principal" href="https://www.iridium.com/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Iridium"><img src="assets/principals/iridium.png" alt="Iridium"></a>
+      <a class="principal" href="https://kns-kr.com/english" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="KNS"><img src="assets/principals/kns.png?v=2" alt="KNS" class="lg"></a>
+      <a class="principal" href="https://www.ninjaone.com/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="NinjaOne"><img src="assets/principals/ninjaone.png" alt="NinjaOne"></a>
+      <a class="principal" href="https://www.ses.com/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="SES"><img src="assets/principals/ses.png" alt="SES"></a>
+      <a class="principal" href="https://www.starlink.com/gb" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Starlink"><img src="assets/principals/starlink.png" alt="Starlink"></a>
+      <a class="principal" href="https://www.synology.com/en-eu" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Synology"><img src="assets/principals/synology.png" alt="Synology"></a>
+      <a class="principal" href="https://www.watchguard.com/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="WatchGuard"><img src="assets/principals/watchguard.png" alt="WatchGuard"></a>
+      <!-- duplicate set for seamless loop -->
+      <a class="principal" href="https://www.acronis.com/en/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Acronis"><img src="assets/principals/acronis.png" alt="Acronis"></a>
+      <a class="principal" href="https://www.dell.com/en-us" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Dell Technologies"><img src="assets/principals/dell.png" alt="Dell Technologies"></a>
+      <a class="principal" href="https://dualog.com/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Dualog"><img src="assets/principals/dualog.png?v=2" alt="Dualog" class="md"></a>
+      <a class="principal" href="https://www.eutelsat.com/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Eutelsat"><img src="assets/principals/eutelsat.png" alt="Eutelsat"></a>
+      <a class="principal" href="https://gtmaritime.com/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="GT Maritime"><img src="assets/principals/gtmaritime.png" alt="GT Maritime"></a>
+      <a class="principal" href="https://www.inmarsat.com/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Inmarsat"><img src="assets/principals/inmarsat.png?v=2" alt="Inmarsat" class="sm"></a>
+      <a class="principal" href="https://intelliantech.com/en/home" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Intellian"><img src="assets/principals/intellian.png" alt="Intellian"></a>
+      <a class="principal" href="https://www.iridium.com/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Iridium"><img src="assets/principals/iridium.png" alt="Iridium"></a>
+      <a class="principal" href="https://kns-kr.com/english" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="KNS"><img src="assets/principals/kns.png?v=2" alt="KNS" class="lg"></a>
+      <a class="principal" href="https://www.ninjaone.com/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="NinjaOne"><img src="assets/principals/ninjaone.png" alt="NinjaOne"></a>
+      <a class="principal" href="https://www.ses.com/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="SES"><img src="assets/principals/ses.png" alt="SES"></a>
+      <a class="principal" href="https://www.starlink.com/gb" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Starlink"><img src="assets/principals/starlink.png" alt="Starlink"></a>
+      <a class="principal" href="https://www.synology.com/en-eu" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Synology"><img src="assets/principals/synology.png" alt="Synology"></a>
+      <a class="principal" href="https://www.watchguard.com/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="WatchGuard"><img src="assets/principals/watchguard.png" alt="WatchGuard"></a>
+    </div>
+  </div>
+</section>
+
+<!-- ———— FINALE ———— -->
+<section class="finale" data-cc-id="cc-3">
+  <div class="wrap" data-cc-id="cc-2">
+    <h2 data-cc-id="cc-7">Ready to <em data-cc-id="cc-9">future-proof</em><br>your operations?</h2>
+    <div class="finale-bottom" data-cc-id="cc-8">
+      <p data-cc-id="cc-6" style="">From initial assessment to fleet-wide deployment, our team of professionals is with you at every step.</p>
+      <div class="finale-ctas">
+        <a class="btn-big" href="contact.html">Get in touch
+          <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px; height:12px;"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></span>
+        </a>
+        <a class="btn-big alt" href="contact.html">Book a fleet review
+          <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px; height:12px;"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer data-cc-id="cc-4">
+  <div class="wrap" data-cc-id="cc-5">
+    <div class="foot-top">
+      <div class="about">
+        <img src="assets/onenet-horizontal-white-full.png" alt="One Net" data-cc-id="cc-1"><p>Enabling a digital society at sea. Delivering end-to-end digital infrastructure for maritime and enterprise.</p>
+        <img class="fhg" src="assets/member-of-fhg-white.png" alt="Member of FHG group">
+      </div>
+      <div><h4>Services</h4><ul>
+        <li><a href="it-partnering.html">IT Partnering</a></li>
+        <li><a href="cybersecurity.html">Cybersecurity</a></li>
+        <li><a href="zwana.html">Zwana Nexus</a></li>
+        <li><a href="saas.html">Software as a Service</a></li>
+        <li><a href="connectivity.html">Connectivity</a></li>
+      </ul></div>
+      <div><h4>Company</h4><ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About us</a></li>
+        <li><a href="careers.html">Careers</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div><h4>Policies</h4><ul>
+        <li><a href="terms-conditions.html">Company Terms &amp; Conditions</a></li>
+        <li><a href="company-policies.html">Company Policies</a></li>
+        <li><a href="products-services-terms.html">Products &amp; Services Terms</a></li>
+        <li><a href="assets/Terms-of-Use-One-Net.pdf" target="_blank" rel="noopener">Terms of Use</a></li>
+        <li><a href="assets/Privacy-Notice-One-Net.pdf" target="_blank" rel="noopener">Privacy Notice</a></li>
+        <li><a href="certifications.html">Certifications</a></li>
+      </ul></div>
+      <div><h4>Contact</h4><ul>
+        <li><a href="mailto:sales@onenet.group">sales@onenet.group</a></li>
+        <li><a href="tel:+35725828999">+357 25 828999</a></li>
+        <li><a href="tel:+6531064123">+65 31064123</a></li>
+        <li style="color:rgba(255,255,255,.5); margin-top:10px; font-size:12px;">Spatharikou 1-3<br>4004 Limassol, Cyprus</li>
+      </ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 One Net group. All rights reserved.</span>
+      <div class="links">
+        <span class="status"><span class="d"></span>All systems operational</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+<!-- ———— TWEAKS PANEL ———— -->
+<aside id="tweaks-panel">
+  <h4>Tweaks</h4>
+  <div class="tw-row">
+    <label>Offer slide</label>
+    <div class="tw-chips" data-tw="offer">
+      <button class="tw-chip" data-v="hide">Hide</button>
+      <button class="tw-chip on" data-v="show">Show</button>
+    </div>
+  </div>
+</aside>
+
+<script>
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "offer": "show"
+}/*EDITMODE-END*/;
+
+const SLOGANS = {
+  digital: `enabling<br><em>a digital society</em><br><span class="tealword">at sea.</span>`
+};
+
+const tweakState = {...TWEAK_DEFAULTS};
+
+function applyTweaks(s) {
+  // slogan (locked to Digital Society)
+  const h1 = document.getElementById('hero-h1');
+  if (h1) h1.innerHTML = SLOGANS.digital;
+  // offer slide visibility
+  const offerSlide = document.getElementById('offer-slide');
+  if (offerSlide) {
+    offerSlide.style.display = s.offer === 'show' ? 'flex' : 'none';
+    if (window.__rebuildCarousel) window.__rebuildCarousel();
+  }
+  // sync chips
+  document.querySelectorAll('#tweaks-panel .tw-chips').forEach(grp => {
+    const key = grp.dataset.tw;
+    grp.querySelectorAll('.tw-chip').forEach(c => c.classList.toggle('on', c.dataset.v === s[key]));
+  });
+}
+
+applyTweaks(tweakState);
+
+document.querySelectorAll('#tweaks-panel .tw-chips').forEach(grp => {
+  grp.addEventListener('click', e => {
+    const chip = e.target.closest('.tw-chip'); if (!chip) return;
+    const key = grp.dataset.tw;
+    tweakState[key] = chip.dataset.v;
+    applyTweaks(tweakState);
+    try { window.parent.postMessage({type:'__edit_mode_set_keys', edits:{[key]: chip.dataset.v}}, '*'); } catch(_){}
+  });
+});
+
+window.addEventListener('message', e => {
+  if (!e.data?.type) return;
+  if (e.data.type === '__activate_edit_mode') document.getElementById('tweaks-panel').classList.add('on');
+  if (e.data.type === '__deactivate_edit_mode') document.getElementById('tweaks-panel').classList.remove('on');
+});
+try { window.parent.postMessage({type:'__edit_mode_available'}, '*'); } catch(_){}
+
+// Theme toggle
+(function(){
+  function initTheme(){
+    var btn = document.querySelector('.theme-toggle');
+    if(!btn) return;
+    btn.addEventListener('click', function(){
+      var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      try{ localStorage.setItem('theme', next); }catch(e){}
+    });
+    // Track OS preference changes (only when user hasn't manually set)
+    try{
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e){
+        if(localStorage.getItem('theme')) return;
+        document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+      });
+    }catch(e){}
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initTheme);
+  else initTheme();
+})();
+
+// Services carousel
+(function(){
+  var idx = 0, autoTimer = null, visibleSlides = [], bound = false;
+  var track, dotsWrap, currentLbl, totalLbl, frame;
+
+  function buildCarousel(){
+    track = document.getElementById('carousel-track');
+    if(!track) return;
+    dotsWrap = document.getElementById('carousel-dots');
+    currentLbl = document.getElementById('carousel-current');
+    totalLbl = document.getElementById('carousel-total');
+    frame = document.querySelector('.carousel-frame');
+
+    // collect only currently-visible slides
+    var all = track.querySelectorAll('.cslide');
+    visibleSlides = [];
+    all.forEach(function(el){
+      el.style.order = '';
+      if (getComputedStyle(el).display !== 'none') visibleSlides.push(el);
+    });
+    // reorder via flex 'order' so visible slides are sequential without DOM moves
+    visibleSlides.forEach(function(el, i){ el.style.order = String(i); });
+
+    var total = visibleSlides.length;
+    if (idx >= total) idx = 0;
+
+    // rebuild dots
+    dotsWrap.innerHTML = '';
+    for(var i = 0; i < total; i++){
+      (function(i){
+        var d = document.createElement('button');
+        d.setAttribute('aria-label', 'Slide ' + (i + 1));
+        if(i === idx) d.classList.add('on');
+        d.addEventListener('click', function(e){ e.preventDefault(); go(i); });
+        dotsWrap.appendChild(d);
+      })(i);
+    }
+    if (totalLbl) totalLbl.textContent = String(total).padStart(2,'0');
+
+    if (!bound) {
+      document.querySelector('.carousel-arrow.prev').addEventListener('click', function(e){ e.preventDefault(); go(idx - 1); });
+      document.querySelector('.carousel-arrow.next').addEventListener('click', function(e){ e.preventDefault(); go(idx + 1); });
+      frame.addEventListener('mouseenter', function(){ clearInterval(autoTimer); });
+      frame.addEventListener('mouseleave', reset);
+      var startX = 0, swiping = false;
+      frame.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; swiping = true; });
+      frame.addEventListener('touchend', function(e){
+        if(!swiping) return; swiping = false;
+        var dx = e.changedTouches[0].clientX - startX;
+        if(Math.abs(dx) > 50) go(dx > 0 ? idx - 1 : idx + 1);
+      });
+      bound = true;
+    }
+
+    update();
+    reset();
+  }
+
+  function update(){
+    track.style.transform = 'translateX(' + (-idx * 100) + '%)';
+    dotsWrap.querySelectorAll('button').forEach(function(d, i){ d.classList.toggle('on', i === idx); });
+    if(currentLbl) currentLbl.textContent = String(idx + 1).padStart(2, '0');
+  }
+  function go(n){
+    var total = visibleSlides.length;
+    if (!total) return;
+    idx = (n + total) % total;
+    update();
+    reset();
+  }
+  function reset(){
+    clearInterval(autoTimer);
+    autoTimer = setInterval(function(){ go(idx + 1); }, 7000);
+  }
+
+  window.__rebuildCarousel = buildCarousel;
+
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', buildCarousel);
+  else buildCarousel();
+})();
+</script>
+
+<script>
+// ———— Animated rotating globe ————
+(function(){
+  function initGlobe(){
+    var canvas = document.getElementById('globe-canvas');
+    if(!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var wrap = canvas.parentElement;
+
+    // Locations: [name, lat, lon, isHQ]
+    var LOCATIONS = [
+      ['Cyprus', 35.0, 33.0, true],
+      ['Greece', 39.0, 22.0, false],
+      ['Germany', 51.0, 10.0, false],
+      ['UAE', 24.0, 54.0, false],
+      ['China', 39.9, 116.4, false],
+      ['Singapore', 1.3, 103.8, false],
+      ['Australia', -33.8, 151.2, false]
+    ];
+
+    // ——— continents as [lon,lat] polygons (recognizable outlines) ———
+    var CONTINENTS = [
+      [[-166,66],[-160,70],[-148,70],[-132,69],[-122,71],[-104,69],[-92,70],[-81,73],[-74,68],[-78,62],[-64,60],[-56,52],[-60,47],[-66,44],[-70,41],[-74,40],[-76,35],[-81,31],[-80,25],[-83,28],[-90,29],[-94,29],[-97,26],[-97,22],[-105,20],[-105,23],[-110,24],[-114,28],[-117,32],[-121,35],[-124,40],[-124,46],[-130,53],[-136,58],[-142,60],[-150,59],[-158,56],[-164,59],[-166,66]],
+      [[-46,60],[-30,60],[-20,70],[-22,78],[-32,82],[-48,81],[-58,76],[-55,68],[-46,60]],
+      [[-94,18],[-88,18],[-83,11],[-78,9],[-80,13],[-87,16],[-94,18]],
+      [[-78,8],[-72,11],[-62,11],[-50,1],[-43,-2],[-35,-6],[-38,-13],[-48,-25],[-58,-35],[-65,-41],[-68,-48],[-73,-53],[-75,-47],[-73,-38],[-71,-29],[-71,-19],[-76,-14],[-81,-5],[-80,3],[-78,8]],
+      [[-10,36],[-9,44],[-1,49],[2,51],[-4,58],[5,61],[12,65],[20,70],[30,71],[42,67],[55,71],[75,73],[100,76],[128,73],[160,71],[179,69],[179,66],[170,60],[160,59],[154,52],[140,46],[135,38],[127,35],[122,30],[120,23],[110,21],[107,16],[105,9],[100,6],[98,9],[92,21],[88,22],[81,8],[77,9],[73,20],[67,24],[60,25],[57,25],[50,28],[48,30],[44,38],[36,37],[28,41],[26,41],[22,40],[14,45],[8,44],[3,43],[-2,37],[-10,36]],
+      [[-17,15],[-16,21],[-10,28],[-2,35],[10,37],[20,33],[25,32],[32,31],[34,28],[37,22],[43,12],[51,12],[48,4],[42,-2],[40,-11],[35,-18],[31,-26],[26,-34],[19,-35],[16,-28],[12,-16],[9,-1],[8,5],[-4,5],[-10,6],[-16,12],[-17,15]],
+      [[43,-13],[50,-15],[50,-25],[45,-25],[43,-13]],
+      [[114,-22],[122,-18],[130,-12],[137,-12],[142,-11],[146,-19],[151,-25],[153,-29],[149,-38],[143,-39],[135,-35],[129,-32],[122,-34],[115,-34],[114,-28],[114,-22]],
+      [[-5,50],[-2,53],[-3,58],[-6,57],[-6,52],[-5,50]],
+      [[-10,52],[-6,53],[-7,55],[-10,54],[-10,52]],
+      [[130,31],[136,35],[141,40],[142,44],[140,38],[135,34],[132,31],[130,31]],
+      [[173,-35],[176,-38],[178,-40],[174,-41],[173,-37],[173,-35]],
+      [[167,-44],[171,-42],[174,-45],[168,-46],[167,-44]],
+      [[-24,64],[-14,64],[-13,66],[-23,66],[-24,64]],
+      [[109,3],[117,4],[119,-1],[114,-4],[109,-2],[109,3]],
+      [[95,5],[100,1],[106,-6],[101,-4],[95,5]],
+      [[131,-1],[141,-2],[150,-7],[143,-9],[134,-8],[131,-1]],
+      [[120,6],[126,8],[125,16],[121,14],[120,6]]
+    ];
+
+    // rasterize continents to an offscreen grid, then precompute land dots
+    var LAND_DOTS = [];
+    (function buildLand(){
+      var GW = 1440, GH = 720;
+      var lc = document.createElement('canvas');
+      lc.width = GW; lc.height = GH;
+      var lx = lc.getContext('2d');
+      lx.fillStyle = '#fff';
+      function px(lon){ return (lon + 180) / 360 * GW; }
+      function py(lat){ return (90 - lat) / 180 * GH; }
+      for(var c=0;c<CONTINENTS.length;c++){
+        var poly = CONTINENTS[c];
+        lx.beginPath();
+        lx.moveTo(px(poly[0][0]), py(poly[0][1]));
+        for(var k=1;k<poly.length;k++) lx.lineTo(px(poly[k][0]), py(poly[k][1]));
+        lx.closePath(); lx.fill();
+      }
+      var data = lx.getImageData(0,0,GW,GH).data;
+      function isLand(lat, lon){
+        var u = (lon + 180) / 360, v = (90 - lat) / 180;
+        var ix = Math.floor(u*GW), iy = Math.floor(v*GH);
+        if(ix<0||ix>=GW||iy<0||iy>=GH) return false;
+        return data[(iy*GW+ix)*4+3] > 40;
+      }
+      for(var la=-80; la<=82; la+=1.8){
+        var step = 1.8 / Math.max(0.16, Math.cos(la*Math.PI/180));
+        for(var lo=-180; lo<180; lo+=step){
+          if(isLand(la,lo)) LAND_DOTS.push([la,lo]);
+        }
+      }
+    })();
+
+    var DPR = Math.min(window.devicePixelRatio || 1, 2);
+    var cx, cy, R;
+
+    function resize(){
+      var w = wrap.clientWidth, h = wrap.clientHeight;
+      canvas.width = w * DPR; canvas.height = h * DPR;
+      canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      cx = w / 2; cy = h / 2;
+      R = Math.min(w, h) * 0.34;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    var rot = -1.812;          // start centered on Singapore (lon 103.8°)
+    var tilt = -0.38;          // axial tilt so northern hemisphere faces us
+    var speed = 0.0016;        // auto-rotate speed
+
+    function project(latDeg, lonDeg, rotation){
+      var lat = latDeg * Math.PI / 180;
+      var lon = lonDeg * Math.PI / 180 + rotation;
+      // sphere coords
+      var x = Math.cos(lat) * Math.sin(lon);
+      var y = Math.sin(lat);
+      var z = Math.cos(lat) * Math.cos(lon);
+      // apply tilt around X axis
+      var y2 = y * Math.cos(tilt) - z * Math.sin(tilt);
+      var z2 = y * Math.sin(tilt) + z * Math.cos(tilt);
+      return {
+        x: cx + R * x,
+        y: cy - R * y2,
+        z: z2  // >0 = front facing
+      };
+    }
+
+    function draw(){
+      var w = wrap.clientWidth, h = wrap.clientHeight;
+      ctx.clearRect(0, 0, w, h);
+
+      // outer atmosphere glow
+      var glow = ctx.createRadialGradient(cx, cy, R*0.7, cx, cy, R*1.4);
+      glow.addColorStop(0, 'rgba(22,240,223,0.10)');
+      glow.addColorStop(1, 'rgba(22,240,223,0)');
+      ctx.fillStyle = glow;
+      ctx.beginPath(); ctx.arc(cx, cy, R*1.4, 0, Math.PI*2); ctx.fill();
+
+      // sphere base
+      var sph = ctx.createRadialGradient(cx - R*0.3, cy - R*0.3, R*0.2, cx, cy, R);
+      sph.addColorStop(0, 'rgba(13,40,82,0.55)');
+      sph.addColorStop(1, 'rgba(2,12,40,0.25)');
+      ctx.fillStyle = sph;
+      ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI*2); ctx.fill();
+
+      // rim
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = 'rgba(22,240,223,0.28)';
+      ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI*2); ctx.stroke();
+      ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+      ctx.beginPath(); ctx.arc(cx, cy, R*1.08, 0, Math.PI*2); ctx.stroke();
+
+      // graticule — latitude lines
+      ctx.strokeStyle = 'rgba(120,150,200,0.16)';
+      ctx.lineWidth = 1;
+      for(var la = -60; la <= 60; la += 30){
+        ctx.beginPath();
+        var started = false;
+        for(var lo = -180; lo <= 180; lo += 4){
+          var p = project(la, lo, rot);
+          if(p.z >= 0){
+            if(!started){ ctx.moveTo(p.x, p.y); started = true; }
+            else ctx.lineTo(p.x, p.y);
+          } else { started = false; }
+        }
+        ctx.stroke();
+      }
+      // longitude lines
+      for(var lo2 = -180; lo2 < 180; lo2 += 30){
+        ctx.beginPath();
+        var started2 = false;
+        for(var la2 = -90; la2 <= 90; la2 += 4){
+          var p2 = project(la2, lo2, rot);
+          if(p2.z >= 0){
+            if(!started2){ ctx.moveTo(p2.x, p2.y); started2 = true; }
+            else ctx.lineTo(p2.x, p2.y);
+          } else { started2 = false; }
+        }
+        ctx.stroke();
+      }
+
+      // land dots (continents)
+      for(var d = 0; d < LAND_DOTS.length; d++){
+        var lp = project(LAND_DOTS[d][0], LAND_DOTS[d][1], rot);
+        if(lp.z < 0.04) continue;
+        var lAlpha = 0.10 + lp.z * 0.40;
+        ctx.beginPath();
+        ctx.arc(lp.x, lp.y, 0.9 + lp.z*0.9, 0, Math.PI*2);
+        ctx.fillStyle = 'rgba(150,182,224,' + lAlpha + ')';
+        ctx.fill();
+      }
+
+      // location dots
+      var now = performance.now() / 1000;
+      for(var i = 0; i < LOCATIONS.length; i++){
+        var loc = LOCATIONS[i];
+        var p = project(loc[1], loc[2], rot);
+        if(p.z < 0.02) continue; // behind globe
+        var depth = p.z; // 0..1
+        var baseR = loc[3] ? 4.5 : 3.2;
+        var alpha = 0.35 + depth * 0.65;
+
+        // pulse for HQ + subtle for others
+        var pulse = (Math.sin(now * 2 + i) + 1) / 2;
+        if(loc[3]){
+          var pr = baseR + 6 + pulse * 10;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, pr, 0, Math.PI*2);
+          ctx.fillStyle = 'rgba(22,240,223,' + (0.18 * (1 - pulse) * depth) + ')';
+          ctx.fill();
+        }
+
+        // glow
+        var g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, baseR*3);
+        g.addColorStop(0, 'rgba(22,240,223,' + (0.6*alpha) + ')');
+        g.addColorStop(1, 'rgba(22,240,223,0)');
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(p.x, p.y, baseR*3, 0, Math.PI*2); ctx.fill();
+
+        // dot
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, baseR, 0, Math.PI*2);
+        ctx.fillStyle = 'rgba(' + (loc[3] ? '120,255,245' : '22,240,223') + ',' + alpha + ')';
+        ctx.fill();
+
+        // office label — front hemisphere only
+        if(depth > 0.4){
+          var lblAlpha = Math.min(1, (depth - 0.4) / 0.35);
+          ctx.font = (loc[3] ? '600 ' : '500 ') + '11px "JetBrains Mono", monospace';
+          ctx.textBaseline = 'middle';
+          var tx = p.x + baseR + 7, ty = p.y - 0.5;
+          var label = loc[3] ? (loc[0] + ' · HQ') : loc[0];
+          // connector tick
+          ctx.strokeStyle = 'rgba(22,240,223,' + (0.5*lblAlpha) + ')';
+          ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(p.x + baseR + 1, p.y); ctx.lineTo(tx - 2, p.y); ctx.stroke();
+          ctx.fillStyle = 'rgba(' + (loc[3] ? '160,255,247' : '210,224,240') + ',' + lblAlpha + ')';
+          ctx.fillText(label.toUpperCase(), tx, ty);
+        }
+      }
+
+      rot += speed;
+      requestAnimationFrame(draw);
+    }
+
+    // pause when off-screen
+    var visible = true;
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){ visible = es[0].isIntersecting; }, {threshold:0.05})
+        .observe(wrap);
+    }
+    function loop(){ if(visible) draw(); requestAnimationFrame(loop); }
+    draw();
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initGlobe);
+  else initGlobe();
+})();
+</script>
+
+<script>
+// Smooth-scroll the hero "Discover what we do" button to the What-we-do section
+(function(){
+  function smoothTo(targetY, duration){
+    var startY = window.pageYOffset;
+    var diff = targetY - startY;
+    var start;
+    function step(ts){
+      if(!start) start = ts;
+      var p = Math.min((ts - start) / duration, 1);
+      var ease = p < 0.5 ? 2*p*p : 1 - Math.pow(-2*p+2, 2)/2; // easeInOutQuad
+      window.scrollTo(0, startY + diff * ease);
+      if(p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  function init(){
+    document.querySelectorAll('a[href="#pillars"]').forEach(function(a){
+      a.addEventListener('click', function(e){
+        var target = document.getElementById('pillars');
+        if(!target) return;
+        e.preventDefault();
+        var header = document.querySelector('.topbar');
+        var offset = header ? header.offsetHeight : 0;
+        var y = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        smoothTo(y, 700);
+      });
+    });
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
+<script src="assets/wt-scroll.js"></script>
+</body></html>

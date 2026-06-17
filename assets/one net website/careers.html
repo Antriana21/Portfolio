@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Careers — One Net | Build the infrastructure behind a connected sea</title>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+
+<style>
+  /* ——— life / culture ——— */
+  .life{background:var(--bg);}
+  .life-grid{display:grid; grid-template-columns: repeat(3, 1fr); gap:20px; align-items:start;}
+  .life-grid .eyebrow{grid-column:1;}
+  .life-grid .body{grid-column: 2 / span 2; display:flex; flex-direction:column; gap:24px;}
+  .life-grid .body p.lead{color:var(--text-strong); font-size:clamp(24px,2.4vw,34px); font-weight:400; line-height:1.32; letter-spacing:-.02em;}
+  .life-grid .body p.lead .teal{color:var(--vibrant);}
+  html[data-theme="light"] .life-grid .body p.lead .teal{color:#0a8b82;}
+  .life-grid .body p{color:var(--text-soft); font-size:clamp(16px,1.4vw,18px); line-height:1.55;}
+
+  /* ——— benefits ——— */
+  .perks{background:var(--bg-2); border-top:1px solid var(--border);}
+  .perks .head{display:flex; flex-direction:column; gap:18px; margin-bottom:56px;}
+  .perks h2{color:var(--text-strong); max-width:18ch;}
+  .perks .head p{color:var(--text-muted); max-width:52ch; font-size:16px; line-height:1.55;}
+  .perk-grid{display:grid; grid-template-columns: repeat(3, 1fr); gap:16px;}
+  .perk{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    padding:30px 26px; display:flex; flex-direction:column; gap:14px; min-height:190px;
+  }
+  .perk .ico{width:44px; height:44px; border-radius:11px; background:var(--vibrant); display:grid; place-items:center; color:var(--sea-ink);}
+  .perk .ico svg{width:22px; height:22px;}
+  .perk h3{color:var(--text-strong); font-weight:500; letter-spacing:-.015em; font-size:20px;}
+  .perk p{color:var(--text-soft); font-size:14.5px; line-height:1.55;}
+
+  /* ——— open roles ——— */
+  .roles{background:var(--bg);}
+  .roles .head{display:flex; flex-direction:column; gap:18px; margin-bottom:48px;}
+  .roles h2{color:var(--text-strong); max-width:18ch;}
+  .roles .head p{color:var(--text-muted); max-width:52ch; font-size:16px; line-height:1.55;}
+  .role-filters{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:28px;}
+  .role-filter{
+    font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+    padding:8px 16px; border-radius:999px; border:1px solid var(--border-strong);
+    color:var(--text-muted); background:transparent; cursor:pointer; transition:all .18s;
+  }
+  .role-filter.on{background:var(--vibrant); color:var(--sea-ink); border-color:var(--vibrant);}
+  .role-list{display:flex; flex-direction:column; border-top:1px solid var(--border);}
+  .role{
+    display:grid; grid-template-columns: 1.6fr 1fr 0.8fr auto; gap:24px; align-items:center;
+    padding:26px 4px; border-bottom:1px solid var(--border);
+    text-decoration:none; transition:background .18s, padding .18s;
+  }
+  .role:hover{background:var(--surface); padding-left:18px; padding-right:18px;}
+  .role .r-title{color:var(--text-strong); font-size:clamp(18px,1.7vw,22px); font-weight:500; letter-spacing:-.015em;}
+  .role .r-dept{font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--vibrant); margin-top:6px; display:block;}
+  .role .r-meta{font-size:14px; color:var(--text-muted);}
+  .role .r-arrow{
+    width:38px; height:38px; border-radius:50%; border:1px solid var(--border-strong);
+    display:grid; place-items:center; color:var(--text-strong); justify-self:end; transition:all .18s;
+  }
+  .role:hover .r-arrow{background:var(--vibrant); border-color:var(--vibrant); color:var(--sea-ink);}
+  .role .r-arrow svg{width:15px; height:15px;}
+  .roles-empty{padding:40px 0; color:var(--text-muted); font-size:15px; display:none;}
+  .role-embed{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .role-embed iframe{width:100%; min-height:700px; border:none; display:block;}
+  .terms{margin-top:48px; display:flex; gap:40px; align-items:center; justify-content:space-between; flex-wrap:wrap;}
+  .terms-text{max-width:70ch; flex:1 1 420px;}
+  .terms h3{color:var(--text-strong); font-size:20px; font-weight:600; letter-spacing:-.015em; margin-bottom:16px;}
+  .terms p{color:var(--text-soft); font-size:14.5px; line-height:1.6; margin-bottom:14px;}
+  .terms p a{color:var(--vibrant); font-weight:500;}
+  html[data-theme="light"] .terms p a{color:#0a8b82;}
+  .terms-doc{
+    flex:none; display:inline-flex; align-items:center; gap:16px;
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    padding:16px 20px; text-decoration:none; transition:border-color .18s, transform .18s;
+  }
+  .terms-doc:hover{border-color:var(--border-strong); transform:translateY(-2px);}
+  .terms-doc .terms-doc-ico{width:40px; height:40px; flex:none; border-radius:10px; background:var(--vibrant); display:grid; place-items:center; color:var(--sea-ink);}
+  .terms-doc .terms-doc-ico svg{width:20px; height:20px;}
+  .terms-doc .terms-doc-txt{display:flex; flex-direction:column; gap:3px;}
+  .terms-doc .terms-doc-title{color:var(--text-strong); font-weight:600; font-size:15px;}
+  .terms-doc .terms-doc-meta{font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--text-muted);}
+  .terms-doc .terms-doc-arrow{margin-left:8px; color:var(--text-muted);}
+  .terms-doc .terms-doc-arrow svg{width:18px; height:18px;}
+
+  /* ——— open application strip ——— */
+  .open-app{background:var(--bg-2); border-top:1px solid var(--border);}
+  .open-app .inner{
+    display:flex; justify-content:space-between; align-items:center; gap:30px; flex-wrap:wrap;
+  }
+  .open-app h3{color:var(--text-strong); font-size:clamp(22px,2.2vw,30px); font-weight:500; letter-spacing:-.02em; max-width:24ch;}
+  .open-app p{color:var(--text-muted); font-size:15px; line-height:1.55; margin-top:10px; max-width:48ch;}
+
+  @media (max-width: 960px){
+    .life-grid{grid-template-columns:1fr;}
+    .life-grid .eyebrow, .life-grid .body{grid-column:auto;}
+    .perk-grid{grid-template-columns:1fr 1fr;}
+    .role{grid-template-columns: 1fr auto; grid-template-areas: "title arrow" "loc arrow"; gap:6px 16px;}
+    .role > div:first-child{grid-area:title;}
+    .role .r-meta.r-loc{grid-area:loc;}
+    .role .r-meta.r-type{display:none;}
+    .role .r-arrow{grid-area:arrow; align-self:center;}
+  }
+  @media (max-width: 560px){
+    .perk-grid{grid-template-columns:1fr;}
+  }
+</style>
+<script src="assets/theme.js"></script>
+</head><body>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="logo" href="index.html">
+      <img class="logo-light" src="assets/onenet-horizontal-blue.svg?v=3" alt="One Net">
+      <img class="logo-dark" src="assets/onenet-horizontal-white-full.png" alt="One Net">
+    </a>
+    <nav class="nav">
+      <a href="it-partnering.html">IT Partnering</a>
+      <a href="cybersecurity.html">Cybersecurity</a>
+      <a href="zwana.html">Zwana</a>
+      <a href="saas.html">SaaS</a>
+      <a href="connectivity.html">Connectivity</a>
+    </nav>
+    <div class="actions">
+      <a class="pill" href="https://status.onenet.group/" target="_blank" rel="noopener"><span class="dot"></span>Service Status</a>
+      <a class="pill" href="https://abela.io/sessions/signin" target="_blank" rel="noopener">abela.io</a>
+      <button class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
+        <svg class="ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+        <svg class="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <a class="btn-primary" href="contact.html">Get in touch
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<nav class="subnav" aria-label="Section navigation">
+  <div class="wrap subnav-inner">
+    <a href="#roles">Open roles</a>
+    <a href="#open-app">Open application</a>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow-row">
+      <a href="index.html">One Net</a><span class="sep">/</span><span>Careers</span>
+    </div>
+    <h1>Do work<br><span class="muted">that keeps</span><br><span class="teal">the world moving.</span></h1>
+    <p class="blurb" style="padding:20px 0 0;">Join the engineers, operators, and problem-solvers keeping thousands of vessels online around the clock. We're a maritime-tech team backed by Fameline Holding Group — connecting the hardest-to-reach places on earth.</p>
+  </div>
+</section>
+
+<!-- ———— OPEN ROLES ———— -->
+<section class="roles" id="roles">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow" style="display:flex;">Open roles</span>
+      <h2>Find your place<br>on the team.</h2>
+      <p>Explore current openings across our teams. Apply directly through our recruitment portal below.</p>
+    </div>
+
+    <div class="role-embed">
+      <iframe src="https://onlinerecruitment.exelsyslive.com/?c=1dd641d9-6512-4dd3-bba8-8f808f34729d&amp;VC=ONENET" title="One Net Group - Job Listings" style="width:100%;min-height:700px;border:none;display:block;" loading="lazy"></iframe>
+    </div>
+
+    <div class="terms">
+      <div class="terms-text">
+        <h3>Terms &amp; data protection</h3>
+        <p>By submitting an application you confirm that the information you provide is accurate and consent to One Net Ltd processing your personal data for recruitment purposes, in accordance with the EU General Data Protection Regulation (2016/679/EU). Your data is held securely, is never sold, and is shared only where necessary to assess your application.</p>
+        <p>You may access, correct, or request deletion of your data, or withdraw your consent at any time, by contacting our GDPR Designated Person at <a href="mailto:gdpr@fameline.com.cy" style="color: rgb(22, 240, 223)">gdpr@fameline.com.cy</a>. Full details on how we collect, use, and protect your information are set out in our Privacy Notice.</p>
+      </div>
+      <a class="terms-doc" href="assets/Privacy-Notice-One-Net.pdf" target="_blank" rel="noopener">
+        <span class="terms-doc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg></span>
+        <span class="terms-doc-txt"><span class="terms-doc-title">Privacy Notice</span></span>
+        <span class="terms-doc-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ———— OPEN APPLICATION ———— -->
+<section class="open-app" id="open-app">
+  <div class="wrap">
+    <div class="inner">
+      <div>
+        <h3>Don't see the right role?</h3>
+        <p>We're always glad to hear from talented people. Tell us how you'd like to contribute and we'll be in touch.</p>
+      </div>
+      <a class="btn-big" href="contact.html">Send an open application
+        <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px;"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ———— CTA BAND ———— -->
+<section class="darkband">
+  <div class="wrap" style="text-align:center;">
+    <h2>Questions about <span class="teal">working here?</span></h2>
+    <p style="color:rgba(255,255,255,.72); max-width:52ch; margin:22px auto 36px; font-size:16px; line-height:1.6;">Reach out to our team — we're happy to tell you more about life at One Net and the work we do.</p>
+    <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+      <a class="btn-big teal" href="contact.html">Get in touch
+        <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px;"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="about">
+        <img src="assets/onenet-horizontal-white-full.png" alt="One Net"><p>Enabling a digital society at sea. Delivering end-to-end digital infrastructure for maritime and enterprise.</p>
+        <img class="fhg" src="assets/member-of-fhg-white.png" alt="Member of FHG group">
+      </div>
+      <div><h4>Services</h4><ul>
+        <li><a href="it-partnering.html">IT Partnering</a></li>
+        <li><a href="cybersecurity.html">Cybersecurity</a></li>
+        <li><a href="zwana.html">Zwana Nexus</a></li>
+        <li><a href="saas.html">Software as a Service</a></li>
+        <li><a href="connectivity.html">Connectivity</a></li>
+      </ul></div>
+      <div><h4>Company</h4><ul>
+        <li><a href="index.html">Home</a></li><li><a href="about.html">About us</a></li>
+        <li><a href="careers.html">Careers</a></li><li><a href="blog.html">Blog</a></li><li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div><h4>Policies</h4><ul>
+        <li><a href="terms-conditions.html">Company Terms &amp; Conditions</a></li>
+        <li><a href="company-policies.html">Company Policies</a></li>
+        <li><a href="products-services-terms.html">Products &amp; Services Terms</a></li>
+        <li><a href="assets/Terms-of-Use-One-Net.pdf" target="_blank" rel="noopener">Terms of Use</a></li>
+        <li><a href="assets/Privacy-Notice-One-Net.pdf" target="_blank" rel="noopener">Privacy Notice</a></li>
+        <li><a href="certifications.html">Certifications</a></li>
+      </ul></div>
+      <div><h4>Contact</h4><ul>
+        <li><a href="mailto:sales@onenet.group">sales@onenet.group</a></li>
+        <li><a href="tel:+35725828999">+357 25 828999</a></li>
+        <li><a href="tel:+6531064123">+65 31064123</a></li>
+        <li style="color:rgba(255,255,255,.5); margin-top:10px; font-size:12px;">Spatharikou 1-3<br>4004 Limassol, Cyprus</li>
+      </ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 One Net group. All rights reserved.</span>
+      <div class="links"><span class="status"><span class="d"></span>All systems operational</span></div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/subnav.js"></script>
+<script>
+(function(){
+  function init(){
+    var filters = document.querySelectorAll('#role-filters .role-filter');
+    var roles = [].slice.call(document.querySelectorAll('#role-list .role'));
+    var empty = document.getElementById('roles-empty');
+    filters.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        filters.forEach(function(b){ b.classList.remove('on'); });
+        btn.classList.add('on');
+        var f = btn.getAttribute('data-filter');
+        var shown = 0;
+        roles.forEach(function(r){
+          var match = (f === 'all' || r.getAttribute('data-dept') === f);
+          r.style.display = match ? '' : 'none';
+          if(match) shown++;
+        });
+        empty.style.display = shown === 0 ? 'block' : 'none';
+      });
+    });
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
+
+</body>
+</html>

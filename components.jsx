@@ -5,6 +5,7 @@ const { useState, useEffect, useRef, useCallback } = React;
 function SmartImg({ src, alt, label, imgStyle, eager }) {
   const isMp4 = !!(src && (src.toLowerCase().includes('.mp4') || src.toLowerCase().includes('.mov')));
   const isGif = !!(src && src.toLowerCase().includes('.gif'));
+  const isHtml = !!(src && src.toLowerCase().endsWith('.html'));
   const [failed, setFailed] = useState(!src);
   const [playing, setPlaying] = useState(false);
   const videoRef = useRef(null);
@@ -16,6 +17,16 @@ function SmartImg({ src, alt, label, imgStyle, eager }) {
   };
 
   if (failed) return <div className="ph" aria-label={alt}><span className="pht">{label || alt}</span></div>;
+
+  if (isHtml) {
+    return (
+      <a className="html-card" href={src} target="_blank" rel="noopener" data-cursor="hover">
+        <span className="html-card-play">▶</span>
+        <span className="html-card-label">Website Walkthrough</span>
+        <span className="html-card-sub">3:00 · Interactive Demo</span>
+      </a>
+    );
+  }
 
   if (isMp4) {
     return (

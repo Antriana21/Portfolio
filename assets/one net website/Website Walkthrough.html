@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>One Net — Website Walkthrough</title>
+<style>
+  :root{ --teal:#16F0DF; }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;height:100%;background:#000;overflow:hidden;font-family:"Manrope",Arial,sans-serif;}
+  #stageWrap{
+    position:fixed; inset:0; background:radial-gradient(120% 120% at 50% 0%, #0b1230 0%, #04060f 70%);
+  }
+  #frame{
+    position:absolute; left:50%; top:50%; width:1920px; height:1124px; transform-origin:center center;
+    border-radius:18px; overflow:hidden; background:#0b1020;
+    box-shadow:0 40px 120px rgba(0,0,0,.65), 0 0 0 1px rgba(255,255,255,.06);
+  }
+  #chrome{
+    height:44px; width:1920px; background:#0d1426; display:flex; align-items:center; gap:18px;
+    padding:0 22px; border-bottom:1px solid rgba(255,255,255,.06);
+  }
+  #chrome .lights{display:flex; gap:9px;}
+  #chrome .lights i{width:13px;height:13px;border-radius:50%;display:block;}
+  #chrome .lights i:nth-child(1){background:#ff5f57;}
+  #chrome .lights i:nth-child(2){background:#febc2e;}
+  #chrome .lights i:nth-child(3){background:#28c840;}
+  #chrome .url{
+    flex:1; max-width:520px; height:26px; border-radius:7px; background:#070c1a;
+    display:flex; align-items:center; gap:9px; padding:0 14px; margin:0 auto;
+    font-family:"JetBrains Mono",ui-monospace,monospace; font-size:12.5px; color:#9aa6c4; letter-spacing:.02em;
+  }
+  #chrome .url svg{width:13px;height:13px;flex:none;color:#16F0DF;}
+  #stage{
+    position:relative; width:1920px; height:1080px; background:#070c22; overflow:hidden;
+  }
+  .layer{
+    position:absolute; inset:0; width:1920px; height:1080px; border:0; opacity:0;
+    pointer-events:none; background:#070c22;
+  }
+  #outro{
+    position:absolute; inset:0; display:grid; place-items:center; background:#070c22;
+    opacity:0; z-index:50;
+  }
+  #outro img{ width:520px; max-width:60%; height:auto; }
+
+  #controls{
+    position:fixed; left:0; right:0; bottom:0; z-index:100;
+    display:flex; align-items:center; gap:16px; padding:14px 22px;
+    background:linear-gradient(transparent, rgba(0,0,0,.75) 40%);
+    font-family:"JetBrains Mono",ui-monospace,monospace; color:#cfd6e6;
+    opacity:1; transition:opacity .4s; user-select:none;
+  }
+  #controls.hidden{opacity:0;}
+  #stageWrap:hover #controls{opacity:1;}
+  .btn{
+    cursor:pointer; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.16);
+    color:#fff; width:42px; height:42px; border-radius:50%; display:grid; place-items:center;
+    flex:none; transition:background .15s;
+  }
+  .btn:hover{background:rgba(22,240,223,.18); border-color:var(--teal);}
+  .btn svg{width:18px;height:18px;}
+  #scrub{ flex:1; height:6px; -webkit-appearance:none; appearance:none; background:rgba(255,255,255,.16); border-radius:999px; cursor:pointer; }
+  #scrub::-webkit-slider-thumb{ -webkit-appearance:none; width:14px; height:14px; border-radius:50%; background:var(--teal); cursor:pointer; }
+  #scrub::-moz-range-thumb{ width:14px; height:14px; border:0; border-radius:50%; background:var(--teal); cursor:pointer; }
+  #time{ font-size:12px; letter-spacing:.05em; min-width:96px; text-align:right; }
+  #label{ font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--teal); min-width:180px; }
+  #chapters{
+    position:fixed; left:0; right:0; bottom:62px; z-index:101;
+    display:flex; justify-content:center; gap:8px; pointer-events:none;
+    opacity:0; transition:opacity .4s;
+  }
+  #stageWrap:hover #chapters{ opacity:1; }
+  .chap-dot{
+    width:6px; height:6px; border-radius:50%;
+    background:rgba(255,255,255,.22); border:1px solid rgba(255,255,255,.3);
+    transition:background .3s, transform .3s, border-color .3s;
+    flex-shrink:0;
+  }
+  .chap-dot.on{ background:var(--teal); border-color:var(--teal); transform:scale(1.5); }
+  #hint{ font-size:10px; letter-spacing:.12em; color:rgba(255,255,255,.22); position:fixed; bottom:68px; right:22px; z-index:101; opacity:0; transition:opacity .4s; }
+  #stageWrap:hover #hint{ opacity:1; }
+  #loading{
+    position:fixed; inset:0; display:grid; place-items:center; z-index:200; background:#070c22;
+    color:#8a93b6; font-family:"JetBrains Mono",monospace; font-size:13px; letter-spacing:.1em; text-transform:uppercase;
+    transition:opacity .5s;
+  }
+</style>
+</head>
+<body>
+<div id="loading">Preparing walkthrough…</div>
+<div id="chapters"></div>
+<div id="hint">Space · Play/Pause &nbsp;·&nbsp; R · Restart</div>
+<div id="stageWrap">
+  <div id="frame">
+    <div id="chrome">
+      <div class="lights"><i></i><i></i><i></i></div>
+      <div class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span id="urlText">onenet.group</span></div>
+    </div>
+    <div id="stage">
+      <!-- iframe layers injected by JS -->
+      <div id="outro"><img src="assets/onenet-horizontal-white-full.png" alt="One Net"></div>
+    </div>
+  </div>
+  <div id="controls">
+    <div class="btn" id="playBtn" title="Play / pause">
+      <svg id="playIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      <svg id="pauseIcon" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+    </div>
+    <div class="btn" id="restartBtn" title="Restart">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 4v4h4"/></svg>
+    </div>
+    <span id="label">Home</span>
+    <input id="scrub" type="range" min="0" max="1000" value="0">
+    <span id="time">0:00 / 3:00</span>
+  </div>
+</div>
+
+<script>
+(function(){
+  try{ localStorage.setItem('theme','dark'); }catch(e){}
+
+  var PAGES = [
+    {file:'index.html',         title:'Home'},
+    {file:'it-partnering.html', title:'IT Partnering'},
+    {file:'cybersecurity.html', title:'Cybersecurity'},
+    {file:'zwana.html',         title:'Zwana'},
+{file:'about.html',         title:'About'},
+    {file:'contact.html',       title:'Contact'}
+  ];
+
+  var TOTAL = 180;
+  var OUTRO = 3.0;
+  var CF    = 1.1;
+  var SEG   = (TOTAL - OUTRO) / PAGES.length;
+  var VH = 1080, VW = 1920, FH = 1124;
+  var STORE = 'onenet_walkthrough_t';
+
+  var frame      = document.getElementById('frame');
+  var stage      = document.getElementById('stage');
+  var outro      = document.getElementById('outro');
+  var loading    = document.getElementById('loading');
+  var scrub      = document.getElementById('scrub');
+  var timeEl     = document.getElementById('time');
+  var labelEl    = document.getElementById('label');
+  var playBtn    = document.getElementById('playBtn');
+  var playIcon   = document.getElementById('playIcon');
+  var pauseIcon  = document.getElementById('pauseIcon');
+  var restartBtn = document.getElementById('restartBtn');
+
+  var frames  = new Array(PAGES.length).fill(null);
+  var heights = new Array(PAGES.length).fill(0);
+  var loaded  = new Array(PAGES.length).fill(false);
+
+  window.addEventListener('message', function(e){
+    if(!e.data || e.data.type !== 'wt-height') return;
+    var src = e.data.src;
+    for(var i = 0; i < PAGES.length; i++){
+      if(PAGES[i].file === src){
+        heights[i] = Math.max(0, e.data.h - VH);
+        break;
+      }
+    }
+  });
+
+  function fit(){
+    var pad = 48;
+    var s = Math.min((window.innerWidth - pad) / VW, (window.innerHeight - pad) / FH);
+    frame.style.transform = 'translate(-50%,-50%) scale(' + s + ')';
+  }
+  window.addEventListener('resize', fit); fit();
+
+  function mount(i){
+    if(frames[i]) return frames[i];
+    var f = document.createElement('iframe');
+    f.className = 'layer';
+    f.style.zIndex = i + 1;
+    f.src = PAGES[i].file;
+    f.addEventListener('load', function(){
+      loaded[i] = true;
+      try{
+        var doc = f.contentWindow.document;
+        var h = Math.max(doc.documentElement.scrollHeight, doc.body.scrollHeight);
+        if(h > VH) heights[i] = h - VH;
+      }catch(e){}
+    });
+    stage.insertBefore(f, outro);
+    frames[i] = f;
+    return f;
+  }
+  function unmount(i){
+    if(frames[i]){ frames[i].remove(); frames[i] = null; loaded[i] = false; heights[i] = 0; }
+  }
+
+  function smooth(x){ return x<=0?0:x>=1?1:(x*x*(3-2*x)); }
+
+  function activeIndexAt(t){
+    var i = Math.floor(t / SEG);
+    if(i < 0) i = 0;
+    if(i > PAGES.length - 1) i = PAGES.length - 1;
+    return i;
+  }
+
+  function render(t){
+    var inOutro = t >= (TOTAL - OUTRO);
+    outro.style.opacity = inOutro ? smooth((t - (TOTAL - OUTRO)) / 0.6) : 0;
+
+    var ai = activeIndexAt(Math.min(t, TOTAL - OUTRO - 0.001));
+
+    for(var k = 0; k < PAGES.length; k++){
+      if(k >= ai - 1 && k <= ai + 1) mount(k); else unmount(k);
+    }
+
+    for(var i = Math.max(0, ai - 1); i <= Math.min(PAGES.length - 1, ai + 1); i++){
+      var s = i * SEG, e = s + SEG;
+      var op = 0;
+      if(t >= s && t <= e) op = 1;
+      if(t < s && t >= s - CF) op = (t - (s - CF)) / CF;
+      if(t > e) op = (i === PAGES.length - 1) ? 1 : 0;
+      if(inOutro && i === PAGES.length - 1) op = 1;
+      var fr = frames[i];
+      if(fr){
+        fr.style.opacity = Math.max(0, Math.min(1, op)).toFixed(3);
+        var frac = smooth(Math.max(0, Math.min(1, (t - s) / SEG)));
+        var y = Math.round(heights[i] * frac);
+        fr.contentWindow.postMessage({type:'wt-scroll', y:y}, '*');
+      }
+    }
+
+    updateChapters(inOutro ? PAGES.length - 1 : ai);
+    labelEl.textContent = inOutro ? 'One Net' : ((ai + 1) + ' / ' + PAGES.length + '  —  ' + PAGES[ai].title);
+    scrub.value = Math.round((t / TOTAL) * 1000);
+    timeEl.textContent = fmt(t) + ' / ' + fmt(TOTAL);
+    var u = document.getElementById('urlText');
+    if(u){ u.textContent = inOutro ? 'onenet.group' : ('onenet.group/' + (ai === 0 ? '' : PAGES[ai].file)); }
+  }
+
+  function fmt(s){
+    s = Math.max(0, Math.floor(s));
+    var m = Math.floor(s / 60), ss = s % 60;
+    return m + ':' + (ss < 10 ? '0' : '') + ss;
+  }
+
+  var playing = false, cur = 0, last = 0;
+  try{
+    var saved = parseFloat(localStorage.getItem(STORE));
+    if(!isNaN(saved) && saved < TOTAL - 0.2) cur = saved;
+  }catch(e){}
+
+  function tick(ts){
+    if(!playing){ last = ts; return; }
+    var dt = (ts - last) / 1000; last = ts;
+    cur += dt;
+    if(cur >= TOTAL){ cur = TOTAL; playing = false; setIcons(); }
+    render(cur);
+    try{ localStorage.setItem(STORE, cur); }catch(e){}
+    if(playing) requestAnimationFrame(tick);
+  }
+  function play(){ if(cur >= TOTAL) cur = 0; playing = true; setIcons(); last = performance.now(); requestAnimationFrame(tick); }
+  function pause(){ playing = false; setIcons(); }
+  function setIcons(){ playIcon.style.display = playing ? 'none' : 'block'; pauseIcon.style.display = playing ? 'block' : 'none'; }
+
+  playBtn.addEventListener('click', function(){ playing ? pause() : play(); });
+  restartBtn.addEventListener('click', function(){
+    cur = 0; render(0);
+    try{ localStorage.setItem(STORE, 0); }catch(e){}
+    if(playing) last = performance.now();
+  });
+
+  document.addEventListener('keydown', function(e){
+    if(e.target.tagName === 'INPUT') return;
+    if(e.code === 'Space' || e.key === ' '){ e.preventDefault(); playing ? pause() : play(); }
+    if(e.code === 'KeyR'){ cur = 0; render(0); try{ localStorage.setItem(STORE, 0); }catch(e2){} }
+  });
+
+  var chapEl = document.getElementById('chapters');
+  var dots = [];
+  PAGES.forEach(function(p, i){
+    var d = document.createElement('span');
+    d.className = 'chap-dot';
+    d.title = p.title;
+    chapEl.appendChild(d);
+    dots.push(d);
+  });
+  function updateChapters(ai){
+    dots.forEach(function(d, i){ d.classList.toggle('on', i === ai); });
+  }
+
+  scrub.addEventListener('input', function(){
+    cur = (scrub.value / 1000) * TOTAL;
+    render(cur);
+    try{ localStorage.setItem(STORE, cur); }catch(e){}
+  });
+
+  mount(0); mount(1);
+  var booted = false;
+  function boot(){
+    if(booted) return; booted = true;
+    loading.style.opacity = '0';
+    setTimeout(function(){ loading.remove(); }, 500);
+    render(cur);
+    setIcons();
+    play();
+  }
+  var t0 = Date.now();
+  var iv = setInterval(function(){
+    if(loaded[0] || Date.now() - t0 > 3500){ clearInterval(iv); boot(); }
+  }, 150);
+})();
+</script>
+</body>
+</html>

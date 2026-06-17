@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Zwana Nexus — Built for the sea. Built to last. | One Net</title>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  .zwana-hero{position:relative; overflow:hidden;}
+  .zwana-hero .right-art{
+    position:absolute; right: -80px; top:50%; transform: translateY(-50%);
+    width: 420px; height: 420px;
+    background: radial-gradient(circle at 50% 50%, rgba(22,240,223,.14), transparent 60%);
+    border-radius:50%;
+  }
+  .zwana-hero .right-art::before{
+    content:""; position:absolute; inset:20%; border-radius:50%;
+    border:1px dashed var(--border-strong);
+  }
+  .zwana-hero .right-art::after{
+    content:""; position:absolute; inset:40%; border-radius:50%;
+    background: linear-gradient(135deg, var(--sea) 0%, var(--vibrant) 100%);
+    box-shadow: 0 20px 60px var(--border-strong);
+  }
+  .platform{background: var(--sea-ink); color:white; position:relative; overflow:hidden;}
+  .platform::before{content:""; position:absolute; inset:0; background: radial-gradient(60% 70% at 20% 0%, rgba(22,240,223,.1), transparent 60%);}
+  .platform h2{color:white; max-width:16ch;}
+  .platform .intro{display:grid; grid-template-columns: repeat(3, 1fr); gap:20px; align-items:end; margin-bottom:60px;}
+  .platform .intro h2{grid-column: 1 / span 2;}
+  .platform .intro p{grid-column: 3; color:rgba(255,255,255,.7); font-size:16px; max-width:44ch; line-height:1.55;}
+  .features{display:grid; grid-template-columns: repeat(3, 1fr); gap:20px;}
+  .feat{
+    border:1px solid rgba(255,255,255,.14); border-radius: var(--radius);
+    padding: 28px 26px; min-height:260px; display:flex; flex-direction:column; gap:14px;
+    background: rgba(255,255,255,.02);
+  }
+  .feat .num{font-family:var(--mono); font-size:11px; letter-spacing:.12em; color:var(--vibrant); text-transform:uppercase;}
+  .feat h3{color:white; font-weight:500; letter-spacing:-.015em; font-size:24px;}
+  .feat p{color:rgba(255,255,255,.75); font-size:14px; line-height:1.55;}
+
+  /* plan list */
+  .plans{background: var(--paper);}
+  .plans h2{color:var(--text-strong);}
+  .plans .head{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    margin-bottom: 64px;
+    align-items: start;
+  }
+  .plan{
+    background: var(--surface); border:1px solid var(--border); border-radius: 18px;
+    padding: 32px 36px; margin-bottom:14px;
+    display:grid; grid-template-columns: 80px 240px 1fr auto; gap: 40px; align-items:flex-start;
+    transition: border-color .2s, transform .2s;
+  }
+  .plan:hover{border-color: var(--border-strong);}
+  .plan .num{font-family:var(--mono); font-size:12px; color:var(--text-muted); letter-spacing:.1em;}
+  .plan .ttl h3{color:var(--text-strong); font-weight:500; letter-spacing:-.015em; font-size:28px;}
+  .plan .ttl .sub{
+    display:inline-block; margin-top:10px; font-family:var(--mono); font-size:10px;
+    border:1px solid var(--border-strong); color:var(--text-strong); padding:3px 8px; border-radius:999px;
+    letter-spacing:.1em; text-transform:uppercase;
+  }
+  .plan .body p{color: var(--text-soft); font-size:14.5px; line-height:1.55; max-width:62ch;}
+  .plan .body ul{list-style:none; padding:0; margin-top:16px; display:grid; grid-template-columns: 1fr 1fr; gap: 4px 28px;}
+  .plan .body li{font-size:13px; color: var(--text-soft); padding:4px 0; display:flex; gap:8px; line-height:1.5;}
+  .plan .body li::before{content:""; width:5px; height:5px; background:var(--vibrant); border-radius:50%; margin-top:8px; flex:none;}
+  .plan .body li b{color:var(--text-strong); font-weight:600;}
+  .plan .action{display:inline-flex; gap:8px; align-items:center; color:var(--text-strong); font-size:14px; font-weight:500; white-space:nowrap; padding-top:6px;}
+  .plan .action svg{width:14px; height:14px;}
+
+  /* compare table */
+  .compare{background: var(--sea-ink); color:#fff; position:relative; overflow:hidden;}
+  .compare::before{content:""; position:absolute; inset:0; background: radial-gradient(55% 60% at 50% 0%, rgba(22,240,223,.08), transparent 60%); pointer-events:none;}
+  .compare .wrap{position:relative; z-index:1;}
+  .compare h2{color:#fff;}
+  .compare .head{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    align-items: start;
+  }
+  .compare .head .eyebrow{color:var(--vibrant);}
+  .compare .head .eyebrow::before{background:var(--vibrant);}
+  table.compare-tbl{
+    width:100%; border-collapse: collapse; margin-top:44px;
+    background: transparent; border-radius: 18px; overflow:hidden;
+    border:1px solid rgba(255,255,255,.12);
+  }
+  .compare-tbl th, .compare-tbl td{
+    padding: 11px 18px; text-align:center; font-size:14px; border-bottom:1px solid rgba(255,255,255,.1);
+  }
+  .compare-tbl thead th{background:transparent; padding-top:18px; padding-bottom:18px;}
+  .compare-tbl th:first-child, .compare-tbl td:first-child{text-align:left;}
+  .compare-tbl thead .pillhead{
+    display:inline-block; background:var(--vibrant); color:var(--sea-ink);
+    font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+    font-weight:600; padding:9px 18px; border-radius:999px; white-space:nowrap;
+  }
+  .compare-tbl thead .spec{
+    display:block; margin-top:7px; font-family:var(--mono); font-size:9px;
+    letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.42); font-weight:400;
+  }
+  .compare-tbl thead .hw{
+    display:block; margin-top:4px; font-size:12px; font-weight:500;
+    color:rgba(255,255,255,.78);
+  }
+  .compare-tbl tr:last-child td{border-bottom:none;}
+  .compare-tbl td:first-child{font-weight:600; color:#fff; font-size:14.5px;}
+  .compare-tbl .chk{color: var(--vibrant); font-weight:700; font-size:17px;}
+  .compare-tbl .no{color:rgba(255,255,255,.28);}
+  .compare-tbl .opt{color: rgba(255,255,255,.7); font-style:italic; font-size:12.5px;}
+  .compare-tbl .val{color:var(--vibrant); font-weight:600;}
+  .compare-tbl .val.muted{color:rgba(255,255,255,.5); font-style:italic; font-weight:400;}
+  .compare-tbl tfoot td{padding-top:20px; padding-bottom:22px; border-bottom:none;}
+  .compare-tbl .cmp-cta{
+    display:inline-flex; align-items:center; justify-content:center;
+    padding:12px 24px; border-radius:999px; font-size:13px; font-weight:600;
+    border:1px solid var(--vibrant); color:var(--vibrant); background:transparent;
+    transition:background .2s, color .2s;
+  }
+  .compare-tbl .cmp-cta:hover{background:var(--vibrant); color:var(--sea-ink);}
+  .compare-tbl .nmr-ref{color:var(--vibrant); font-weight:700; margin-left:2px;}
+  .nmr-note{
+    margin-top:22px; max-width:none; font-size:13px; line-height:1.6;
+    color:rgba(255,255,255,.65);
+  }
+  .nmr-note b{color:#fff; font-weight:600;}
+  .compare-foot{
+    display:flex; align-items:center; gap:40px; margin-top:24px;
+  }
+  .compare-foot .nmr-note{flex:1 1 50%; margin-top:0;}
+  .compare-foot .compare-foot-cta{flex:1 1 50%; display:flex; justify-content:flex-end;}
+  .compare-foot .cmp-cta{
+    display:inline-flex; align-items:center; justify-content:center;
+    padding:14px 28px; border-radius:999px; font-size:14px; font-weight:600;
+    border:1px solid var(--vibrant); color:var(--vibrant); background:transparent;
+    transition:background .2s, color .2s;
+  }
+  .compare-foot .cmp-cta:hover{background:var(--vibrant); color:var(--sea-ink);}
+
+  /* sticky compare pill (tweak: pill mode) */
+  .compare-pill{
+    position:fixed; bottom:24px; left:50%; transform:translateX(-50%); z-index:50;
+    display:none; align-items:center; gap:10px; padding:14px 22px; border-radius:999px;
+    background:var(--sea); color:white; font-family:var(--sans); font-size:14px; font-weight:600;
+    border:1px solid rgba(22,240,223,.3); box-shadow:0 12px 30px rgba(0,0,0,.35), 0 0 0 4px rgba(22,240,223,.08);
+    cursor:pointer; transition:transform .2s, box-shadow .2s, background .2s;
+  }
+  .compare-pill.on{display:inline-flex;}
+  .compare-pill:hover{transform:translateX(-50%) translateY(-2px); background:#022071; box-shadow:0 16px 36px rgba(0,0,0,.45), 0 0 0 6px rgba(22,240,223,.12);}
+  .compare-pill svg{width:16px; height:16px;}
+  html[data-theme="dark"] .compare-pill{background:var(--vibrant); color:var(--sea-ink); border-color:rgba(22,240,223,.5);}
+  html[data-theme="dark"] .compare-pill:hover{background:#6ff7ea;}
+
+  /* compare modal */
+  .compare-modal{position:fixed; inset:0; z-index:100; display:none; align-items:center; justify-content:center; padding:clamp(16px,3vw,40px);}
+  .compare-modal.on{display:flex;}
+  .compare-scrim{position:absolute; inset:0; background:rgba(0,11,44,.7); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);}
+  .compare-panel{
+    position:relative; z-index:2; width:min(1100px, 96vw); max-height:92vh; overflow:auto;
+    background:#051434; border:1px solid rgba(255,255,255,.08); border-radius:20px;
+    padding:clamp(24px,4vw,44px); color:white; box-shadow:0 30px 80px rgba(0,0,0,.5);
+  }
+  .compare-head{display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:clamp(18px,3vw,30px);}
+  .compare-head h2{font-family:var(--sans); font-size:clamp(26px,3vw,36px); font-weight:500; letter-spacing:-.02em; color:white; margin:0;}
+  .compare-head h2 .teal-grad{background:linear-gradient(95deg,#ffffff 0%,#a6f9f1 50%,#16F0DF 100%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent;}
+  .compare-close{width:40px; height:40px; border-radius:999px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); color:rgba(255,255,255,.7); display:grid; place-items:center; cursor:pointer; transition:background .2s, color .2s; flex:none;}
+  .compare-close:hover{background:rgba(255,255,255,.16); color:white;}
+  .compare-close svg{width:16px; height:16px;}
+  .compare-modal-body .compare-tbl{margin-top:0;}
+  .compare-modal-body .nmr-note{max-width:none;}
+  body.compare-open{overflow:hidden;}
+  @media (max-width: 960px){
+    .platform .intro, .features{grid-template-columns: 1fr;}
+    .platform .intro h2, .platform .intro p{grid-column: auto;}
+    .plan{grid-template-columns: 1fr; gap:18px;}
+    .plan .body ul{grid-template-columns: 1fr;}
+    table.compare-tbl{font-size:12px;}
+    .compare-tbl th, .compare-tbl td{padding:10px;}
+  }
+
+  /* ———— expandable plan bullets (tweak) ———— */
+  .plan-toggle{
+    display:none; margin-top:18px; align-items:center; gap:8px;
+    background:transparent; border:0; cursor:pointer; padding:0;
+    font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--text-strong); opacity:.7; transition:opacity .2s;
+  }
+  .plan-toggle:hover{opacity:1;}
+  .plan-toggle .chev{
+    width:16px; height:16px; display:grid; place-items:center;
+    border:1px solid var(--border-strong); border-radius:50%;
+    transition:transform .25s ease;
+  }
+  .plan-toggle .chev svg{width:9px; height:9px;}
+  .plans.expandable .plan .body ul{display:none;}
+  .plans.expandable .plan.open .body ul{display:grid;}
+  .plans.expandable .plan-toggle{display:inline-flex;}
+  .plan.open .plan-toggle .chev{transform:rotate(180deg);}
+
+  /* ———— tweaks panel ———— */
+  #tweaks-panel{
+    position:fixed; right:16px; bottom:16px; z-index:999;
+    background: var(--surface); border:1px solid var(--border-strong);
+    border-radius:14px; padding:18px 20px; box-shadow: 0 20px 50px rgba(0,0,0,.25);
+    min-width:210px; display:none;
+  }
+  #tweaks-panel.on{display:block;}
+  #tweaks-panel h4{font-family:var(--mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--text-muted); margin:0 0 14px; font-weight:500;}
+  #tweaks-panel .tw-row{margin:10px 0;}
+  #tweaks-panel .tw-row label{display:block; font-size:11px; font-weight:600; color:var(--text-muted); margin-bottom:6px; font-family:var(--mono); text-transform:uppercase; letter-spacing:.08em;}
+  #tweaks-panel .tw-chips{display:flex; flex-wrap:wrap; gap:4px;}
+  #tweaks-panel .tw-chip{
+    font-family:var(--mono); font-size:10px; padding:5px 9px;
+    border-radius:999px; border:1px solid var(--border-strong); color:var(--text);
+    cursor:pointer; background:var(--bg); letter-spacing:.04em;
+  }
+  #tweaks-panel .tw-chip.on{background:var(--sea); color:white; border-color:var(--sea);}
+  html[data-theme="dark"] #tweaks-panel .tw-chip.on{background:var(--vibrant); color:var(--sea-ink); border-color:var(--vibrant);}
+</style>
+<script src="assets/theme.js"></script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="logo" href="index.html">
+      <img class="logo-light" src="assets/onenet-horizontal-blue.svg?v=3" alt="One Net">
+      <img class="logo-dark" src="assets/onenet-horizontal-white-full.png" alt="One Net">
+    </a>
+    <nav class="nav">
+      <a href="it-partnering.html">IT Partnering</a>
+      <a href="cybersecurity.html">Cybersecurity</a>
+      <a href="zwana.html" class="active">Zwana</a>
+      <a href="saas.html">SaaS</a>
+      <a href="connectivity.html">Connectivity</a>
+    </nav>
+    <div class="actions">
+      <a class="pill" href="https://status.onenet.group/" target="_blank" rel="noopener"><span class="dot"></span>Service Status</a>
+      <a class="pill" href="https://abela.io/sessions/signin" target="_blank" rel="noopener">abela.io</a>
+      <button class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
+        <svg class="ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+        <svg class="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <a class="btn-primary" href="contact.html">Get in touch
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="subnav" aria-label="Section navigation">
+  <div class="wrap subnav-inner">
+      <a href="#platform-s">The platform</a>
+      <a href="#plans">Find the right plan</a>
+      <a href="#compare-s" class="js-zwana-compare-nav">Compare models</a>
+  </div>
+</nav>
+
+
+<section class="page-hero zwana-hero">
+  <div class="wrap">
+    <div class="eyebrow-row">
+      <a href="index.html">One Net</a><span class="sep">/</span>
+      <span>Zwana Nexus</span><span class="sep">·</span>
+      <span>the flagship platform</span>
+    </div>
+    <h1>Built for the sea.<br><em>Built to last.</em></h1>
+    <p class="tagline">Interoperable. Scalable. Modular.</p>
+    <div class="hero-blurb-row">
+      <p class="blurb">Zwana Nexus is the intelligent hardware and software platform at the heart of every vessel's digital ecosystem. One unified platform. Zero compromise.</p>
+      <div class="cta-row">
+      <a class="btn-big" href="#platform">Explore the platform
+        <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px; height:12px;"><path d="M12 5v14M5 12l7 7 7-7"/></svg></span>
+      </a>
+      <a class="btn-big alt" href="#compare">Compare models
+        <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px; height:12px;"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+    </div>
+    </div>
+
+    <div class="kpi-strip">
+      <div><div class="n">4,000<sup>+</sup></div><div class="l">Vessels served</div></div>
+      <div><div class="n">99.9<sup>%</sup></div><div class="l">Platform uptime</div></div>
+      <div><div class="n">v3.2</div><div class="l">Edge platform</div></div>
+      <div><div class="n">6</div><div class="l">Service modules</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORM -->
+<section class="platform" id="platform">
+  <div class="wrap">
+    <span id="platform-s" class="eyebrow on-dark" style="margin-bottom:24px; display:flex;">The platform</span>
+    <div class="intro">
+      <h2>Everything<br>your site needs.<br><span style="color:var(--vibrant)">One unified system.</span></h2>
+      <p>Each service stacks into a single onboard platform. Configured per vessel, managed from shore, and updated over any connectivity.</p>
+    </div>
+
+    <div class="features">
+      <div class="feat"><div class="num">01 — Edge compute</div><h3>Edge Computing.</h3><p>Scalable on-board computing power, from compact edge deployments to full enterprise-grade rack configurations, enabling virtualisation, real-time analytics, and IT management at sea.</p></div>
+      <div class="feat"><div class="num">02 — Security</div><h3>Built-in security.</h3><p>WatchGuard UTM firewall included in every configuration: stateful firewall, IPS, application control, and web filtering. EDR and vSOC available as managed services through Sentrify.</p></div>
+      <div class="feat"><div class="num">03 — Connectivity</div><h3>Any connectivity.</h3><p>Interoperable with every satellite and GSM provider: Starlink, VSAT, OneWeb, LTE/5G, L-band. WatchGuard SD-WAN provides intelligent routing and automatic failover across all links.</p></div>
+      <div class="feat"><div class="num">04 — Crew welfare</div><h3>Crew welfare.</h3><p>The Crew Internet Café gives seafarers controlled internet access with individual accounts, an e-wallet supporting pre-pay and post-pay credits, and configurable data quotas, all managed remotely via abela.io.</p></div>
+      <div class="feat"><div class="num">05 — Telemetry</div><h3>Real-time telemetry.</h3><p>Abela pulse gives operators a live onboard view of connectivity, hardware health, and compliance. Shore teams get full fleet-wide visibility through abela.io from a single portal.</p></div>
+      <div class="feat"><div class="num">06 — Managed IT</div><h3>abela IT.</h3><p>Full IT management for your fleet. VM hosting, remote maintenance, compliance reports, and IT policy management — your vessel as a remote office.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANS -->
+<section class="plans" id="plans-section">
+  <div class="wrap">
+    <div class="head">
+      <span id="plans" class="eyebrow" style="margin-bottom:24px; display:flex;">Find the right plan</span>
+      <h2>The right Zwana Nexus<br>configuration for your fleet.</h2>
+    </div>
+
+    <div class="plan">
+      <div class="num">01 / 06</div>
+      <div class="ttl"><h3>Fusion</h3><div class="sub">SD-WAN · Multi-orbit</div></div>
+      <div class="body">
+        <p>Fuse all connectivity technologies into a single intelligent WAN. Starlink, VSAT, OneWeb, LTE/5G, and L-band operate simultaneously with automated failover and zero provider lock-in, built on WatchGuard SD-WAN.</p>
+        <ul>
+          <li><span><b>Starlink LEO.</b> Low-latency, high-speed global coverage.</span></li>
+          <li><span><b>VSAT (Ka/Ku).</b> FleetXpress &amp; Ku-band high throughput.</span></li>
+          <li><span><b>OneWeb &amp; LTE/5G.</b> Redundant LEO + coastal broadband in 140+ countries.</span></li>
+          <li><span><b>L-Band Iridium.</b> Always-on backup, pole-to-pole coverage.</span></li>
+          <li><span><b>WatchGuard SD-WAN.</b> Intelligent routing with instant auto failover.</span></li>
+        </ul>
+      </div>
+      <a class="action" href="contact.html">Talk to expert →</a>
+    </div>
+
+    <div class="plan">
+      <div class="num">02 / 06</div>
+      <div class="ttl"><h3>Server</h3><div class="sub">Edge Computing</div></div>
+      <div class="body">
+        <p>Zwana Nexus is the integrated onboard digital infrastructure platform, the backbone for ICT services, crew welfare, cybersecurity enforcement, and OT segregation. Different specs available with VM and backup solutions, built for maritime resilience.</p>
+        <ul>
+          <li><span><b>Dell PowerEdge XR11.</b> Enterprise-grade server purpose-built for edge environments.</span></li>
+          <li><span><b>VM Hosting.</b> Virtualised business applications onboard.</span></li>
+          <li><span><b>RAID Storage + NAS.</b> Full data redundancy with shore-sync backup.</span></li>
+          <li><span><b>UPS + Redundant PSU.</b> Zero single points of failure.</span></li>
+          <li><span><b>IMO 2021 &amp; IACS E26/E27.</b> Aligned security posture built in.</span></li>
+        </ul>
+      </div>
+      <a class="action" href="contact.html">Talk to expert →</a>
+    </div>
+
+    <div class="plan">
+      <div class="num">03 / 06</div>
+      <div class="ttl"><h3>Connectivity</h3><div class="sub">Managed WAN</div></div>
+      <div class="body">
+        <p>Centralised management of all onboard connectivity with QoS, VLAN segmentation, and bandwidth control. Provisioning, site management, capacity checks, and template-based activations, all monitored 24/7 by our NOC.</p>
+        <ul>
+          <li><span><b>Crew Internet Café.</b> Dedicated VLAN with quota-based bandwidth control across any provider.</span></li>
+          <li><span><b>Business Traffic Priority.</b> Critical apps always get bandwidth first.</span></li>
+          <li><span><b>Selectable WAN.</b> Route crew and operations independently per VLAN.</span></li>
+          <li><span><b>VoIP.</b> Crew &amp; business calling via SIP with traffic prioritisation.</span></li>
+          <li><span><b>IBIS Provisioning.</b> Template-based activations &amp; capacity checks.</span></li>
+        </ul>
+      </div>
+      <a class="action" href="connectivity.html">Learn more →</a>
+    </div>
+
+    <div class="plan">
+      <div class="num">04 / 06</div>
+      <div class="ttl"><h3>IT Partnering</h3><div class="sub">abela IT</div></div>
+      <div class="body">
+        <p>A comprehensive managed IT service and true technology partnership. abela IT integrates infrastructure management, automation, cybersecurity readiness, and compliance into a centralised, hardware-agnostic solution. 233K remote monitors, 93% patch compliance fleet-wide, 25-minute first response.</p>
+        <ul>
+          <li><span><b>VM Management.</b> Backup, patch management &amp; asset monitoring.</span></li>
+          <li><span><b>24/7 NOC.</b> Shore-based remote oversight with 12K+ endpoints managed.</span></li>
+          <li><span><b>Central IT Policy.</b> Fleet-wide standards enforced from shore.</span></li>
+          <li><span><b>abela Automate.</b> 1.5M+ script runs/month reducing manual intervention.</span></li>
+          <li><span><b>3 Plans.</b> Fully Managed, Tier 2, and Toolkit to match your IT maturity.</span></li>
+        </ul>
+      </div>
+      <a class="action" href="it-partnering.html">Learn more →</a>
+    </div>
+
+    <div class="plan">
+      <div class="num">05 / 06</div>
+      <div class="ttl"><h3>Cybersecurity</h3><div class="sub">Sentrify</div></div>
+      <div class="body">
+        <p>Sentrify is our maritime managed cybersecurity service combining endpoint protection, fleet-wide visibility, and continuous threat monitoring. Designed for IMO 2021 and IACS UR E26/E27 alignment, integrating SentinelOne, RaEDR, and dedicated SOC support.</p>
+        <ul>
+          <li><span><b>SentinelOne EDR.</b> AI-driven behavioural threat detection &amp; auto remediation.</span></li>
+          <li><span><b>RaEDR SIEM + Box.</b> Security event management, vulnerability scanning &amp; logging.</span></li>
+          <li><span><b>24/7 vSOC.</b> Real-time monitoring, alerting &amp; incident response.</span></li>
+          <li><span><b>OT/IoT Monitoring.</b> USB/device control &amp; network containment.</span></li>
+          <li><span><b>2 Plans.</b> Managed (full SOC) and Monitored, each in Bronze/Gold/Platinum tiers.</span></li>
+        </ul>
+      </div>
+      <a class="action" href="cybersecurity.html">Learn more →</a>
+    </div>
+
+    <div class="plan">
+      <div class="num">06 / 06</div>
+      <div class="ttl"><h3>Software as a Service</h3><div class="sub">Fleet SaaS platform</div></div>
+      <div class="body">
+        <p>A unified platform for captains and shore teams ensuring real-time visibility into digital operations. 1,300+ vessels under management, 10,000+ ICT assets monitored, 6 add-on modules.</p>
+        <ul>
+          <li><span><b>abela.io.</b> Shore-side fleet management portal — connectivity, hardware, cybersecurity &amp; IT status across the fleet.</span></li>
+          <li><span><b>abela pulse.</b> Captain-facing dashboard with real-time monitoring &amp; alerts.</span></li>
+          <li><span><b>abela drive.</b> Secure cloud file sync optimised for satellite bandwidth.</span></li>
+          <li><span><b>Telemetry &amp; Data Analysis.</b> Live fleet intelligence, traffic analysis &amp; usage insights.</span></li>
+          <li><span><b>Zwana VoIP.</b> Crew and business voice communications.</span></li>
+          <li><span><b>Internet Café.</b> Crew internet access &amp; quota management.</span></li>
+        </ul>
+      </div>
+      <a class="action" href="saas.html">Learn more →</a>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE -->
+<section class="compare" id="compare">
+  <div class="wrap">
+    <div class="head">
+      <span id="compare-s" class="eyebrow" style="display:flex;">Compare models</span>
+      <h2>Compare Zwana models.</h2>
+    </div>
+    <table class="compare-tbl">
+      <thead>
+        <tr>
+          <th style="width:30%">Feature</th>
+          <th><span class="pillhead">Edge Mini</span><span class="spec">Compact site</span><span class="hw">Dell R260</span></th>
+          <th><span class="pillhead">Edge Lite</span><span class="spec">Standard vessel</span><span class="hw">Lenovo Desktop TC</span></th>
+          <th><span class="pillhead">Edge Max</span><span class="spec">Flagship fleet</span><span class="hw">Dell R360</span></th>
+          <th><span class="pillhead">Edge Max +</span><span class="spec">Rugged · DNV</span><span class="hw">Dell XR5610</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Crew Internet Café</td><td class="chk">✓</td><td class="chk">✓</td><td class="chk">✓</td><td class="chk">✓</td></tr>
+        <tr><td>Telemetry</td><td class="chk">✓</td><td class="chk">✓</td><td class="chk">✓</td><td class="chk">✓</td></tr>
+        <tr><td>Data Analysis</td><td class="chk">✓</td><td class="chk">✓</td><td class="chk">✓</td><td class="chk">✓</td></tr>
+        <tr><td>VoIP (Crew &amp; Business)</td><td class="chk">✓</td><td class="chk">✓</td><td class="chk">✓</td><td class="chk">✓</td></tr>
+        <tr><td>abela IT</td><td class="no">—</td><td class="no">—</td><td class="chk">✓</td><td class="chk">✓</td></tr>
+        <tr><td>abela pulse</td><td class="chk">✓</td><td class="chk">✓</td><td class="chk">✓</td><td class="chk">✓</td></tr>
+        <tr><td>abela.io <span style="color:var(--text-muted); font-weight:400;">— shore platform</span></td><td class="no">—</td><td class="no">—</td><td class="chk">✓</td><td class="chk">✓</td></tr>
+        <tr><td>abela Drive</td><td class="opt">Optional</td><td class="opt">Optional</td><td class="opt">Optional</td><td class="opt">Optional</td></tr>
+        <tr><td>Sentrify / SecOps</td><td class="no">—</td><td class="chk">✓</td><td class="chk">✓</td><td class="chk">✓</td></tr>
+        <tr><td>Nexus NMR redundancy<span class="nmr-ref">*</span></td><td class="no">—</td><td class="no">—</td><td class="chk">✓</td><td class="chk">✓</td></tr>
+      </tbody>
+    </table>
+    <div class="compare-foot">
+      <p class="nmr-note"><span class="nmr-ref" style="color: rgb(22, 240, 223)">*</span> <b>Nexus NMR (N-Modular Redundancy)</b> — for zero-downtime operations, NMR eliminates single points of failure by combining multiple Edge Max or Edge Max+ servers with dual redundant firewalls into one fully resilient system: full enterprise IT, cybersecurity and crew services with built-in redundancy for mission-critical fleets.</p>
+      <div class="compare-foot-cta"><a class="cmp-cta" href="contact.html">Build my Zwana</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPLOY CTA -->
+<!-- ———— PRINCIPALS ———— -->
+<section class="principals">
+  <div class="wrap">
+    <div class="head">
+      <span id="principals" class="eyebrow" style="display:flex;">Our principals</span>
+      <h2>Best-in-class technology,<br>integrated by One Net.</h2>
+      <p>We partner with the world’s leading vendors — then engineer, deploy, and manage them as one platform for your fleet.</p>
+    </div>
+  </div>
+  <div class="marquee">
+    <div class="marquee-track">
+      <a class="principal" href="https://www.acronis.com/en/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Acronis"><img src="assets/principals/acronis.png" alt="Acronis"></a>
+      <a class="principal" href="https://www.dell.com/en-us" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Dell Technologies"><img src="assets/principals/dell.png" alt="Dell Technologies"></a>
+      <a class="principal" href="https://www.ninjaone.com/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="NinjaOne"><img src="assets/principals/ninjaone.png" alt="NinjaOne"></a>
+      <a class="principal" href="https://www.synology.com/en-eu" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Synology"><img src="assets/principals/synology.png" alt="Synology"></a>
+      <a class="principal" href="https://www.watchguard.com/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="WatchGuard"><img src="assets/principals/watchguard.png" alt="WatchGuard"></a>
+      <a class="principal" href="https://www.acronis.com/en/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Acronis"><img src="assets/principals/acronis.png" alt="Acronis"></a>
+      <a class="principal" href="https://www.dell.com/en-us" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Dell Technologies"><img src="assets/principals/dell.png" alt="Dell Technologies"></a>
+      <a class="principal" href="https://www.ninjaone.com/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="NinjaOne"><img src="assets/principals/ninjaone.png" alt="NinjaOne"></a>
+      <a class="principal" href="https://www.synology.com/en-eu" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Synology"><img src="assets/principals/synology.png" alt="Synology"></a>
+      <a class="principal" href="https://www.watchguard.com/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="WatchGuard"><img src="assets/principals/watchguard.png" alt="WatchGuard"></a>
+      <!-- duplicate set for seamless loop -->
+      <a class="principal" href="https://www.acronis.com/en/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Acronis"><img src="assets/principals/acronis.png" alt="Acronis"></a>
+      <a class="principal" href="https://www.dell.com/en-us" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Dell Technologies"><img src="assets/principals/dell.png" alt="Dell Technologies"></a>
+      <a class="principal" href="https://www.ninjaone.com/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="NinjaOne"><img src="assets/principals/ninjaone.png" alt="NinjaOne"></a>
+      <a class="principal" href="https://www.synology.com/en-eu" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Synology"><img src="assets/principals/synology.png" alt="Synology"></a>
+      <a class="principal" href="https://www.watchguard.com/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="WatchGuard"><img src="assets/principals/watchguard.png" alt="WatchGuard"></a>
+      <a class="principal" href="https://www.acronis.com/en/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Acronis"><img src="assets/principals/acronis.png" alt="Acronis"></a>
+      <a class="principal" href="https://www.dell.com/en-us" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Dell Technologies"><img src="assets/principals/dell.png" alt="Dell Technologies"></a>
+      <a class="principal" href="https://www.ninjaone.com/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="NinjaOne"><img src="assets/principals/ninjaone.png" alt="NinjaOne"></a>
+      <a class="principal" href="https://www.synology.com/en-eu" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="Synology"><img src="assets/principals/synology.png" alt="Synology"></a>
+      <a class="principal" href="https://www.watchguard.com/" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="WatchGuard"><img src="assets/principals/watchguard.png" alt="WatchGuard"></a>
+    </div>
+  </div>
+</section>
+
+<section class="darkband">
+  <div class="wrap" style="position:relative; z-index:1;">
+    <span class="eyebrow on-dark" style="margin-bottom:24px; display:flex;">Deployment &amp; support</span>
+    <h2 style="max-width:22ch;">Ready to deploy Zwana <span class="teal">across your fleet?</span></h2>
+    <p style="color:rgba(255,255,255,.7); max-width:56ch; margin-top:24px; font-size:16px; line-height:1.55;">From initial assessment to fleet-wide deployment, our team is with you at every step. Let's get started.</p>
+    <div style="margin-top:40px; display:flex; gap:14px;">
+      <a class="btn-big teal" href="contact.html">Contact us
+        <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px; height:12px;"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- EXPLORE MORE -->
+<section class="explore">
+  <div class="wrap">
+    <span class="eyebrow" style="margin-bottom:24px; display:flex;">Explore more</span>
+    <h2>Other solutions<br>from One Net.</h2>
+    <div class="grid">
+      <a href="connectivity.html" class="card"><span class="label">/ 01</span><h3>Connectivity</h3><span class="arr">Learn more →</span></a>
+      <a href="it-partnering.html" class="card"><span class="label">/ 02</span><h3>IT Partnering</h3><span class="arr">Learn more →</span></a>
+      <a href="saas.html" class="card"><span class="label">/ 03</span><h3>Software as a Service</h3><span class="arr">Learn more →</span></a>
+      <a href="cybersecurity.html" class="card"><span class="label">/ 04</span><h3>Cybersecurity</h3><span class="arr">Learn more →</span></a>
+    </div>
+  </div>
+</section>
+
+
+
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="about">
+        <img src="assets/onenet-horizontal-white-full.png" alt="One Net"><p>Enabling a digital society at sea. Delivering end-to-end digital infrastructure for maritime and enterprise.</p>
+        <img class="fhg" src="assets/member-of-fhg-white.png" alt="Member of FHG group">
+      </div>
+      <div><h4>Services</h4><ul>
+        <li><a href="it-partnering.html">IT Partnering</a></li>
+        <li><a href="cybersecurity.html">Cybersecurity</a></li>
+        <li><a href="zwana.html">Zwana Nexus</a></li>
+        <li><a href="saas.html">Software as a Service</a></li>
+        <li><a href="connectivity.html">Connectivity</a></li>
+      </ul></div>
+      <div><h4>Company</h4><ul>
+        <li><a href="index.html">Home</a></li><li><a href="about.html">About us</a></li>
+        <li><a href="careers.html">Careers</a></li><li><a href="blog.html">Blog</a></li><li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div><h4>Policies</h4><ul>
+        <li><a href="terms-conditions.html">Company Terms &amp; Conditions</a></li>
+        <li><a href="company-policies.html">Company Policies</a></li>
+        <li><a href="products-services-terms.html">Products &amp; Services Terms</a></li>
+        <li><a href="assets/Terms-of-Use-One-Net.pdf" target="_blank" rel="noopener">Terms of Use</a></li>
+        <li><a href="assets/Privacy-Notice-One-Net.pdf" target="_blank" rel="noopener">Privacy Notice</a></li>
+        <li><a href="certifications.html">Certifications</a></li>
+      </ul></div>
+      <div><h4>Contact</h4><ul>
+        <li><a href="mailto:sales@onenet.group">sales@onenet.group</a></li>
+        <li><a href="tel:+35725828999">+357 25 828999</a></li>
+        <li><a href="tel:+6531064123">+65 31064123</a></li>
+        <li style="color:rgba(255,255,255,.5); margin-top:10px; font-size:12px;">Spatharikou 1-3<br>4004 Limassol, Cyprus</li>
+      </ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 One Net group. All rights reserved.</span>
+      <div class="links"><span class="status"><span class="d"></span>All systems operational</span></div>
+    </div>
+  </div>
+</footer>
+<script src="assets/subnav.js"></script>
+
+<!-- ———— TWEAKS PANEL ———— -->
+<aside id="tweaks-panel">
+  <h4>Tweaks</h4>
+  <div class="tw-row">
+    <label>Find the right Zwana</label>
+    <div class="tw-chips" data-tw="planCards">
+      <button class="tw-chip on" data-v="full">Full cards</button>
+      <button class="tw-chip" data-v="expandable">Expandable</button>
+    </div>
+  </div>
+  <div class="tw-row">
+    <label>Compare models</label>
+    <div class="tw-chips" data-tw="compareMode">
+      <button class="tw-chip on" data-v="inline">Inline section</button>
+      <button class="tw-chip" data-v="pill">Sticky pill</button>
+    </div>
+  </div>
+</aside>
+
+<!-- ———— STICKY COMPARE PILL + MODAL (tweak: pill mode) ———— -->
+<button class="compare-pill js-zwana-compare" id="zwana-compare-pill" aria-label="Compare models">
+  Compare models
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+</button>
+<div class="compare-modal" id="zwana-compare-modal" aria-hidden="true" role="dialog" aria-labelledby="zwana-compare-title">
+  <div class="compare-scrim" data-zclose></div>
+  <div class="compare-panel" role="document">
+    <div class="compare-head">
+      <h2 id="zwana-compare-title">Compare Zwana <span class="teal-grad">models.</span></h2>
+      <button class="compare-close" aria-label="Close" data-zclose>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="compare-modal-body" id="zwana-compare-body"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "planCards": "expandable",
+    "compareMode": "inline"
+  }/*EDITMODE-END*/;
+
+  const tweakState = {...TWEAK_DEFAULTS};
+  const plansSection = document.getElementById('plans-section');
+
+  // ——— compare models: inline section vs sticky pill + modal ———
+  const compareSection = document.getElementById('compare');
+  const comparePill = document.getElementById('zwana-compare-pill');
+  const compareModal = document.getElementById('zwana-compare-modal');
+  const compareModalBody = document.getElementById('zwana-compare-body');
+  const compareWrap = compareSection ? compareSection.querySelector('.wrap') : null;
+  const compareTable = compareSection ? compareSection.querySelector('.compare-tbl') : null;
+  const compareNote = compareSection ? compareSection.querySelector('.compare-foot') : null;
+
+  function openCompareModal(){
+    if(!compareModal) return;
+    compareModal.classList.add('on');
+    compareModal.setAttribute('aria-hidden','false');
+    document.body.classList.add('compare-open');
+  }
+  function closeCompareModal(){
+    if(!compareModal) return;
+    compareModal.classList.remove('on');
+    compareModal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('compare-open');
+  }
+  function setCompareMode(mode){
+    if(!compareSection) return;
+    if(mode === 'pill'){
+      if(compareTable && compareTable.parentElement !== compareModalBody) compareModalBody.appendChild(compareTable);
+      if(compareNote && compareNote.parentElement !== compareModalBody) compareModalBody.appendChild(compareNote);
+      compareSection.style.display = 'none';
+      comparePill.classList.add('on');
+    } else {
+      if(compareTable && compareTable.parentElement !== compareWrap) compareWrap.appendChild(compareTable);
+      if(compareNote && compareNote.parentElement !== compareWrap) compareWrap.appendChild(compareNote);
+      compareSection.style.display = '';
+      comparePill.classList.remove('on');
+      closeCompareModal();
+    }
+  }
+
+  // open triggers
+  if(comparePill) comparePill.addEventListener('click', function(e){ e.preventDefault(); openCompareModal(); });
+  var compareNav = document.querySelector('.js-zwana-compare-nav');
+  if(compareNav) compareNav.addEventListener('click', function(e){
+    if(tweakState.compareMode === 'pill'){ e.preventDefault(); openCompareModal(); }
+  });
+  if(compareModal){
+    compareModal.querySelectorAll('[data-zclose]').forEach(function(el){ el.addEventListener('click', closeCompareModal); });
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeCompareModal(); });
+  }
+
+  // Build a toggle button inside each plan card (once)
+  function ensureToggles(){
+    if(!plansSection) return;
+    plansSection.querySelectorAll('.plan').forEach(function(plan){
+      const body = plan.querySelector('.body');
+      if(!body || body.querySelector('.plan-toggle')) return;
+      const ul = body.querySelector('ul');
+      if(!ul) return;
+      const btn = document.createElement('button');
+      btn.className = 'plan-toggle';
+      btn.setAttribute('type','button');
+      btn.innerHTML = '<span class="lbl">Show details</span><span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>';
+      body.appendChild(btn);
+      btn.addEventListener('click', function(){
+        const open = plan.classList.toggle('open');
+        btn.querySelector('.lbl').textContent = open ? 'Hide details' : 'Show details';
+      });
+    });
+  }
+
+  function applyTweaks(s){
+    ensureToggles();
+    if(plansSection){
+      const expandable = s.planCards === 'expandable';
+      plansSection.classList.toggle('expandable', expandable);
+      // reset open state + labels when switching modes
+      plansSection.querySelectorAll('.plan').forEach(function(plan){
+        plan.classList.remove('open');
+        const lbl = plan.querySelector('.plan-toggle .lbl');
+        if(lbl) lbl.textContent = 'Show details';
+      });
+    }
+    setCompareMode(s.compareMode);
+    document.querySelectorAll('#tweaks-panel .tw-chips').forEach(function(grp){
+      const key = grp.dataset.tw;
+      grp.querySelectorAll('.tw-chip').forEach(function(c){ c.classList.toggle('on', c.dataset.v === s[key]); });
+    });
+  }
+
+  applyTweaks(tweakState);
+
+  document.querySelectorAll('#tweaks-panel .tw-chips').forEach(function(grp){
+    grp.addEventListener('click', function(e){
+      const chip = e.target.closest('.tw-chip'); if(!chip) return;
+      const key = grp.dataset.tw;
+      tweakState[key] = chip.dataset.v;
+      applyTweaks(tweakState);
+      try { window.parent.postMessage({type:'__edit_mode_set_keys', edits:{[key]: chip.dataset.v}}, '*'); } catch(_){}
+    });
+  });
+
+  window.addEventListener('message', function(e){
+    if(!e.data || !e.data.type) return;
+    if(e.data.type === '__activate_edit_mode') document.getElementById('tweaks-panel').classList.add('on');
+    if(e.data.type === '__deactivate_edit_mode') document.getElementById('tweaks-panel').classList.remove('on');
+  });
+  try { window.parent.postMessage({type:'__edit_mode_available'}, '*'); } catch(_){}
+})();
+</script>
+<script src="assets/wt-scroll.js"></script>
+</body>
+</html>

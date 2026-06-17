@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Contact — Talk to One Net | One Net</title>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+
+<style>
+  .contact-wrap{
+    display:grid; grid-template-columns: 1.35fr 1fr; gap: clamp(36px, 5vw, 90px);
+    align-items:start; padding-bottom: clamp(72px, 9vw, 130px);
+  }
+  /* form card */
+  .contact-form{
+    background: var(--surface); border:1px solid var(--border); border-radius: var(--radius);
+    padding: clamp(28px, 3.4vw, 48px);
+  }
+  .contact-form h2{color:var(--text-strong); font-size: clamp(28px,3vw,40px); letter-spacing:-.02em; margin-bottom:8px;}
+  .contact-form .sub{color:var(--text-muted); font-size:15px; line-height:1.55; margin-bottom:32px; max-width:48ch;}
+  .field-grid{display:grid; grid-template-columns: 1fr 1fr; gap:20px;}
+  .field{display:flex; flex-direction:column; gap:8px; margin-bottom:20px;}
+  .field.full{grid-column: 1 / -1;}
+  .field label{
+    font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--text-muted);
+  }
+  .field label .req{color:var(--vibrant);}
+  .field input, .field select, .field textarea{
+    font-family:var(--sans); font-size:15px; color:var(--text-strong);
+    background: var(--bg); border:1px solid var(--border-strong); border-radius:10px;
+    padding:13px 14px; width:100%; transition: border-color .15s, box-shadow .15s;
+  }
+  .field textarea{resize:vertical; min-height:130px; line-height:1.5;}
+  .field input::placeholder, .field textarea::placeholder{color:var(--text-muted); opacity:.7;}
+  .field input:focus, .field select:focus, .field textarea:focus{
+    outline:none; border-color: var(--vibrant);
+    box-shadow: 0 0 0 3px rgba(22,240,223,.18);
+  }
+  .field select{appearance:none; -webkit-appearance:none; cursor:pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23898995' stroke-width='1.6'/%3E%3C/svg%3E");
+    background-repeat:no-repeat; background-position: right 16px center; padding-right:38px;
+  }
+  .field.error input, .field.error select, .field.error textarea{border-color:#e0556b; box-shadow:0 0 0 3px rgba(224,85,107,.15);}
+  .field .err-msg{font-size:12px; color:#e0556b; display:none;}
+  .field.error .err-msg{display:block;}
+  .consent{display:flex; gap:12px; align-items:flex-start; margin: 4px 0 28px;}
+  .consent input{width:18px; height:18px; flex:none; margin-top:2px; accent-color: var(--vibrant);}
+  .consent label{font-size:13px; color:var(--text-soft); line-height:1.5; font-family:var(--sans); letter-spacing:0; text-transform:none;}
+  .form-submit{
+    display:inline-flex; align-items:center; gap:14px;
+    padding:16px 28px; border-radius:999px; font-size:15px; font-weight:600;
+    background:var(--btn-primary-bg); color:white; border:none; cursor:pointer;
+    font-family:var(--sans); transition: background .2s, transform .2s;
+  }
+  html[data-theme="dark"] .form-submit{color:var(--sea-ink);}
+  .form-submit:hover{background:var(--btn-primary-hover); transform:translateY(-2px);}
+  .form-submit .arrow{width:22px; height:22px; border-radius:50%; background:var(--vibrant); display:grid; place-items:center; color:var(--sea-ink);}
+  .form-submit .arrow svg{width:12px; height:12px;}
+
+  /* success state */
+  .form-success{display:none; text-align:left; padding: 18px 0;}
+  .form-success.on{display:block;}
+  .contact-form.sent .form-body{display:none;}
+  .form-success .check{
+    width:56px; height:56px; border-radius:50%; background: rgba(22,240,223,.14);
+    display:grid; place-items:center; margin-bottom:22px;
+  }
+  .form-success .check svg{width:26px; height:26px; stroke:var(--vibrant);}
+  .form-success h3{color:var(--text-strong); font-size:26px; font-weight:500; letter-spacing:-.02em; margin-bottom:10px;}
+  .form-success p{color:var(--text-muted); font-size:15px; line-height:1.55; max-width:42ch;}
+
+  /* contact info column */
+  .contact-info{display:flex; flex-direction:column; gap:14px; position:sticky; top:110px;}
+  .info-card{
+    background: var(--surface); border:1px solid var(--border); border-radius: var(--radius);
+    padding: 26px 26px;
+  }
+  .info-card h4{font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--vibrant); font-weight:500; margin-bottom:16px;}
+  .info-row{display:flex; gap:14px; align-items:flex-start; padding:11px 0; border-bottom:1px solid var(--border);}
+  .info-row:last-child{border-bottom:none;}
+  .info-row .ico{width:20px; height:20px; flex:none; color:var(--text-muted); margin-top:2px;}
+  .info-row .ico svg{width:20px; height:20px;}
+  .info-row .t{font-size:11px; font-family:var(--mono); letter-spacing:.08em; text-transform:uppercase; color:var(--text-muted); margin-bottom:3px;}
+  .info-row a, .info-row .v{font-size:15px; color:var(--text-strong); line-height:1.4;}
+  .info-row a:hover{color:var(--vibrant);}
+  .offices-card .office{padding:11px 0; border-bottom:1px solid var(--border);}
+  .offices-card .office:last-child{border-bottom:none;}
+  .offices-card .office .city{font-size:15px; color:var(--text-strong); font-weight:500;}
+  .offices-card .office .addr{font-size:13px; color:var(--text-muted); line-height:1.5; margin-top:2px;}
+
+  @media (max-width: 900px){
+    .contact-wrap{grid-template-columns: 1fr;}
+    .contact-info{position:static;}
+    .field-grid{grid-template-columns: 1fr;}
+  }
+</style>
+<script src="assets/theme.js"></script>
+</head><body>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="logo" href="index.html">
+      <img class="logo-light" src="assets/onenet-horizontal-blue.svg?v=3" alt="One Net">
+      <img class="logo-dark" src="assets/onenet-horizontal-white-full.png" alt="One Net">
+    </a>
+    <nav class="nav">
+      <a href="it-partnering.html">IT Partnering</a>
+      <a href="cybersecurity.html">Cybersecurity</a>
+      <a href="zwana.html">Zwana</a>
+      <a href="saas.html">SaaS</a>
+      <a href="connectivity.html">Connectivity</a>
+    </nav>
+    <div class="actions">
+      <a class="pill" href="https://status.onenet.group/" target="_blank" rel="noopener"><span class="dot"></span>Service Status</a>
+      <a class="pill" href="https://abela.io/sessions/signin" target="_blank" rel="noopener">abela.io</a>
+      <button class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
+        <svg class="ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+        <svg class="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <a class="btn-primary" href="contact.html">Get in touch
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow-row">
+      <a href="index.html">One Net</a><span class="sep">/</span><span>Contact</span>
+    </div>
+    <h1>Let's build your<br><span class="teal">connected operation.</span></h1>
+    <p class="blurb">Tell us about your fleet or enterprise and the One Net team will get back to you. For urgent operational support, our NOC runs 24/7.</p>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="wrap contact-wrap">
+    <!-- FORM -->
+    <div class="contact-form" id="contact-form">
+      <div class="form-body">
+        <h2>Send us a message</h2>
+        <p class="sub">Fields marked with <span style="color:var(--vibrant)">*</span> are required.</p>
+        <form id="cform" novalidate>
+          <div class="field-grid">
+            <div class="field">
+              <label for="fname">First name <span class="req">*</span></label>
+              <input type="text" id="fname" name="fname" placeholder="Jane" required>
+              <span class="err-msg">Please enter your first name.</span>
+            </div>
+            <div class="field">
+              <label for="lname">Last name <span class="req">*</span></label>
+              <input type="text" id="lname" name="lname" placeholder="Doe" required>
+              <span class="err-msg">Please enter your last name.</span>
+            </div>
+            <div class="field">
+              <label for="email">Work email <span class="req">*</span></label>
+              <input type="email" id="email" name="email" placeholder="jane@company.com" required>
+              <span class="err-msg">Please enter a valid email address.</span>
+            </div>
+            <div class="field">
+              <label for="company">Company <span class="req">*</span></label>
+              <input type="text" id="company" name="company" placeholder="Company / Fleet" required>
+              <span class="err-msg">Please enter your company.</span>
+            </div>
+            <div class="field">
+              <label for="phone">Phone <span class="req">*</span></label>
+              <input type="tel" id="phone" name="phone" placeholder="+357 …" required>
+              <span class="err-msg">Please enter your phone number.</span>
+            </div>
+            <div class="field">
+              <label for="topic">Topic <span class="req">*</span></label>
+              <select id="topic" name="topic" required>
+                <option value="" selected disabled>Select a topic…</option>
+                <option>Book a consultation</option>
+                <option>Connectivity</option>
+                <option>Cybersecurity / IT Partnering</option>
+                <option>Learn more about our services</option>
+                <option>Partnership opportunity</option>
+                <option>Request abela Pulse demo</option>
+                <option>Software as a Service</option>
+                <option>Zwana Nexus</option>
+                <option>Other</option>
+              </select>
+              <span class="err-msg">Please choose a topic.</span>
+            </div>
+          </div>
+          <div class="field full">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell us about your fleet size, routes, and what you need…"></textarea>
+            <span class="err-msg"></span>
+          </div>
+          <div class="consent">
+            <input type="checkbox" id="consent" name="consent" required>
+            <label for="consent">I agree that One Net may store and process my information to respond to my enquiry, per the Privacy Notice.</label>
+          </div>
+          <button type="submit" class="form-submit">Send message
+            <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+          </button>
+        </form>
+      </div>
+      <div class="form-success" id="form-success">
+        <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <h3>Thank you — message sent.</h3>
+        <p>We've received your enquiry and a member of the One Net team will be in touch within one business day.</p>
+      </div>
+    </div>
+
+    <!-- INFO -->
+    <aside class="contact-info">
+      <div class="info-card">
+        <h4>Reach us directly</h4>
+        <div class="info-row">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
+          <div><div class="t">Email</div><a href="mailto:sales@onenet.group">sales@onenet.group</a></div>
+        </div>
+        <div class="info-row">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span>
+          <div><div class="t">Cyprus</div><a href="tel:+35725828999">+357 25 828999</a></div>
+        </div>
+        <div class="info-row">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span>
+          <div><div class="t">Singapore</div><a href="tel:+6531064123">+65 31064123</a></div>
+        </div>
+      </div>
+      <div class="info-card offices-card">
+        <h4>Headquarters</h4>
+        <div class="office">
+          <div class="city">Limassol, Cyprus</div>
+          <div class="addr">Spatharikou 1-3<br>4004 Limassol, Cyprus</div>
+        </div>
+        <div class="office">
+          <div class="city">Support</div>
+          <div class="addr">24/7 Network Operations Centre, proactive monitoring &amp; rapid response across all hubs.</div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="about">
+        <img src="assets/onenet-horizontal-white-full.png" alt="One Net"><p>Enabling a digital society at sea. Delivering end-to-end digital infrastructure for maritime and enterprise.</p>
+        <img class="fhg" src="assets/member-of-fhg-white.png" alt="Member of FHG group">
+      </div>
+      <div><h4>Services</h4><ul>
+        <li><a href="it-partnering.html">IT Partnering</a></li>
+        <li><a href="cybersecurity.html">Cybersecurity</a></li>
+        <li><a href="zwana.html">Zwana Nexus</a></li>
+        <li><a href="saas.html">Software as a Service</a></li>
+        <li><a href="connectivity.html">Connectivity</a></li>
+      </ul></div>
+      <div><h4>Company</h4><ul>
+        <li><a href="index.html">Home</a></li><li><a href="about.html">About us</a></li>
+        <li><a href="careers.html">Careers</a></li><li><a href="blog.html">Blog</a></li><li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div><h4>COMPANY &amp; POLICIES</h4><ul>
+        <li><a href="terms-conditions.html">Company Terms &amp; Conditions</a></li>
+        <li><a href="company-policies.html">Company Policies</a></li>
+        <li><a href="products-services-terms.html">Products &amp; Services Terms</a></li>
+        <li><a href="assets/Terms-of-Use-One-Net.pdf" target="_blank" rel="noopener">Terms of Use</a></li>
+        <li><a href="assets/Privacy-Notice-One-Net.pdf" target="_blank" rel="noopener">Privacy Notice</a></li>
+        <li><a href="certifications.html">Certifications</a></li>
+      </ul></div>
+      <div><h4>Contact</h4><ul>
+        <li><a href="mailto:sales@onenet.group">sales@onenet.group</a></li>
+        <li><a href="tel:+35725828999">+357 25 828999</a></li>
+        <li><a href="tel:+6531064123">+65 31064123</a></li>
+        <li style="color:rgba(255,255,255,.5); margin-top:10px; font-size:12px;">Spatharikou 1-3<br>4004 Limassol, Cyprus</li>
+      </ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 One Net group. All rights reserved.</span>
+      <div class="links"><span class="status"><span class="d"></span>All systems operational</span></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  function init(){
+    var form = document.getElementById('cform');
+    if(!form) return;
+    var card = document.getElementById('contact-form');
+    var success = document.getElementById('form-success');
+
+    function setError(field, on){
+      field.classList.toggle('error', on);
+    }
+    function validEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var ok = true;
+      var required = [
+        ['fname', function(v){return v.trim().length>0;}],
+        ['lname', function(v){return v.trim().length>0;}],
+        ['email', function(v){return validEmail(v.trim());}],
+        ['company', function(v){return v.trim().length>0;}],
+        ['phone', function(v){return v.trim().length>0;}],
+        ['topic', function(v){return v !== '';}]
+      ];
+      required.forEach(function(r){
+        var el = document.getElementById(r[0]);
+        var field = el.closest('.field');
+        var good = r[1](el.value);
+        setError(field, !good);
+        if(!good) ok = false;
+      });
+      var consent = document.getElementById('consent');
+      if(!consent.checked){ ok = false; consent.closest('.consent').style.outline=''; consent.style.outline='2px solid #e0556b'; }
+      else { consent.style.outline=''; }
+
+      if(!ok){
+        var firstErr = form.querySelector('.field.error');
+        if(firstErr) firstErr.scrollIntoView({block:'center', behavior:'smooth'});
+        return;
+      }
+      // success
+      card.classList.add('sent');
+      success.classList.add('on');
+      success.scrollIntoView({block:'center', behavior:'smooth'});
+    });
+
+    // clear error on input
+    form.querySelectorAll('input, select, textarea').forEach(function(el){
+      el.addEventListener('input', function(){
+        var f = el.closest('.field'); if(f) f.classList.remove('error');
+        if(el.id==='consent') el.style.outline='';
+      });
+    });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
+<script src="assets/wt-scroll.js"></script>
+
+</body>
+</html>

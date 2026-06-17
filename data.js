@@ -6,8 +6,8 @@ var SITE = window.SITE = {
   email: "antrianap10@gmail.com",
   phone: "+357 99 105091",
   linkedin: "https://www.linkedin.com/in/antriana-panagi-467b08314/",
-  intro: "A practice built on grid-based precision and a genuine love for visual systems, confident without ever being loud.",
-  bio: "Antriana Panagi is a Multimedia & Graphic Design graduate, holding a Bachelor's degree from the Cyprus University of Technology. Her work spans graphic design, social media and marketing coordination, grounded in analytical thinking and a deep respect for systems where every element earns its place.",
+  intro: "Graphic design first, marketing end-to-end, built on grid-based precision and a genuine love for visual systems. Confident, never loud.",
+  bio: "Antriana Panagi is a Multimedia & Graphic Design graduate (BA, Cyprus University of Technology) who works across the full creative-to-marketing pipeline — brand identity, editorial, packaging and motion, through to paid media, content strategy and lead generation. She turns complex, technical products into clear, catchy communication, grounded in analytical thinking and a deep respect for systems where every element earns its place.",
 };
 
 var SKILLS = window.SKILLS = ["Adobe Creative Suite", "Figma", "Canva", "Branding", "Typography", "Layout", "Art Direction", "Packaging", "Social Media", "Marketing"];
@@ -39,6 +39,7 @@ var PROJECTS = window.PROJECTS = [
       "assets/rebrand/Launch%20day%20final%20video%20final.mp4",
       "assets/rebrand/its%20an%20evolution.mp4",
       "assets/rebrand/combined%20expertise.mp4",
+      "assets/one net website/Website Walkthrough.html",
     ],
     desc: "A full rebrand unifying One Net, WorldLink, Telaccount and One Novation under one coherent brand identity.",
     body: ["Four companies, one acquisition, one brand. The rebrand brought together One Net, WorldLink, Telaccount and One Novation under a single identity system spanning stationery, print and digital.", "From letterhead to launch video, every touchpoint designed to signal a new chapter without losing what each company stood for."],

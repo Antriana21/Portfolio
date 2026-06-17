@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>abela pulse — One Net | Redefine your fleet's digital operations</title>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+
+<style>
+  .ap-lead{background:var(--bg);}
+  .ap-hero-tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:24px;}
+  .ap-lead .head{display:flex; flex-direction:column; gap:18px; margin-bottom:48px;}
+  .ap-lead .eyebrow{display:flex;}
+  .ap-lead h2{color:var(--text-strong); max-width:20ch;}
+  .ap-lead .head p{color:var(--text-muted); max-width:60ch; font-size:16px; line-height:1.6;}
+  .ap-lead .body{color:var(--text-soft); font-size:clamp(17px,1.6vw,20px); line-height:1.6; max-width:74ch;}
+  .ap-lead .body strong{color:var(--text-strong); font-weight:600;}
+
+  /* two-audience split */
+  .ap-split{background:var(--bg-2); border-top:1px solid var(--border);}
+  .ap-split .head{display:flex; flex-direction:column; gap:18px; margin-bottom:48px;}
+  .ap-split h2{color:var(--text-strong); max-width:22ch;}
+  .ap-split .head p{color:var(--text-muted); max-width:52ch; font-size:16px; line-height:1.55;}
+  .ap-split-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  .ap-aud{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    padding:34px 32px; display:flex; flex-direction:column; gap:20px;
+  }
+  .ap-aud .cat{font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--vibrant);}
+  .ap-aud h3{color:var(--text-strong); font-weight:500; letter-spacing:-.015em; font-size:24px;}
+  .ap-aud ul{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:13px;}
+  .ap-aud li{display:flex; gap:12px; font-size:14.5px; line-height:1.5; color:var(--text-soft);}
+  .ap-aud li::before{content:""; width:6px; height:6px; border-radius:50%; background:var(--vibrant); flex:none; margin-top:8px;}
+
+  /* benefits */
+  .ap-benefits{background:var(--bg);}
+  .ap-benefits .head{display:flex; flex-direction:column; gap:18px; margin-bottom:48px;}
+  .ap-benefits h2{color:var(--text-strong); max-width:20ch;}
+  .ap-benefits .head p{color:var(--text-muted); max-width:54ch; font-size:16px; line-height:1.55;}
+  .ben-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:16px;}
+  .ben{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:26px 22px; display:flex; flex-direction:column; gap:14px;}
+  .ben .ico{width:40px; height:40px; border-radius:10px; background:var(--vibrant); display:grid; place-items:center; color:var(--sea-ink);}
+  .ben .ico svg{width:20px; height:20px;}
+  .ben h3{color:var(--text-strong); font-weight:600; font-size:16px; letter-spacing:-.01em; line-height:1.25;}
+  .ben p{color:var(--text-soft); font-size:13px; line-height:1.5;}
+
+  /* features (dark) */
+  .ap-features{background:var(--sea-ink); color:#fff; position:relative; overflow:hidden;}
+  .ap-features::before{content:""; position:absolute; inset:0; background-image:radial-gradient(50% 70% at 80% 10%, rgba(22,240,223,.10), transparent 60%);}
+  .ap-features .wrap{position:relative; z-index:1;}
+  .ap-features .head{display:flex; flex-direction:column; gap:18px; margin-bottom:56px;}
+  .ap-features h2{color:#fff; max-width:18ch;}
+  .ap-features .head p{color:rgba(255,255,255,.72); max-width:60ch; font-size:16px; line-height:1.6;}
+  .feat-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:0; border-top:1px solid rgba(255,255,255,.14);}
+  .feat{padding:30px 30px; border-bottom:1px solid rgba(255,255,255,.14);}
+  .feat:nth-child(odd){border-right:1px solid rgba(255,255,255,.14);}
+  .feat .fn{font-family:var(--mono); font-size:11px; letter-spacing:.1em; color:var(--vibrant);}
+  .feat h3{color:#fff; font-weight:500; font-size:20px; letter-spacing:-.015em; margin:12px 0 10px;}
+  .feat h3 .soon{font-family:var(--mono); font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:var(--sea-ink); background:var(--vibrant); padding:3px 7px; border-radius:999px; vertical-align:middle; margin-left:8px;}
+  .feat p{color:rgba(255,255,255,.75); font-size:14px; line-height:1.6;}
+
+  /* FAQ */
+  .ap-faq{background:var(--bg-2); border-top:1px solid var(--border);}
+  .ap-faq .head{display:flex; flex-direction:column; gap:18px; margin-bottom:40px;}
+  .ap-faq h2{color:var(--text-strong);}
+  .faq-list{max-width:90ch; border-top:1px solid var(--border);}
+  .faq-item{border-bottom:1px solid var(--border);}
+  .faq-q{
+    width:100%; text-align:left; background:transparent; border:0; cursor:pointer;
+    display:flex; justify-content:space-between; align-items:center; gap:24px;
+    padding:24px 4px; font-family:var(--sans); font-size:clamp(16px,1.5vw,19px); font-weight:500;
+    color:var(--text-strong); letter-spacing:-.01em;
+  }
+  .faq-q .pm{flex:none; width:24px; height:24px; position:relative;}
+  .faq-q .pm::before, .faq-q .pm::after{content:""; position:absolute; background:var(--vibrant); transition:transform .25s;}
+  .faq-q .pm::before{top:11px; left:3px; right:3px; height:2px;}
+  .faq-q .pm::after{left:11px; top:3px; bottom:3px; width:2px;}
+  .faq-item.open .pm::after{transform:scaleY(0);}
+  .faq-a{max-height:0; overflow:hidden; transition:max-height .3s ease;}
+  .faq-a p{color:var(--text-soft); font-size:15px; line-height:1.6; padding:0 4px 24px; max-width:80ch;}
+
+  @media (max-width: 960px){
+    .ap-split-grid{grid-template-columns:1fr;}
+    .ben-grid{grid-template-columns:1fr 1fr;}
+    .feat-grid{grid-template-columns:1fr;}
+    .feat:nth-child(odd){border-right:none;}
+  }
+  @media (max-width: 560px){
+    .ben-grid{grid-template-columns:1fr;}
+  }
+</style>
+<script src="assets/theme.js"></script>
+</head><body>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="logo" href="index.html">
+      <img class="logo-light" src="assets/onenet-horizontal-blue.svg?v=3" alt="One Net">
+      <img class="logo-dark" src="assets/onenet-horizontal-white-full.png" alt="One Net">
+    </a>
+    <nav class="nav">
+      <a href="it-partnering.html">IT Partnering</a>
+      <a href="cybersecurity.html">Cybersecurity</a>
+      <a href="zwana.html">Zwana</a>
+      <a href="saas.html" class="active">SaaS</a>
+      <a href="connectivity.html">Connectivity</a>
+    </nav>
+    <div class="actions">
+      <a class="pill" href="https://status.onenet.group/" target="_blank" rel="noopener"><span class="dot"></span>Service Status</a>
+      <a class="pill" href="https://abela.io/sessions/signin" target="_blank" rel="noopener">abela.io</a>
+      <button class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
+        <svg class="ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+        <svg class="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <a class="btn-primary" href="contact.html">Get in touch
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<nav class="subnav" aria-label="Section navigation">
+  <div class="wrap subnav-inner">
+    <a href="#why">Why we built it</a>
+    <a href="#audiences">Ship &amp; shore</a>
+    <a href="#benefits">Benefits</a>
+    <a href="#features">Features</a>
+    <a href="#faq">FAQ</a>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow-row">
+      <a href="index.html">One Net</a><span class="sep">/</span><a href="saas.html">SaaS</a><span class="sep">/</span><span>abela pulse</span>
+    </div>
+    <h1>Redefine your fleet's<br><span class="teal">digital operations.</span></h1>
+    <div class="ap-hero-tags">
+      <span class="tag">Powered by abela API</span>
+      <span class="tag">Built for Zwana</span>
+    </div>
+    <p class="blurb" style="padding:14px 0 0;">Empower your captains with abela pulse — enhancing collaboration between ship and shore to master digital operations, connectivity, troubleshooting, digital up-skilling, and cybersecurity.</p>
+    <div class="cta-row">
+      <a class="btn-big" href="https://bookings.cloud.microsoft/bookwithme/user/90248bcc66ac4839abad8891a1987350%40onenet.group/meetingtype/2E87UnY9v0uAmNxhZSx8Hw2?anonymous&amp;ismsaljsauthenabled=true" target="_blank" rel="noopener">Reserve slot for demo
+        <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px;"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+      <a class="btn-big alt" href="contact.html">Request a demo</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="ap-lead" id="why">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Why we built abela pulse</span>
+      <h2>Inform, educate, empower<br>your captains.</h2>
+    </div>
+    <p class="body">abela pulse isn't just another tool — it's the integrator and hub for all your vessel's vital digital operations. By <strong>informing, educating, and empowering your captains and crew</strong>, it bridges the gap between onboard teams and IT, reducing inefficiencies, cutting down resolution times, and minimising costs. With real-time insights and streamlined collaboration, your fleet is always connected, operational, and ready for the future.</p>
+  </div>
+</section>
+
+<!-- SHIP & SHORE -->
+<section class="ap-split" id="audiences">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow" style="display:flex;">Digital operations enabler</span>
+      <h2>abela pulse &amp; abela:<br>optimised fleet digital management.</h2>
+      <p>One platform spanning the bridge and the back office — built for the people on the vessel and the teams ashore.</p>
+    </div>
+    <div class="ap-split-grid">
+      <div class="ap-aud">
+        <span class="cat">abela pulse · onboard</span>
+        <h3>Built for vessel captains &amp; crew</h3>
+        <ul>
+          <li>Empowers crews to manage digital operations directly on the vessel</li>
+          <li>Automated tickets for onboard issues, supporting faster resolutions</li>
+          <li>Focused on IT, cybersecurity, and vessel connectivity</li>
+          <li>Equips crew to handle basic digital tasks onboard</li>
+          <li>Builds digital skills and tech knowledge for operational efficiency</li>
+        </ul>
+      </div>
+      <div class="ap-aud">
+        <span class="cat">abela · shore</span>
+        <h3>Built for shore-based fleet management teams</h3>
+        <ul>
+          <li>Enables shore teams to remotely monitor and troubleshoot fleet issues</li>
+          <li>Provides full visibility into vessel health and operational status</li>
+          <li>Speeds up issue resolution with critical insights to shore teams</li>
+          <li>Ensures operational continuity with proactive, shore-based support and fleet insights</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="ap-benefits" id="benefits">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow" style="display:flex;">Benefits for your fleet</span>
+      <h2>Transform your fleet's<br>digital future.</h2>
+      <p>Unlock a suite of key benefits with abela pulse to simplify and enhance your fleet's digital operations.</p>
+    </div>
+    <div class="ben-grid">
+      <div class="ben">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg></div>
+        <h3>Quick, confident decisions</h3>
+        <p>Timely insights enable swift action, smarter decisions, and enhanced safety.</p>
+      </div>
+      <div class="ben">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 5v5l3 3"/></svg></div>
+        <h3>Operational continuity</h3>
+        <p>Reduced downtime and steady performance keep operations smooth and reliable.</p>
+      </div>
+      <div class="ben">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <h3>Lowered support costs</h3>
+        <p>Faster problem resolution cuts external support needs, reducing costs.</p>
+      </div>
+      <div class="ben">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1 2 3 6 3s6-2 6-3v-5"/></svg></div>
+        <h3>Empowered &amp; informed crew</h3>
+        <p>Educational tools to empower your crew to master digital systems.</p>
+      </div>
+      <div class="ben">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
+        <h3>Unified platform for the future</h3>
+        <p>Future-ready with third-party integration — one interface for vital ops.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="ap-features" id="features">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow on-dark" style="display:flex;">Features</span>
+      <h2>Key features of abela pulse.</h2>
+      <p>A simplified, intuitive interface tailored for ease of use by captains and crew — quick access to essential information so your team can focus on critical tasks.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat"><div class="fn">01</div><h3>Continuous monitoring with actionable insights</h3><p>Keep a real-time eye on vessel connectivity, ICT hardware, IT services, cybersecurity, and cloud applications — up-to-the-minute data to quickly identify and address issues.</p></div>
+      <div class="feat"><div class="fn">02</div><h3>Proactive alerts</h3><p>Instant notifications on connectivity disruptions, hardware malfunctions, cybersecurity threats, or application performance issues — enabling immediate intervention.</p></div>
+      <div class="feat"><div class="fn">03</div><h3>Centralised control for digital operations</h3><p>Manage all your vessel's DigitalOps from a single, unified platform. The intuitive dashboard gives a comprehensive view of key systems at a glance.</p></div>
+      <div class="feat"><div class="fn">04</div><h3>Compliance reporting</h3><p>Stay compliant with international maritime standards for IT and cybersecurity. abela pulse automates compliance reporting, reducing administrative workload.</p></div>
+      <div class="feat"><div class="fn">05</div><h3>Seamless collaboration &amp; communication</h3><p>Efficient interaction between crew and shore teams through integrated chat, streamlining communication and boosting operational efficiency.</p></div>
+      <div class="feat"><div class="fn">06</div><h3>Priority 24/7 support via chat</h3><p>Dedicated maritime support around the clock with a maximum 2-hour response time, connecting you with knowledgeable experts.</p></div>
+      <div class="feat"><div class="fn">07</div><h3>Educational resources for digital literacy</h3><p>Interactive training modules on digital technologies, IT services, and cybersecurity best practices, so crews can confidently navigate onboard systems.</p></div>
+      <div class="feat"><div class="fn">08</div><h3>Future-proof integration<span class="soon">Coming soon</span></h3><p>Integrate third-party applications and cloud services into abela pulse, keeping it your central hub for monitoring and managing all critical digital systems.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="ap-faq" id="faq">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow" style="display:flex;">FAQ</span>
+      <h2>Frequently asked questions.</h2>
+    </div>
+    <div class="faq-list" id="faq-list">
+      <div class="faq-item"><button class="faq-q">What is abela pulse?<span class="pm"></span></button><div class="faq-a"><p>abela pulse is a unified platform for managing and monitoring your vessel's digital operations, offering real-time insights into connectivity, IT services, cybersecurity, and more. It helps improve operational efficiency, reduce downtime, and cut costs by centralising control.</p></div></div>
+      <div class="faq-item"><button class="faq-q">What benefits does abela pulse bring to overall fleet performance?<span class="pm"></span></button><div class="faq-a"><p>By providing real-time monitoring, proactive alerts, and centralised control, abela pulse helps reduce downtime, lower support costs, improve decision-making, and ensure operational continuity across your fleet.</p></div></div>
+      <div class="faq-item"><button class="faq-q">What support is available for abela pulse?<span class="pm"></span></button><div class="faq-a"><p>abela pulse offers priority 24/7 support via chat with a maximum 2-hour response time. Our dedicated maritime experts are available around the clock to assist with any operational challenges.</p></div></div>
+      <div class="faq-item"><button class="faq-q">How does abela pulse help reduce operational inefficiencies?<span class="pm"></span></button><div class="faq-a"><p>abela pulse centralises monitoring of all your vessel's digital systems, automates ticket creation for issues, and provides real-time insights that allow your crew and shore teams to act quickly. This reduces manual work, speeds up issue resolution, and minimises downtime.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Is abela pulse compatible with existing systems on the vessel?<span class="pm"></span></button><div class="faq-a"><p>Yes, abela pulse is designed for seamless integration with your existing onboard IT, connectivity, and cybersecurity systems. Future-proof integration with third-party applications ensures compatibility going forward.</p></div></div>
+      <div class="faq-item"><button class="faq-q">How does abela pulse improve cybersecurity onboard?<span class="pm"></span></button><div class="faq-a"><p>abela pulse continuously monitors cybersecurity status, detects threats in real-time, and sends proactive alerts. It also automates compliance reporting against international maritime cybersecurity standards.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Can the crew use abela pulse without IT expertise?<span class="pm"></span></button><div class="faq-a"><p>Absolutely. abela pulse features a simplified, intuitive interface designed for ease of use by captains and crew, regardless of IT background. Educational resources further support digital literacy across the team.</p></div></div>
+      <div class="faq-item"><button class="faq-q">How does abela pulse support shore-based fleet management teams?<span class="pm"></span></button><div class="faq-a"><p>Shore teams gain full visibility into vessel health and operational status, enabling remote monitoring, troubleshooting, and proactive support. This ensures continuity of operations and reduces response times to incidents at sea.</p></div></div>
+      <div class="faq-item"><button class="faq-q">What kind of data does abela pulse collect and report on?<span class="pm"></span></button><div class="faq-a"><p>abela pulse collects data on vessel connectivity, ICT hardware status, IT services, cybersecurity events, and cloud application performance. Reports cover operational metrics, compliance, and incident history.</p></div></div>
+      <div class="faq-item"><button class="faq-q">How quickly can abela pulse be deployed across our fleet?<span class="pm"></span></button><div class="faq-a"><p>Deployment times vary depending on fleet size and existing infrastructure, but our team works with you to ensure a smooth, fast rollout — typically within weeks rather than months. Reserve a demo to discuss your specific requirements.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Does abela pulse work in low-bandwidth or offline conditions?<span class="pm"></span></button><div class="faq-a"><p>Yes, abela pulse is built to operate reliably in maritime environments where bandwidth is variable. Critical functions remain available offline and synchronise once connectivity is restored.</p></div></div>
+      <div class="faq-item"><button class="faq-q">How can I learn more or schedule a demo?<span class="pm"></span></button><div class="faq-a"><p>You can reserve a demo slot using the "Reserve slot for demo" button anywhere on this page, or contact our team directly for more information.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="darkband">
+  <div class="wrap" style="text-align:center;">
+    <h2>abela pulse, <span class="teal">for the captain.</span></h2>
+    <p style="color:rgba(255,255,255,.72); max-width:56ch; margin:22px auto 36px; font-size:16px; line-height:1.6;">See how you can seamlessly integrate our solution into your operations with straightforward implementation steps — designed to quickly boost efficiency and streamline your workflows.</p>
+    <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+      <a class="btn-big teal" href="https://bookings.cloud.microsoft/bookwithme/user/90248bcc66ac4839abad8891a1987350%40onenet.group/meetingtype/2E87UnY9v0uAmNxhZSx8Hw2?anonymous&amp;ismsaljsauthenabled=true" target="_blank" rel="noopener">Reserve slot for demo
+        <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px;"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="about">
+        <img src="assets/onenet-horizontal-white-full.png" alt="One Net"><p>Enabling a digital society at sea. Delivering end-to-end digital infrastructure for maritime and enterprise.</p>
+        <img class="fhg" src="assets/member-of-fhg-white.png" alt="Member of FHG group">
+      </div>
+      <div><h4>Services</h4><ul>
+        <li><a href="it-partnering.html">IT Partnering</a></li>
+        <li><a href="cybersecurity.html">Cybersecurity</a></li>
+        <li><a href="zwana.html">Zwana Nexus</a></li>
+        <li><a href="saas.html">Software as a Service</a></li>
+        <li><a href="connectivity.html">Connectivity</a></li>
+      </ul></div>
+      <div><h4>Company</h4><ul>
+        <li><a href="index.html">Home</a></li><li><a href="about.html">About us</a></li>
+        <li><a href="careers.html">Careers</a></li><li><a href="blog.html">Blog</a></li><li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div><h4>Policies</h4><ul>
+        <li><a href="terms-conditions.html">Company Terms &amp; Conditions</a></li>
+        <li><a href="company-policies.html">Company Policies</a></li>
+        <li><a href="products-services-terms.html">Products &amp; Services Terms</a></li>
+        <li><a href="assets/Terms-of-Use-One-Net.pdf" target="_blank" rel="noopener">Terms of Use</a></li>
+        <li><a href="assets/Privacy-Notice-One-Net.pdf" target="_blank" rel="noopener">Privacy Notice</a></li>
+        <li><a href="certifications.html">Certifications</a></li>
+      </ul></div>
+      <div><h4>Contact</h4><ul>
+        <li><a href="mailto:sales@onenet.group">sales@onenet.group</a></li>
+        <li><a href="tel:+35725828999">+357 25 828999</a></li>
+        <li><a href="tel:+6531064123">+65 31064123</a></li>
+        <li style="color:rgba(255,255,255,.5); margin-top:10px; font-size:12px;">Spatharikou 1-3<br>4004 Limassol, Cyprus</li>
+      </ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 One Net group. All rights reserved.</span>
+      <div class="links"><span class="status"><span class="d"></span>All systems operational</span></div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/subnav.js"></script>
+<script>
+(function(){
+  function init(){
+    document.querySelectorAll('#faq-list .faq-item').forEach(function(item){
+      var q = item.querySelector('.faq-q');
+      var a = item.querySelector('.faq-a');
+      q.addEventListener('click', function(){
+        var open = item.classList.contains('open');
+        if(open){ item.classList.remove('open'); a.style.maxHeight = null; }
+        else { item.classList.add('open'); a.style.maxHeight = a.scrollHeight + 'px'; }
+      });
+    });
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
+<script src="assets/wt-scroll.js"></script>
+
+</body>
+</html>
