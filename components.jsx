@@ -92,7 +92,12 @@ function Cursor() {
   useEffect(() => {
     if (window.matchMedia("(max-width: 820px)").matches) return;
     let mx = innerWidth / 2, my = innerHeight / 2, rx = mx, ry = my, raf;
-    const onMove = (e) => { mx = e.clientX; my = e.clientY; if (dot.current) dot.current.style.transform = `translate(${mx}px,${my}px) translate(-50%,-50%)`; };
+    const onMove = (e) => {
+      mx = e.clientX; my = e.clientY;
+      if (dot.current) dot.current.style.transform = `translate(${mx}px,${my}px) translate(-50%,-50%)`;
+      const under = document.elementFromPoint(mx, my);
+      document.body.dataset.curDark = (under && under.closest('.about,.contact,.statsbar')) ? '1' : '';
+    };
     const loop = () => { rx += (mx - rx) * 0.2; ry += (my - ry) * 0.2; if (ring.current) ring.current.style.transform = `translate(${rx}px,${ry}px) translate(-50%,-50%)`; raf = requestAnimationFrame(loop); };
     loop(); window.addEventListener("mousemove", onMove);
     return () => { window.removeEventListener("mousemove", onMove); cancelAnimationFrame(raf); };

@@ -16,6 +16,15 @@ function Work({ onOpen }) {
   const list = PROJECTS.filter((p) => filter === "all" || p.group === filter);
 
   useEffect(() => {
+    PROJECTS.forEach(p => {
+      if (!p.img) return;
+      if (/\.(mp4|mov|gif|html)$/i.test(p.img)) return;
+      const img = new Image();
+      img.src = p.img;
+    });
+  }, []);
+
+  useEffect(() => {
     if (window.matchMedia("(max-width: 980px)").matches) return;
     let raf;
     const move = (e) => { target.current = { x: e.clientX, y: e.clientY }; };
@@ -84,6 +93,11 @@ function Row({ p, n, onOpen, onEnter }) {
   );
 }
 
+/* ---------- CONTACT constants ---------- */
+const WEB3FORMS_KEY = "YOUR-ACCESS-KEY-HERE"; // paste your Web3Forms key (web3forms.com)
+const CV_FILE = "Antriana_Panagi_CV.pdf";      // place PDF next to index.html
+const CONTACT_REASONS = ["Hiring", "Freelance", "Other"];
+
 /* ---------- ABOUT ---------- */
 function About() {
   return (
@@ -121,23 +135,117 @@ function About() {
 
 /* ---------- CONTACT ---------- */
 function Contact() {
+  const [reason, setReason] = useState("Hiring");
+  const [status, setStatus] = useState("idle");
+  const [errorMsg, setErrorMsg] = useState("");
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setStatus("sending");
+    setErrorMsg("");
+    const form = e.target;
+    const el = form.elements;
+    const data = {
+      access_key: WEB3FORMS_KEY,
+      subject: `Portfolio enquiry – ${reason}`,
+      from_name: "Antriana Panagi – Portfolio",
+      name: el.name.value,
+      email: el.email.value,
+      reason,
+      message: el.message.value,
+      botcheck: el.botcheck.checked,
+    };
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(data),
+      });
+      const json = await res.json();
+      if (json.success) {
+        setStatus("success");
+        form.reset();
+        setReason("Hiring");
+      } else {
+        setStatus("error");
+        setErrorMsg(json.message || "Something went wrong. Please try again.");
+      }
+    } catch {
+      setStatus("error");
+      setErrorMsg("Network error. Please try again or email me directly.");
+    }
+  }
+
   return (
     <section className="contact page" id="contact">
       <div className="sechead">
         <div><span className="sh-no">§ 03 | Contact</span></div>
         <div className="sh-r">Available for<br />Freelance &amp;<br />Full-time</div>
       </div>
+
       <div className="ct-top">
-        <a className="ct-head display" href={`mailto:${SITE.email}`} data-cursor="link" data-label="Email">Let’s make<br />something.</a>
-        <div><a className="ct-email" href={`mailto:${SITE.email}`} data-cursor="hover">{SITE.email} <span className="ar">↗</span></a></div>
+        <span className="ct-head display">Let&rsquo;s make<br />something.</span>
       </div>
+
       <div className="ct-grid">
-        <div className="socials">
-          <a href={SITE.linkedin} target="_blank" rel="noreferrer" data-cursor="hover">LinkedIn ↗</a>
-          <a href={`mailto:${SITE.email}`} data-cursor="hover">Email ↗</a>
+        <form className="ct-form" onSubmit={handleSubmit} noValidate>
+          <input type="checkbox" name="botcheck" tabIndex="-1" autoComplete="off" style={{display:"none"}} />
+
+          <div className="ct-field">
+            <label htmlFor="ct-name">Name</label>
+            <input id="ct-name" name="name" type="text" required placeholder="Your name" />
+          </div>
+
+          <div className="ct-field">
+            <label htmlFor="ct-email">Email</label>
+            <input id="ct-email" name="email" type="email" required placeholder="you@email.com" />
+          </div>
+
+          <div className="ct-field">
+            <label id="ct-reason-lbl">Reason</label>
+            <div className="ct-pills" role="radiogroup" aria-labelledby="ct-reason-lbl">
+              {CONTACT_REASONS.map(r => (
+                <button type="button" key={r} role="radio" aria-checked={reason === r}
+                  className={"ct-pill" + (reason === r ? " on" : "")}
+                  onClick={() => setReason(r)} data-cursor="hover">
+                  {r}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="ct-field">
+            <label htmlFor="ct-msg">Message</label>
+            <textarea id="ct-msg" name="message" rows="4" required placeholder="Tell me a little about it." />
+          </div>
+
+          <div className="ct-actions">
+            <button type="submit" className="ct-btn" disabled={status === "sending"} data-cursor="hover">
+              {status === "sending" ? "Sending…" : "Send"}
+            </button>
+            <a className="ct-btn ct-btn--ghost" href={CV_FILE} download="Antriana Panagi – CV.pdf" data-cursor="hover">
+              Download CV ↓
+            </a>
+          </div>
+
+          <p className="ct-status" aria-live="polite">
+            {status === "success" && "Thanks — your message is on its way. I’ll be in touch."}
+            {status === "error" && errorMsg}
+          </p>
+        </form>
+
+        <div className="ct-side">
+          <span className="ct-side-lbl">Elsewhere</span>
+          <a className="ct-social" href={SITE.linkedin} target="_blank" rel="noreferrer" data-cursor="hover">
+            LinkedIn <span aria-hidden="true">↗</span>
+          </a>
+          <a className="ct-social" href="https://www.behance.net/antrianapan" target="_blank" rel="noreferrer" data-cursor="hover">
+            Behance <span aria-hidden="true">↗</span>
+          </a>
+          <span className="ct-ps display">P.S. I love grid</span>
         </div>
-        <div className="ct-meta">{SITE.name}<br />{SITE.role} · {SITE.location}<br />{SITE.phone}</div>
       </div>
+
       <div className="footline">
         <span>© {new Date().getFullYear()} {SITE.name}</span>
         <span>Designed on a grid · Built with care</span>
