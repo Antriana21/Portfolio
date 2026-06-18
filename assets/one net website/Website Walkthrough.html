@@ -71,19 +71,21 @@
   try{ localStorage.setItem('theme','dark'); }catch(e){}
 
   var PAGES = [
-    {file:'index.html',         title:'Home'},
-    {file:'it-partnering.html', title:'IT Partnering'},
-    {file:'cybersecurity.html', title:'Cybersecurity'},
-    {file:'zwana.html',         title:'Zwana'},
-{file:'about.html',         title:'About'},
-    {file:'contact.html',       title:'Contact'}
+    {file:'index.html',         title:'Home',          dur:45},
+    {file:'it-partnering.html', title:'IT Partnering', dur:26},
+    {file:'cybersecurity.html', title:'Cybersecurity', dur:26},
+    {file:'zwana.html',         title:'Zwana',         dur:26},
+    {file:'about.html',         title:'About',         dur:27},
+    {file:'contact.html',       title:'Contact',       dur:27},
   ];
 
   var TOTAL = 180;
   var OUTRO = 3.0;
   var CF    = 1.1;
-  var SEG   = (TOTAL - OUTRO) / PAGES.length;
   var VH = 1080, VW = 1920, FH = 1124;
+
+  var starts = [], segDurs = [];
+  (function(){ var t = 0; for(var i = 0; i < PAGES.length; i++){ starts[i] = t; segDurs[i] = PAGES[i].dur; t += PAGES[i].dur; } })();
   var STORE = 'onenet_walkthrough_t';
 
   var frame   = document.getElementById('frame');
@@ -97,14 +99,15 @@
   var lastY   = new Array(PAGES.length).fill(-1);
 
   window.addEventListener('message', function(e){
-    if(!e.data || e.data.type !== 'wt-height') return;
-    var src = e.data.src;
-    for(var i = 0; i < PAGES.length; i++){
-      if(PAGES[i].file === src){
-        heights[i] = Math.max(0, e.data.h - VH);
-        break;
+    if(!e.data) return;
+    if(e.data.type === 'wt-height'){
+      var src = e.data.src;
+      for(var i = 0; i < PAGES.length; i++){
+        if(PAGES[i].file === src){ heights[i] = Math.max(0, e.data.h - VH); break; }
       }
     }
+    if(e.data.type === 'wt-play')  play();
+    if(e.data.type === 'wt-pause') pause();
   });
 
   function fit(){
@@ -139,10 +142,8 @@
   function smooth(x){ return x<=0?0:x>=1?1:(x*x*(3-2*x)); }
 
   function activeIndexAt(t){
-    var i = Math.floor(t / SEG);
-    if(i < 0) i = 0;
-    if(i > PAGES.length - 1) i = PAGES.length - 1;
-    return i;
+    for(var i = PAGES.length - 1; i >= 0; i--){ if(t >= starts[i]) return i; }
+    return 0;
   }
 
   function render(t){
@@ -156,7 +157,7 @@
     }
 
     for(var i = Math.max(0, ai - 1); i <= Math.min(PAGES.length - 1, ai + 1); i++){
-      var s = i * SEG, e = s + SEG;
+      var s = starts[i], e = s + segDurs[i];
       var op = 0;
       if(t >= s && t <= e) op = 1;
       if(t < s && t >= s - CF) op = (t - (s - CF)) / CF;

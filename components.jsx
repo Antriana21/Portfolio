@@ -9,6 +9,7 @@ function SmartImg({ src, alt, label, imgStyle, eager }) {
   const [failed, setFailed] = useState(!src);
   const [playing, setPlaying] = useState(false);
   const [htmlPlaying, setHtmlPlaying] = useState(false);
+  const [htmlPaused, setHtmlPaused] = useState(false);
   const videoRef = useRef(null);
   const htmlWrapRef = useRef(null);
   const htmlFrameRef = useRef(null);
@@ -36,6 +37,12 @@ function SmartImg({ src, alt, label, imgStyle, eager }) {
     setPlaying(p => !p);
   };
 
+  const sendWt = (type) => {
+    if (htmlFrameRef.current) htmlFrameRef.current.contentWindow.postMessage({ type }, '*');
+  };
+  const pauseWalkthrough = (e) => { e.stopPropagation(); sendWt('wt-pause'); setHtmlPaused(true); };
+  const resumeWalkthrough = (e) => { e.stopPropagation(); sendWt('wt-play'); setHtmlPaused(false); };
+
   if (failed) return <div className="ph" aria-label={alt}><span className="pht">{label || alt}</span></div>;
 
   if (isHtml) {
@@ -49,6 +56,9 @@ function SmartImg({ src, alt, label, imgStyle, eager }) {
     return (
       <div className="html-embed-wrap" ref={htmlWrapRef}>
         <iframe ref={htmlFrameRef} src={src} className="html-embed-frame" scrolling="no" />
+        <div className={`html-embed-controls${htmlPaused ? ' is-paused' : ''}`} onClick={htmlPaused ? resumeWalkthrough : pauseWalkthrough}>
+          <span className="vid-play-btn">{htmlPaused ? '▶' : '⏸'}</span>
+        </div>
       </div>
     );
   }
