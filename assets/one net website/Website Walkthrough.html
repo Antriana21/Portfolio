@@ -44,38 +44,6 @@
   }
   #outro img{ width:520px; max-width:60%; height:auto; }
 
-  #controls{
-    position:fixed; left:0; right:0; bottom:0; z-index:100;
-    display:flex; align-items:center; gap:16px; padding:14px 22px;
-    background:linear-gradient(transparent, rgba(0,0,0,.75) 40%);
-    font-family:"JetBrains Mono",ui-monospace,monospace; color:#cfd6e6;
-    opacity:1; transition:opacity .4s; user-select:none;
-  }
-  #controls.hidden{opacity:0;}
-  #stageWrap:hover #controls{opacity:1;}
-  .btn{
-    cursor:pointer; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.16);
-    color:#fff; width:42px; height:42px; border-radius:50%; display:grid; place-items:center;
-    flex:none; transition:background .15s;
-  }
-  .btn:hover{background:rgba(22,240,223,.18); border-color:var(--teal);}
-  .btn svg{width:18px;height:18px;}
-  #label{ font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--teal); min-width:180px; }
-  #chapters{
-    position:fixed; left:0; right:0; bottom:62px; z-index:101;
-    display:flex; justify-content:center; gap:8px; pointer-events:none;
-    opacity:0; transition:opacity .4s;
-  }
-  #stageWrap:hover #chapters{ opacity:1; }
-  .chap-dot{
-    width:6px; height:6px; border-radius:50%;
-    background:rgba(255,255,255,.22); border:1px solid rgba(255,255,255,.3);
-    transition:background .3s, transform .3s, border-color .3s;
-    flex-shrink:0;
-  }
-  .chap-dot.on{ background:var(--teal); border-color:var(--teal); transform:scale(1.5); }
-  #hint{ font-size:10px; letter-spacing:.12em; color:rgba(255,255,255,.22); position:fixed; bottom:68px; right:22px; z-index:101; opacity:0; transition:opacity .4s; }
-  #stageWrap:hover #hint{ opacity:1; }
   #loading{
     position:fixed; inset:0; display:grid; place-items:center; z-index:200; background:#070c22;
     color:#8a93b6; font-family:"JetBrains Mono",monospace; font-size:13px; letter-spacing:.1em; text-transform:uppercase;
@@ -85,8 +53,6 @@
 </head>
 <body>
 <div id="loading">Preparing walkthrough…</div>
-<div id="chapters"></div>
-<div id="hint">Space · Play/Pause &nbsp;·&nbsp; R · Restart</div>
 <div id="stageWrap">
   <div id="frame">
     <div id="chrome">
@@ -97,16 +63,6 @@
       <!-- iframe layers injected by JS -->
       <div id="outro"><img src="assets/onenet-horizontal-white-full.png" alt="One Net"></div>
     </div>
-  </div>
-  <div id="controls">
-    <div class="btn" id="playBtn" title="Play / pause">
-      <svg id="playIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-      <svg id="pauseIcon" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
-    </div>
-    <div class="btn" id="restartBtn" title="Restart">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 4v4h4"/></svg>
-    </div>
-    <span id="label">Home</span>
   </div>
 </div>
 
@@ -130,15 +86,10 @@
   var VH = 1080, VW = 1920, FH = 1124;
   var STORE = 'onenet_walkthrough_t';
 
-  var frame      = document.getElementById('frame');
-  var stage      = document.getElementById('stage');
-  var outro      = document.getElementById('outro');
-  var loading    = document.getElementById('loading');
-  var labelEl    = document.getElementById('label');
-  var playBtn    = document.getElementById('playBtn');
-  var playIcon   = document.getElementById('playIcon');
-  var pauseIcon  = document.getElementById('pauseIcon');
-  var restartBtn = document.getElementById('restartBtn');
+  var frame   = document.getElementById('frame');
+  var stage   = document.getElementById('stage');
+  var outro   = document.getElementById('outro');
+  var loading = document.getElementById('loading');
 
   var frames  = new Array(PAGES.length).fill(null);
   var heights = new Array(PAGES.length).fill(0);
@@ -174,7 +125,7 @@
         var doc = f.contentWindow.document;
         var h = Math.max(doc.documentElement.scrollHeight, doc.body.scrollHeight);
         if(h > VH) heights[i] = h - VH;
-      }catch(e){}
+      }catch(e){ heights[i] = heights[i] || 2600; }
     });
     stage.insertBefore(f, outro);
     frames[i] = f;
@@ -219,16 +170,8 @@
       }
     }
 
-    updateChapters(inOutro ? PAGES.length - 1 : ai);
-    labelEl.textContent = inOutro ? 'One Net' : ((ai + 1) + ' / ' + PAGES.length + '  —  ' + PAGES[ai].title);
     var u = document.getElementById('urlText');
     if(u){ u.textContent = inOutro ? 'onenet.group' : ('onenet.group/' + (ai === 0 ? '' : PAGES[ai].file)); }
-  }
-
-  function fmt(s){
-    s = Math.max(0, Math.floor(s));
-    var m = Math.floor(s / 60), ss = s % 60;
-    return m + ':' + (ss < 10 ? '0' : '') + ss;
   }
 
   var playing = false, cur = 0, last = 0;
@@ -241,40 +184,13 @@
     if(!playing){ last = ts; return; }
     var dt = (ts - last) / 1000; last = ts;
     cur += dt;
-    if(cur >= TOTAL){ cur = TOTAL; playing = false; setIcons(); }
+    if(cur >= TOTAL){ cur = TOTAL; playing = false; }
     render(cur);
     try{ localStorage.setItem(STORE, cur); }catch(e){}
     if(playing) requestAnimationFrame(tick);
   }
-  function play(){ if(cur >= TOTAL) cur = 0; playing = true; setIcons(); last = performance.now(); requestAnimationFrame(tick); }
-  function pause(){ playing = false; setIcons(); }
-  function setIcons(){ playIcon.style.display = playing ? 'none' : 'block'; pauseIcon.style.display = playing ? 'block' : 'none'; }
-
-  playBtn.addEventListener('click', function(){ playing ? pause() : play(); });
-  restartBtn.addEventListener('click', function(){
-    cur = 0; render(0);
-    try{ localStorage.setItem(STORE, 0); }catch(e){}
-    if(playing) last = performance.now();
-  });
-
-  document.addEventListener('keydown', function(e){
-    if(e.target.tagName === 'INPUT') return;
-    if(e.code === 'Space' || e.key === ' '){ e.preventDefault(); playing ? pause() : play(); }
-    if(e.code === 'KeyR'){ cur = 0; render(0); try{ localStorage.setItem(STORE, 0); }catch(e2){} }
-  });
-
-  var chapEl = document.getElementById('chapters');
-  var dots = [];
-  PAGES.forEach(function(p, i){
-    var d = document.createElement('span');
-    d.className = 'chap-dot';
-    d.title = p.title;
-    chapEl.appendChild(d);
-    dots.push(d);
-  });
-  function updateChapters(ai){
-    dots.forEach(function(d, i){ d.classList.toggle('on', i === ai); });
-  }
+  function play(){ if(cur >= TOTAL) cur = 0; playing = true; last = performance.now(); requestAnimationFrame(tick); }
+  function pause(){ playing = false; }
 
   mount(0); mount(1);
   var booted = false;
@@ -283,7 +199,6 @@
     loading.style.opacity = '0';
     setTimeout(function(){ loading.remove(); }, 500);
     render(cur);
-    setIcons();
     play();
   }
   var t0 = Date.now();
