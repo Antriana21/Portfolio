@@ -94,6 +94,7 @@
   var frames  = new Array(PAGES.length).fill(null);
   var heights = new Array(PAGES.length).fill(0);
   var loaded  = new Array(PAGES.length).fill(false);
+  var lastY   = new Array(PAGES.length).fill(-1);
 
   window.addEventListener('message', function(e){
     if(!e.data || e.data.type !== 'wt-height') return;
@@ -132,7 +133,7 @@
     return f;
   }
   function unmount(i){
-    if(frames[i]){ frames[i].remove(); frames[i] = null; loaded[i] = false; heights[i] = 0; }
+    if(frames[i]){ frames[i].remove(); frames[i] = null; loaded[i] = false; heights[i] = 0; lastY[i] = -1; }
   }
 
   function smooth(x){ return x<=0?0:x>=1?1:(x*x*(3-2*x)); }
@@ -166,7 +167,7 @@
         fr.style.opacity = Math.max(0, Math.min(1, op)).toFixed(3);
         var frac = smooth(Math.max(0, Math.min(1, (t - s) / SEG)));
         var y = Math.round(heights[i] * frac);
-        fr.contentWindow.postMessage({type:'wt-scroll', y:y}, '*');
+        if(y !== lastY[i]){ fr.contentWindow.postMessage({type:'wt-scroll', y:y}, '*'); lastY[i] = y; }
       }
     }
 
@@ -174,7 +175,7 @@
     if(u){ u.textContent = inOutro ? 'onenet.group' : ('onenet.group/' + (ai === 0 ? '' : PAGES[ai].file)); }
   }
 
-  var playing = false, cur = 0, last = 0;
+  var playing = false, cur = 0, last = 0, lastSave = 0;
   try{
     var saved = parseFloat(localStorage.getItem(STORE));
     if(!isNaN(saved) && saved < TOTAL - 0.2) cur = saved;
@@ -186,7 +187,7 @@
     cur += dt;
     if(cur >= TOTAL){ cur = TOTAL; playing = false; }
     render(cur);
-    try{ localStorage.setItem(STORE, cur); }catch(e){}
+    if(ts - lastSave > 2000){ try{ localStorage.setItem(STORE, cur); lastSave = ts; }catch(e){} }
     if(playing) requestAnimationFrame(tick);
   }
   function play(){ if(cur >= TOTAL) cur = 0; playing = true; last = performance.now(); requestAnimationFrame(tick); }

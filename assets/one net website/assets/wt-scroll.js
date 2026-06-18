@@ -5,7 +5,9 @@
   // Remove backdrop-filter blur on the topbar — it forces re-composition on every
   // programmatic scroll frame and causes visible shaking in the walkthrough.
   var s = document.createElement('style');
-  s.textContent = '.topbar{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;transform:translateZ(0);will-change:transform;}';
+  s.textContent =
+    '.topbar{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;transform:translateZ(0);will-change:transform;}' +
+    '*,*::before,*::after{animation-duration:0.001ms!important;animation-delay:0ms!important;animation-iteration-count:1!important;animation-fill-mode:both!important;transition-duration:0.001ms!important;transition-delay:0ms!important;}';
   (document.head || document.documentElement).appendChild(s);
 
   window.addEventListener('message', function(e){
