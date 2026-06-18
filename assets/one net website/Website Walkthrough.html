@@ -166,7 +166,7 @@
       var fr = frames[i];
       if(fr){
         fr.style.opacity = Math.max(0, Math.min(1, op)).toFixed(3);
-        var frac = smooth(Math.max(0, Math.min(1, (t - s) / SEG)));
+        var frac = smooth(Math.max(0, Math.min(1, (t - s) / segDurs[i])));
         var y = Math.round(heights[i] * frac);
         if(y !== lastY[i]){ fr.contentWindow.postMessage({type:'wt-scroll', y:y}, '*'); lastY[i] = y; }
       }
