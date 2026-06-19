@@ -245,11 +245,6 @@ function Contact() {
         </div>
       </div>
 
-      <div className="footline">
-        <span>© {new Date().getFullYear()} {SITE.name}</span>
-        <span>Designed on a grid · Built with care</span>
-        <span>Electric Blue #2130EB</span>
-      </div>
       <img className="bigA" src="assets/logo.png" alt="" />
     </section>
   );
