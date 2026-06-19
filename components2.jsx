@@ -43,7 +43,7 @@ function Work({ onOpen }) {
   return (
     <section className="work page" id="work">
       <div className="sechead">
-        <div><span className="sh-no">§ 01 | Index</span><h2 className="display">Selected Work</h2></div>
+        <div><span className="sh-no">01 | Index</span><h2 className="display">Selected Work</h2></div>
         <div className="sh-r">Branding · Editorial<br />Packaging · Motion<br />({String(list.length).padStart(2, "0")})</div>
       </div>
 
@@ -103,7 +103,7 @@ function About() {
   return (
     <section className="about page" id="about">
       <div className="sechead">
-        <div><span className="sh-no">§ 02 | Profile</span><h2 className="display">About</h2></div>
+        <div><span className="sh-no">02 | Profile</span><h2 className="display">About</h2></div>
         <div className="sh-r">Cyprus University<br />of Technology<br />BA · 2020–24</div>
       </div>
       <div className="about-grid">
@@ -179,7 +179,7 @@ function Contact() {
   return (
     <section className="contact page" id="contact">
       <div className="sechead">
-        <div><span className="sh-no">§ 03 | Contact</span></div>
+        <div><span className="sh-no">03 | Contact</span></div>
         <div className="sh-r">Available for<br />Freelance &amp;<br />Full-time</div>
       </div>
 
