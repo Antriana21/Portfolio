@@ -138,8 +138,7 @@ function Hero() {
     <section className="hero page" id="top" ref={ref}>
       <div className="hero-meta">
         <div className="m"><div className="k">Designer</div><div className="v">{SITE.role}</div></div>
-        <div className="m"><div className="k">Based</div><div className="v">{SITE.location}</div></div>
-        <div className="m"><div className="k">Index</div><div className="v">{String(PROJECTS.length).padStart(2, "0")} Projects · ‘23–‘26</div></div>
+        <div className="m" style={{gridColumn:3,textAlign:"right"}}><div className="k">Index</div><div className="v">{String(PROJECTS.length).padStart(2, "0")} Projects · ‘23–‘26</div></div>
       </div>
       <div className="hero-name">
         <h1 className="display">
@@ -151,7 +150,9 @@ function Hero() {
       <div className="hero-rule"><div className="ticks">{Array.from({ length: 41 }).map((_, i) => <i key={i}></i>)}</div></div>
       <div className="hero-foot">
         <p className="hf-l">{SITE.intro}</p>
-        <div className="hf-c"><a className="scroll-cue" href="#work" data-cursor="hover"><span className="arr">↓</span> Selected Work</a></div>
+        <div className="hf-c">
+          <a className="scroll-cue" href="#work" data-cursor="hover"><span className="arr">↓</span> Selected Work</a>
+        </div>
         <div className="ps-grid">P.S. I love <span className="gridword" data-grid-trigger>grid</span></div>
       </div>
     </section>
@@ -160,20 +161,22 @@ function Hero() {
 
 /* ---------- stats strip ---------- */
 function Marquee() {
-  const stats = [
-    { n: "09",      l: "Projects",            col: 2 },
-    { n: "09",      l: "Disciplines",         col: 5 },
-    { n: "05",      l: "Paid-Media Channels", col: 8 },
-    { n: "C-LEVEL", l: "Monthly Reporting",  col: 11 },
+  const items = [
+    { l: "Branding", col: 2 },
+    { l: "Motion",   col: 5 },
+    { l: "Social",   col: 8 },
+    { l: "Print",    col: 11 },
   ];
   return (
     <div className="statsbar">
-      {stats.map((s, i) => (
+      {items.map((s, i) => (
         <div className="sb-item" key={i} style={{gridColumnStart: s.col, gridRow: 1}}>
-          <span className="sb-n display">{s.n}</span>
-          <span className="sb-l">{s.l}</span>
+          <span className="sb-n display">{s.l}</span>
         </div>
       ))}
+      <div style={{gridColumn:4, gridRow:1, borderLeft:"1px solid rgba(255,255,255,.25)"}} />
+      <div style={{gridColumn:7, gridRow:1, borderLeft:"1px solid rgba(255,255,255,.25)"}} />
+      <div style={{gridColumn:10, gridRow:1, borderLeft:"1px solid rgba(255,255,255,.25)"}} />
     </div>
   );
 }

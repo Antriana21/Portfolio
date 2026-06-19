@@ -3,22 +3,22 @@ var SITE = window.SITE = {
   name: "Antriana Panagi",
   role: "Graphic Designer",
   location: "Limassol, Cyprus",
+  cv: "Antriana_Panagi_CV.pdf",
   email: "antrianap10@gmail.com",
   phone: "+357 99 105091",
   linkedin: "https://www.linkedin.com/in/antriana-panagi-467b08314/",
   intro: "Graphic design first, marketing end-to-end, built on grid-based precision and a genuine love for visual systems. Confident, never loud.",
-  bio: "Antriana Panagi is a Multimedia & Graphic Design graduate (BA, Cyprus University of Technology) who works across the full creative-to-marketing pipeline | brand identity, editorial, packaging and motion, through to paid media, content strategy and lead generation. She turns complex, technical products into clear, catchy communication, grounded in analytical thinking and a deep respect for systems where every element earns its place.",
+  bio: "Antriana Panagi is a Multimedia & Graphic Design graduate (BA, Cyprus University of Technology) who works across the full creative-to-marketing pipeline, brand identity, editorial, packaging and motion, through to paid media, content strategy and lead generation. She turns complex, technical products into clear, catchy communication, grounded in analytical thinking and a deep respect for systems where every element earns its place.",
 };
 
-var SKILLS = window.SKILLS = ["Adobe Creative Suite", "Figma", "Canva", "Branding", "Typography", "Layout", "Art Direction", "Packaging", "Social Media", "Marketing"];
+var SKILLS = window.SKILLS = ["Adobe Creative Suite", "Figma", "Canva", "Branding", "Typography", "Layout", "Art Direction", "Packaging", "Social Media", "Marketing", "Paid Media", "Lead Gen", "Content Strategy", "Email", "Analytics (GA4)", "Motion", "Web"];
 
 var EXPERIENCE = window.EXPERIENCE = [
-  { yr: "2026 |", role: "Marketing Coordinator", org: "One Net", tag: "Current" },
-  { yr: "2024 – 26", role: "Junior Marketing Coordinator", org: "One Net", tag: "Marketing" },
-  { yr: "2024", role: "Designer · Social Media", org: "Think Positive", tag: "Design + Social" },
-  { yr: "2023", role: "Graphic Designer", org: "Think Positive", tag: "Internship" },
-  { yr: "2021 – 22", role: "Graphic Designer", org: "TEPAK · Limassol", tag: "Design" },
-  { yr: "2020 – 24", role: "BA Multimedia & Graphic Design", org: "Cyprus University of Technology", tag: "Education" },
+  { yr: "Mar 2026 – Present", role: "Marketing Coordinator", org: "One Net", note: "Promoted from Junior Marketing Coordinator (Oct 2024 – Mar 2026). Own marketing end-to-end for a maritime and enterprise-tech company, paid media, content, brand, web and reporting, as the sole marketer alongside the Group Marketing Manager." },
+  { yr: "Feb – Jun 2024", role: "Graphic Designer & Social Media Coordinator", org: "Think Positive", note: "Brand, print and social content across formats, coordinating the social calendar to brief and deadline." },
+  { yr: "Sep – Dec 2023", role: "Graphic Designer, Internship", org: "Think Positive", note: "Studio design production across print and digital deliverables." },
+  { yr: "Oct 2021 – Aug 2022", role: "Graphic Designer", org: "TEPAK / Cyprus University of Technology", note: "Design for university departments and events, holding brand and grid consistency across every piece." },
+  { yr: "Pre–One Net merger", role: "Brand & Print Projects", org: "WorldLink", note: "Delivered the Sierra Leone brand identity and the Navegistic print & exhibition projects before the company became One Net." },
 ];
 
 var gi = (d, n, e) => Array.from({ length: n }, (_, i) => `assets/${d}/${String(i + 1).padStart(2, '0')}.${e || 'jpg'}`);
@@ -47,8 +47,9 @@ var PROJECTS = window.PROJECTS = [
   {
     id: "social-media",
     title: "Social Media",
-    cat: "Social · Paid Media · Strategy",
+    cat: "Social · Paid Media · Motion · Strategy",
     group: "social",
+    groups: ["social", "motion"],
     year: "2026",
     span: 5,
     role: "Strategy, design & paid media · Antriana Panagi",

@@ -105,29 +105,67 @@ function About() {
     <section className="about page" id="about">
       <div className="sechead">
         <div><span className="sh-no">02 | Profile</span><h2 className="display">About</h2></div>
-        <div className="sh-r">Cyprus University<br />of Technology<br />BA · 2020–24</div>
       </div>
       <div className="about-grid">
-        <p className="lead display">Clean, intentional design, <span className="hl">built on a grid,</span> finished with care.</p>
-        <p className="bio">{SITE.bio}</p>
-        <div className="skills">{SKILLS.map((s) => <span className="chip" key={s}>{s}</span>)}</div>
-        <div className="side">
-          <div className="blk"><div className="h">Focus</div>
-            <ul>
-              <li>Brand Identity <span>Marks &amp; systems</span></li>
-              <li>Editorial <span>Layout &amp; type</span></li>
-              <li>Packaging <span>Print &amp; product</span></li>
-              <li>Social Media <span>Content &amp; strategy</span></li>
-              <li>Marketing <span>Coordination</span></li>
-            </ul>
-          </div>
-          <div className="blk"><div className="h">Languages</div>
-            <ul><li>Greek <span>Native</span></li><li>English <span>Fluent</span></li></ul>
-          </div>
-          <div className="blk"><div className="h">Tools</div>
-            <ul><li>Adobe CC <span>Daily</span></li><li>Figma <span>Daily</span></li></ul>
+
+        {/* Left column — bio */}
+        <div className="about-col--left">
+          <p className="lead display">Clean, intentional design, <span className="hl">built on a grid,</span> finished with care.</p>
+          <p className="bio">{SITE.bio}</p>
+          <div className="skills">{SKILLS.map((s) => <span className="chip" key={s}>{s}</span>)}</div>
+          <div className="side" style={{marginTop:"32px"}}>
+            <div className="blk"><div className="h">Focus</div>
+              <ul>
+                <li>Brand Identity <span>Marks &amp; systems</span></li>
+                <li>Editorial <span>Layout &amp; type</span></li>
+                <li>Packaging <span>Print &amp; product</span></li>
+                <li>Social Media <span>Content &amp; paid media</span></li>
+                <li>Marketing <span>Paid media &amp; strategy</span></li>
+              </ul>
+            </div>
+            <div className="blk"><div className="h">Tools</div>
+              <ul>
+                <li>Adobe CC <span>Daily</span></li>
+                <li>Figma <span>Daily</span></li>
+                <li>Meta Ads Manager <span>Campaigns</span></li>
+                <li>LinkedIn Campaign Manager <span>Campaigns</span></li>
+                <li>Google Ads <span>Campaigns</span></li>
+                <li>GA4 <span>Analytics</span></li>
+                <li>Mailchimp <span>Email</span></li>
+                <li>Brevo <span>Email</span></li>
+              </ul>
+            </div>
+            <div style={{paddingTop:"16px"}}>
+              <a href={SITE.cv} download="Antriana Panagi – CV.pdf" data-cursor="hover"
+                style={{display:"inline-flex",alignItems:"center",gap:"10px",fontSize:".74rem",letterSpacing:".1em",textTransform:"uppercase",background:"#fff",border:"1.5px solid #fff",borderRadius:"999px",padding:"13px 28px",color:"#2130eb",textDecoration:"none",cursor:"none"}}>
+                Download CV ↓
+              </a>
+            </div>
           </div>
         </div>
+
+        {/* Right column — marketing */}
+        <div className="about-col--right">
+          <div style={{borderTop:"1.5px solid rgba(255,255,255,.25)",paddingTop:"16px"}}>
+            <div style={{fontSize:".68rem",letterSpacing:".18em",textTransform:"uppercase",color:"rgba(255,255,255,.5)",marginBottom:"14px"}}>§ Marketing &amp; Paid Media</div>
+            <p style={{margin:"0 0 16px",fontSize:"1rem",lineHeight:"1.65",color:"rgba(255,255,255,.78)"}}>Not just the design, the whole engine. I plan, build, run and report the marketing end-to-end, and I do it as the only person on the marketing team.</p>
+            {[
+              ["Paid media, end-to-end.", "I build the campaigns, write the copy, design the creative to the allocated budget, optimise and report, across LinkedIn, Meta (FB + IG), Google (Search + Display) and X."],
+              ["Lead generation → sales.", "I own the loop: generate leads through ads, social and website forms, qualify them, and hand them to sales, then report the full picture (social growth, engagement, impressions, Google Ads and leads) monthly to the CEO, Sales Director and Group Marketing Manager."],
+              ["Technical → clear.", "I translate complex maritime and enterprise-tech products into messaging that's actually catchy and easy to follow."],
+              ["Brand rollout & web.", "I led a post-merger brand rollout across web, social, email and partner materials, art-directing the new logo to the C-suite's brief and redesigning the company website, plus landing pages."],
+              ["Partner & co-marketing.", "I run co-branded campaigns and materials with technology partners, joint social, event sponsorship assets and co-branded content."],
+              ["Email & content calendars.", "Email marketing in Mailchimp and Brevo, and monthly content calendars across every social channel, email and articles."],
+              ["Analytics & reporting.", "GA4, Meta Ads Manager, LinkedIn Campaign Manager and Google Ads, measurement that feeds the monthly C-level report."],
+            ].map(([label, desc]) => (
+              <div key={label} style={{marginBottom:"14px"}}>
+                <span style={{fontSize:".94rem",color:"#fff",fontWeight:"600"}}>{label}</span>
+                <p style={{margin:"3px 0 0",fontSize:".9rem",color:"rgba(255,255,255,.7)",lineHeight:"1.55"}}>{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
       </div>
       <img className="watermark" src="assets/logo.png" alt="" />
     </section>
