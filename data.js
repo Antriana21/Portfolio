@@ -45,10 +45,11 @@ var PROJECTS = window.PROJECTS = [
   {
     id: "social-media",
     title: "Social Media",
-    cat: "Social Media",
-    group: "editorial",
+    cat: "Social · Paid Media · Strategy",
+    group: "social",
     year: "2026",
     span: 5,
+    role: "Strategy, design & paid media · Antriana Panagi",
     thumbStyle: { objectFit: "contain", background: "#ffffff" },
     img: "assets/social-media/Screenshot%202026-06-15%20141723.png",
     imgs: [
@@ -58,7 +59,7 @@ var PROJECTS = window.PROJECTS = [
       "assets/social-media/abela%20it%20tickets.mp4",
     ],
     desc: "Social media content and campaign graphics for One Net, product launches, recruitment and brand awareness.",
-    body: ["A suite of posts spanning multiple sub-brands: abela Pulse, abela IT, abela.io and Sentrify.", "Each post balances brand consistency with content that stops the scroll."],
+    body: ["A suite of posts spanning multiple sub-brands: abela Pulse, abela IT, abela.io and Sentrify.", "Each post balances brand consistency with content that stops the scroll.", "Behind the posts sits the engine: I plan and run the paid campaigns across LinkedIn, Meta, Google (Search & Display) and X — copy, creative-to-budget, optimisation — and report the leads through to sales every month."],
   },
   {
     id: "abela-pulse",

@@ -9,11 +9,11 @@ function Work({ onOpen }) {
   const pos = useRef({ x: innerWidth / 2, y: innerHeight / 2 });
 
   const groups = [
-    { k: "all", l: "All" }, { k: "branding", l: "Branding" }, { k: "editorial", l: "Editorial" },
-    { k: "packaging", l: "Packaging" }, { k: "motion", l: "Motion" },
+    { k: "all", l: "All" }, { k: "branding", l: "Branding" }, { k: "social", l: "Social · Paid" },
+    { k: "editorial", l: "Editorial" }, { k: "packaging", l: "Packaging" }, { k: "motion", l: "Motion" },
   ];
-  const counts = (k) => k === "all" ? PROJECTS.length : PROJECTS.filter((p) => p.group === k).length;
-  const list = PROJECTS.filter((p) => filter === "all" || p.group === filter);
+  const counts = (k) => k === "all" ? PROJECTS.length : PROJECTS.filter((p) => (p.groups || [p.group]).includes(k)).length;
+  const list = PROJECTS.filter((p) => filter === "all" || (p.groups || [p.group]).includes(filter));
 
   useEffect(() => {
     PROJECTS.forEach(p => {
@@ -268,7 +268,7 @@ function Overlay({ project, index, total, onClose, onNav }) {
             <div className="sub">
               <div><div className="k">Discipline</div><div className="v">{p.cat}</div></div>
               <div><div className="k">Year</div><div className="v">{p.year}</div></div>
-              <div><div className="k">Role</div><div className="v">Design · {SITE.name}</div></div>
+              <div><div className="k">Role</div><div className="v">{p.role || ('Design · ' + SITE.name)}</div></div>
             </div>
           </div>
           <div className="ov-body">
