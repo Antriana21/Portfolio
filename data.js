@@ -59,7 +59,7 @@ var PROJECTS = window.PROJECTS = [
       "assets/social-media/abela%20it%20tickets.mp4",
     ],
     desc: "Social media content and campaign graphics for One Net, product launches, recruitment and brand awareness.",
-    body: ["A suite of posts spanning multiple sub-brands: abela Pulse, abela IT, abela.io and Sentrify.", "Each post balances brand consistency with content that stops the scroll.", "Behind the posts sits the engine: I plan and run the paid campaigns across LinkedIn, Meta, Google (Search & Display) and X — copy, creative-to-budget, optimisation — and report the leads through to sales every month."],
+    body: ["A suite of posts spanning multiple sub-brands: abela Pulse, abela IT, abela.io and Sentrify.", "Each post balances brand consistency with content that stops the scroll.", "Behind the posts sits the engine: I plan and run the paid campaigns across LinkedIn, Meta, Google (Search & Display) and X | copy, creative-to-budget, optimisation | and report the leads through to sales every month."],
   },
   {
     id: "abela-pulse",
