@@ -279,11 +279,15 @@ function Overlay({ project, index, total, onClose, onNav }) {
           </div>
           <div className="ov-gallery-wrap">
             <div className="ov-gallery" ref={galleryRef}>
-              {imgs.map((src, i) => (
-                <div className="ov-gi" key={i}>
-                  <SmartImg src={src} alt={`${p.title} ${i + 1}`} label={p.cat} />
-                </div>
-              ))}
+              {imgs.map((item, i) => {
+                const src = typeof item === 'string' ? item : item.src;
+                const thumb = typeof item === 'object' ? item.thumb : undefined;
+                return (
+                  <div className="ov-gi" key={i}>
+                    <SmartImg src={src} thumb={thumb} alt={`${p.title} ${i + 1}`} label={p.cat} />
+                  </div>
+                );
+              })}
             </div>
             {imgs.length > 1 && (<>
               <button className="ov-arr ov-arr-l" onClick={() => scroll(-1)} data-cursor="hover">‹</button>

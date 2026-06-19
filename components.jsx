@@ -2,7 +2,7 @@
 const { useState, useEffect, useRef, useCallback } = React;
 
 /* ---------- smart image with placeholder fallback ---------- */
-function SmartImg({ src, alt, label, imgStyle, eager }) {
+function SmartImg({ src, alt, label, imgStyle, eager, thumb }) {
   const isMp4 = !!(src && (src.toLowerCase().includes('.mp4') || src.toLowerCase().includes('.mov')));
   const isGif = !!(src && src.toLowerCase().includes('.gif'));
   const isHtml = !!(src && src.toLowerCase().endsWith('.html'));
@@ -48,7 +48,9 @@ function SmartImg({ src, alt, label, imgStyle, eager }) {
   if (isHtml) {
     if (!htmlPlaying) {
       return (
-        <div className="vid-wrap html-embed-poster" onClick={e => { e.stopPropagation(); setHtmlPlaying(true); }}>
+        <div className="vid-wrap html-embed-poster"
+          style={thumb ? {backgroundImage:`url(${thumb})`,backgroundSize:'cover',backgroundPosition:'center'} : {}}
+          onClick={e => { e.stopPropagation(); setHtmlPlaying(true); }}>
           <div className="vid-overlay"><span className="vid-play-btn">▶</span></div>
         </div>
       );

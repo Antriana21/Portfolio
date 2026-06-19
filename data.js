@@ -33,7 +33,7 @@ var PROJECTS = window.PROJECTS = [
     span: 7,
     img: "assets/rebrand/stationery-mockup.jpg",
     imgs: [
-      "assets/one net website/Website Walkthrough.html",
+      {src:"assets/one net website/Website Walkthrough.html", thumb:"assets/rebrand/mockup.jpg"},
       "assets/rebrand/mockup.jpg",
       "assets/rebrand/Roll_up_Mockup.jpg",
       "assets/rebrand/Launch%20day%20final%20video%20final.mp4",
