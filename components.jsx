@@ -49,7 +49,7 @@ function SmartImg({ src, alt, label, imgStyle, eager, thumb }) {
     if (!htmlPlaying) {
       return (
         <div className="vid-wrap html-embed-poster"
-          style={thumb ? {backgroundImage:`url(${thumb})`,backgroundSize:'cover',backgroundPosition:'center'} : {}}
+          style={thumb ? {backgroundImage:`url('${thumb}')`,backgroundSize:'cover',backgroundPosition:'center'} : {}}
           onClick={e => { e.stopPropagation(); setHtmlPlaying(true); }}>
           <div className="vid-overlay"><span className="vid-play-btn">▶</span></div>
         </div>
