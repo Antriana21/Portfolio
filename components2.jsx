@@ -135,7 +135,6 @@ function About() {
 
 /* ---------- CONTACT ---------- */
 function Contact() {
-  const [reason, setReason] = useState("Hiring");
   const [status, setStatus] = useState("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -147,11 +146,10 @@ function Contact() {
     const el = form.elements;
     const data = {
       access_key: WEB3FORMS_KEY,
-      subject: `Portfolio enquiry – ${reason}`,
+      subject: `Portfolio enquiry`,
       from_name: "Antriana Panagi – Portfolio",
       name: el.name.value,
       email: el.email.value,
-      reason,
       message: el.message.value,
       botcheck: el.botcheck.checked,
     };
@@ -165,7 +163,6 @@ function Contact() {
       if (json.success) {
         setStatus("success");
         form.reset();
-        setReason("Hiring");
       } else {
         setStatus("error");
         setErrorMsg(json.message || "Something went wrong. Please try again.");
@@ -201,18 +198,6 @@ function Contact() {
             <input id="ct-email" name="email" type="email" required placeholder="you@email.com" />
           </div>
 
-          <div className="ct-field">
-            <label id="ct-reason-lbl">Reason</label>
-            <div className="ct-pills" role="radiogroup" aria-labelledby="ct-reason-lbl">
-              {CONTACT_REASONS.map(r => (
-                <button type="button" key={r} role="radio" aria-checked={reason === r}
-                  className={"ct-pill" + (reason === r ? " on" : "")}
-                  onClick={() => setReason(r)} data-cursor="hover">
-                  {r}
-                </button>
-              ))}
-            </div>
-          </div>
 
           <div className="ct-field">
             <label htmlFor="ct-msg">Message</label>
