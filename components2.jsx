@@ -239,10 +239,9 @@ function Contact() {
           <a className="ct-social" href={SITE.linkedin} target="_blank" rel="noreferrer" data-cursor="hover">
             LinkedIn <span aria-hidden="true">↗</span>
           </a>
-          <a className="ct-social" href="https://www.behance.net/antrianapan" target="_blank" rel="noreferrer" data-cursor="hover">
-            Behance <span aria-hidden="true">↗</span>
+          <a className="ct-social" href={CV_FILE} download="Antriana Panagi – CV.pdf" data-cursor="hover">
+            Download CV <span aria-hidden="true">↓</span>
           </a>
-          <span className="ct-ps display">P.S. I love grid</span>
         </div>
       </div>
 
