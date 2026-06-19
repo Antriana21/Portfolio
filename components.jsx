@@ -161,10 +161,10 @@ function Hero() {
 /* ---------- stats strip ---------- */
 function Marquee() {
   const stats = [
-    { n: "7",  l: "Projects",    col: 2 },
-    { n: "3",  l: "Disciplines", col: 5 },
-    { n: "3+", l: "Years",       col: 8 },
-    { n: "2",  l: "Internships", col: 11 },
+    { n: "09",      l: "Projects",            col: 2 },
+    { n: "09",      l: "Disciplines",         col: 5 },
+    { n: "05",      l: "Paid-Media Channels", col: 8 },
+    { n: "C-LEVEL", l: "Monthly Reporting",  col: 11 },
   ];
   return (
     <div className="statsbar">

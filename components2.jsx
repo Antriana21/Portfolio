@@ -9,8 +9,9 @@ function Work({ onOpen }) {
   const pos = useRef({ x: innerWidth / 2, y: innerHeight / 2 });
 
   const groups = [
-    { k: "all", l: "All" }, { k: "branding", l: "Branding" }, { k: "social", l: "Social · Paid" },
-    { k: "editorial", l: "Editorial" }, { k: "packaging", l: "Packaging" }, { k: "motion", l: "Motion" },
+    { k: "all", l: "All" }, { k: "branding", l: "Branding" }, { k: "motion", l: "Motion" },
+    { k: "social", l: "Social · Paid" }, { k: "print", l: "Print" },
+    { k: "editorial", l: "Editorial" }, { k: "packaging", l: "Packaging" },
   ];
   const counts = (k) => k === "all" ? PROJECTS.length : PROJECTS.filter((p) => (p.groups || [p.group]).includes(k)).length;
   const list = PROJECTS.filter((p) => filter === "all" || (p.groups || [p.group]).includes(filter));
@@ -44,7 +45,7 @@ function Work({ onOpen }) {
     <section className="work page" id="work">
       <div className="sechead">
         <div><span className="sh-no">01 | Index</span><h2 className="display">Selected Work</h2></div>
-        <div className="sh-r">Branding · Editorial<br />Packaging · Motion<br />({String(list.length).padStart(2, "0")})</div>
+        <div className="sh-r">Branding · Motion<br />Social · Print<br />({String(list.length).padStart(2, "0")})</div>
       </div>
 
       <div className="filters">
