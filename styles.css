@@ -328,7 +328,6 @@ body[data-cur-dark="1"][data-cur="link"] .cursor-ring .cur-label{color:var(--blu
 .contact .sechead .sh-r{color:rgba(255,255,255,.7);}
 .contact .ct-top{position:relative;z-index:2;}
 .contact .ct-head{display:block;font-family:var(--display);font-size:clamp(54px,12.5vw,190px);line-height:.86;letter-spacing:-.02em;}
-.contact .ct-head:hover{font-style:italic;}
 .contact .ct-grid{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:clamp(32px,6vw,80px);align-items:start;margin-top:clamp(36px,5vw,64px);position:relative;z-index:2;}
 .contact .ct-form{display:flex;flex-direction:column;gap:24px;}
 .contact .ct-field{display:flex;flex-direction:column;gap:8px;}
