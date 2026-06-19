@@ -91,7 +91,8 @@ body[data-cur-dark="1"][data-cur="link"] .cursor-ring .cur-label{color:var(--blu
 
 /* ---------- header ---------- */
 .site-head{position:fixed;top:0;left:0;right:0;z-index:7000;display:flex;align-items:center;justify-content:space-between;
-  padding:calc(var(--mar) + 12px) var(--mar) calc(var(--mar) / 2) calc(var(--mar) + var(--rail));color:var(--chrome);background:var(--paper);border-bottom:1px solid var(--ink-12);transition:color .5s var(--ease);}
+  padding:calc(var(--mar) + 12px) var(--mar) calc(var(--mar) / 2) calc(var(--mar) + var(--rail));color:var(--chrome);background:var(--paper);border-bottom:1px solid var(--ink-12);transition:color .5s var(--ease),background .5s var(--ease),border-color .5s var(--ease);}
+body[data-theme="dark"] .site-head{background:var(--ink);border-bottom-color:rgba(255,255,255,.08);}
 .site-head .brand-logo{position:absolute;left:calc(var(--mar) + var(--rail) - 48px);top:calc(var(--mar) + 12px);display:flex;align-items:center;cursor:none;}
 .site-head .brand-logo img{width:26px;height:26px;filter:var(--logo-filter);transition:filter .5s var(--ease);}
 .site-head .brand{font-family:var(--body);font-weight:500;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;cursor:none;}
