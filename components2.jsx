@@ -96,7 +96,7 @@ function Row({ p, n, onOpen, onEnter }) {
 
 /* ---------- CONTACT constants ---------- */
 const WEB3FORMS_KEY = "YOUR-ACCESS-KEY-HERE"; // paste your Web3Forms key (web3forms.com)
-const CV_FILE = "Antriana_Panagi_CV.pdf";      // place PDF next to index.html
+const CV_FILE = "Resume - Antriana Panagi.pdf";
 const CONTACT_REASONS = ["Hiring", "Freelance", "Other"];
 
 /* ---------- ABOUT ---------- */
@@ -114,16 +114,7 @@ function About() {
           <p className="bio">{SITE.bio}</p>
           <div className="skills">{SKILLS.map((s) => <span className="chip" key={s}>{s}</span>)}</div>
           <div className="side" style={{marginTop:"32px"}}>
-            <div className="blk"><div className="h">Focus</div>
-              <ul>
-                <li>Brand Identity <span>Marks &amp; systems</span></li>
-                <li>Editorial <span>Layout &amp; type</span></li>
-                <li>Packaging <span>Print &amp; product</span></li>
-                <li>Social Media <span>Content &amp; paid media</span></li>
-                <li>Marketing <span>Paid media &amp; strategy</span></li>
-              </ul>
-            </div>
-            <div className="blk"><div className="h">Tools</div>
+<div className="blk"><div className="h">Tools</div>
               <ul>
                 <li>Adobe CC <span>Daily</span></li>
                 <li>Figma <span>Daily</span></li>
@@ -147,7 +138,7 @@ function About() {
         {/* Right column — marketing */}
         <div className="about-col--right">
           <div style={{borderTop:"1.5px solid rgba(255,255,255,.25)",paddingTop:"16px"}}>
-            <div style={{fontSize:".68rem",letterSpacing:".18em",textTransform:"uppercase",color:"rgba(255,255,255,.5)",marginBottom:"14px"}}>§ Marketing &amp; Paid Media</div>
+            <div style={{fontSize:".68rem",letterSpacing:".18em",textTransform:"uppercase",color:"rgba(255,255,255,.5)",marginBottom:"14px"}}>Marketing &amp; Paid Media</div>
             <p style={{margin:"0 0 16px",fontSize:"1rem",lineHeight:"1.65",color:"rgba(255,255,255,.78)"}}>Not just the design, the whole engine. I plan, build, run and report the marketing end-to-end, and I do it as the only person on the marketing team.</p>
             {[
               ["Paid media, end-to-end.", "I build the campaigns, write the copy, design the creative to the allocated budget, optimise and report, across LinkedIn, Meta (FB + IG), Google (Search + Display) and X."],
@@ -258,15 +249,16 @@ function Contact() {
           </p>
         </form>
 
-        <div className="ct-side">
-          <span className="ct-side-lbl">Elsewhere</span>
-          <a className="ct-social" href={SITE.linkedin} target="_blank" rel="noreferrer" data-cursor="hover">
-            LinkedIn <span aria-hidden="true">↗</span>
-          </a>
-          <a className="ct-social" href={CV_FILE} download="Antriana Panagi – CV.pdf" data-cursor="hover">
-            Download CV <span aria-hidden="true">↓</span>
-          </a>
-        </div>
+      </div>
+
+      <div className="ct-side">
+        <span className="ct-side-lbl">Elsewhere</span>
+        <a className="ct-social" href={SITE.linkedin} target="_blank" rel="noreferrer" data-cursor="hover">
+          LinkedIn <span aria-hidden="true">↗</span>
+        </a>
+        <a className="ct-social" href={CV_FILE} download="Antriana Panagi – CV.pdf" data-cursor="hover">
+          Download CV <span aria-hidden="true">↓</span>
+        </a>
       </div>
 
       <img className="bigA" src="assets/logo.png" alt="" />
