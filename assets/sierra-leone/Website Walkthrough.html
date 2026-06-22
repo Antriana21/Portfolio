@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sierra Leone — Website Walkthrough</title>
+<style>
+  :root{ --accent:#16F0DF; }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;height:100%;background:#000;overflow:hidden;font-family:"Manrope",Arial,sans-serif;}
+  #stageWrap{
+    position:fixed;inset:0;background:radial-gradient(120% 120% at 50% 0%,#0b1230 0%,#04060f 70%);
+  }
+  #frame{
+    position:absolute;left:50%;top:50%;width:1920px;height:1124px;transform-origin:center center;
+    border-radius:18px;overflow:hidden;background:#0b1020;
+    box-shadow:0 40px 120px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.06);
+  }
+  #chrome{
+    height:44px;width:1920px;background:#0d1426;display:flex;align-items:center;gap:18px;
+    padding:0 22px;border-bottom:1px solid rgba(255,255,255,.06);
+  }
+  #chrome .lights{display:flex;gap:9px;}
+  #chrome .lights i{width:13px;height:13px;border-radius:50%;display:block;}
+  #chrome .lights i:nth-child(1){background:#ff5f57;}
+  #chrome .lights i:nth-child(2){background:#febc2e;}
+  #chrome .lights i:nth-child(3){background:#28c840;}
+  #chrome .url{
+    flex:1;max-width:520px;height:26px;border-radius:7px;background:#070c1a;
+    display:flex;align-items:center;gap:9px;padding:0 14px;margin:0 auto;
+    font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12.5px;color:#9aa6c4;letter-spacing:.02em;
+  }
+  #chrome .url svg{width:13px;height:13px;flex:none;color:var(--accent);}
+  #stage{
+    position:relative;width:1920px;height:1080px;overflow:hidden;background:#fff;
+  }
+  #site{
+    position:absolute;inset:0;width:1920px;height:1080px;border:0;background:#fff;
+  }
+  #outro{
+    position:absolute;inset:0;display:grid;place-items:center;background:#070c22;
+    opacity:0;z-index:50;pointer-events:none;
+  }
+  #loading{
+    position:fixed;inset:0;display:grid;place-items:center;z-index:200;background:#070c22;
+    color:#8a93b6;font-family:"JetBrains Mono",monospace;font-size:13px;letter-spacing:.1em;text-transform:uppercase;
+    transition:opacity .5s;
+  }
+</style>
+</head>
+<body>
+<div id="loading">Preparing walkthrough…</div>
+<div id="stageWrap">
+  <div id="frame">
+    <div id="chrome">
+      <div class="lights"><i></i><i></i><i></i></div>
+      <div class="url">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <span id="urlText">sl.wlnet.com</span>
+      </div>
+    </div>
+    <div id="stage">
+      <iframe id="site" src="index.html"></iframe>
+      <div id="outro"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  /* Section anchors — update timing if sections are not evenly spaced */
+  var SECTIONS = [
+    { frac: 0,    label: 'sl.wlnet.com' },
+    { frac: 0.18, label: 'sl.wlnet.com/#Industries' },
+    { frac: 0.38, label: 'sl.wlnet.com/#Starlink' },
+    { frac: 0.58, label: 'sl.wlnet.com/#Solutions' },
+    { frac: 0.78, label: 'sl.wlnet.com/#Contact' },
+  ];
+
+  var TOTAL  = 38;   /* total playback seconds */
+  var OUTRO  = 2.5;
+  var CF     = 1.0;
+  var VH = 1080, VW = 1920, FH = 1124;
+  var DEFAULT_H = 3200;
+
+  var frame   = document.getElementById('frame');
+  var stage   = document.getElementById('stage');
+  var outro   = document.getElementById('outro');
+  var loading = document.getElementById('loading');
+  var urlText = document.getElementById('urlText');
+  var site    = document.getElementById('site');
+
+  var pageH   = DEFAULT_H;
+  var loaded  = false;
+  var lastY   = -1;
+
+  /* receive scroll height from injected wt-scroll script */
+  window.addEventListener('message', function(e){
+    if(e.data && e.data.type === 'wt-height'){
+      pageH = Math.max(DEFAULT_H, e.data.h - VH);
+    }
+  });
+
+  function fit(){
+    var pad=48;
+    var s=Math.min((window.innerWidth-pad)/VW,(window.innerHeight-pad)/FH);
+    frame.style.transform='translate(-50%,-50%) scale('+s+')';
+  }
+  window.addEventListener('resize',fit); fit();
+
+  function smooth(x){ return x<=0?0:x>=1?1:x*x*(3-2*x); }
+
+  function currentLabel(frac){
+    var label = SECTIONS[0].label;
+    for(var i=0;i<SECTIONS.length;i++){
+      if(frac >= SECTIONS[i].frac) label = SECTIONS[i].label;
+    }
+    return label;
+  }
+
+  function render(t){
+    var inOutro = t >= (TOTAL - OUTRO);
+    outro.style.opacity = inOutro ? smooth((t-(TOTAL-OUTRO))/0.6) : 0;
+
+    var scrollT = Math.min(t, TOTAL - OUTRO - 0.001);
+    var frac    = smooth(Math.max(0, Math.min(1, scrollT / (TOTAL - OUTRO))));
+    var y       = Math.round(pageH * frac);
+
+    if(y !== lastY){
+      try{ site.contentWindow.postMessage({type:'wt-scroll', y:y}, '*'); }catch(err){}
+      lastY = y;
+    }
+
+    urlText.textContent = currentLabel(frac);
+  }
+
+  var playing=false, cur=0, last=0;
+
+  function tick(ts){
+    if(!playing){ last=ts; return; }
+    var dt=(ts-last)/1000; last=ts;
+    cur+=dt;
+    if(cur>=TOTAL){ cur=TOTAL; playing=false; }
+    render(cur);
+    if(playing) requestAnimationFrame(tick);
+  }
+  function play(){ if(cur>=TOTAL) cur=0; playing=true; last=performance.now(); requestAnimationFrame(tick); }
+
+  site.addEventListener('load', function(){
+    loaded=true;
+    try{
+      var doc=site.contentWindow.document;
+      var h=Math.max(doc.documentElement.scrollHeight, doc.body.scrollHeight);
+      if(h>VH) pageH=h-VH;
+    }catch(e){}
+  });
+
+  var booted=false;
+  function boot(){
+    if(booted) return; booted=true;
+    loading.style.opacity='0';
+    setTimeout(function(){ loading.remove(); },500);
+    render(cur);
+    play();
+  }
+  var t0=Date.now();
+  var iv=setInterval(function(){
+    if(loaded||Date.now()-t0>4000){ clearInterval(iv); boot(); }
+  },150);
+})();
+</script>
+</body>
+</html>
