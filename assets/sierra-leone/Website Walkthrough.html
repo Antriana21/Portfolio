@@ -32,13 +32,14 @@
   }
   #chrome .url svg{width:13px;height:13px;flex:none;color:var(--accent);}
   #stage{
-    position:relative;width:1920px;height:1080px;overflow:hidden;background:#fff;
+    position:relative;width:1920px;height:1080px;overflow:hidden;background:#0b1020;
   }
-  #site{
-    position:absolute;inset:0;width:1920px;height:1080px;border:0;background:#fff;
+  .layer{
+    position:absolute;inset:0;width:1920px;height:1080px;border:0;opacity:0;
+    pointer-events:none;background:#fff;
   }
   #outro{
-    position:absolute;inset:0;display:grid;place-items:center;background:#070c22;
+    position:absolute;inset:0;background:#070c22;
     opacity:0;z-index:50;pointer-events:none;
   }
   #loading{
@@ -60,7 +61,7 @@
       </div>
     </div>
     <div id="stage">
-      <iframe id="site" src="index.html"></iframe>
+      <!-- iframes injected by JS -->
       <div id="outro"></div>
     </div>
   </div>
@@ -68,37 +69,50 @@
 
 <script>
 (function(){
-  /* Section anchors — update timing if sections are not evenly spaced */
-  var SECTIONS = [
-    { frac: 0,    label: 'sl.wlnet.com' },
-    { frac: 0.18, label: 'sl.wlnet.com/#Industries' },
-    { frac: 0.38, label: 'sl.wlnet.com/#Starlink' },
-    { frac: 0.58, label: 'sl.wlnet.com/#Solutions' },
-    { frac: 0.78, label: 'sl.wlnet.com/#Contact' },
+  var PAGES = [
+    { file:'index.html', dur:35, sections:[
+      { frac:0,    label:'sl.wlnet.com' },
+      { frac:0.18, label:'sl.wlnet.com/#Industries' },
+      { frac:0.38, label:'sl.wlnet.com/#Starlink' },
+      { frac:0.58, label:'sl.wlnet.com/#Solutions' },
+      { frac:0.78, label:'sl.wlnet.com/#Contact' },
+    ]},
+    { file:'news.html', dur:8, sections:[
+      { frac:0, label:'sl.wlnet.com/news/' },
+    ]},
   ];
 
-  var TOTAL  = 38;   /* total playback seconds */
-  var OUTRO  = 2.5;
-  var CF     = 1.0;
+  var OUTRO = 0;
+  var CF    = 0.8;
   var VH = 1080, VW = 1920, FH = 1124;
   var DEFAULT_H = 3200;
+
+  var starts = [];
+  (function(){ var t=0; for(var i=0;i<PAGES.length;i++){ starts[i]=t; t+=PAGES[i].dur; } })();
+  var TOTAL = starts[PAGES.length-1] + PAGES[PAGES.length-1].dur + OUTRO;
 
   var frame   = document.getElementById('frame');
   var stage   = document.getElementById('stage');
   var outro   = document.getElementById('outro');
   var loading = document.getElementById('loading');
   var urlText = document.getElementById('urlText');
-  var site    = document.getElementById('site');
 
-  var pageH   = DEFAULT_H;
-  var loaded  = false;
-  var lastY   = -1;
+  var frames  = new Array(PAGES.length).fill(null);
+  var heights = new Array(PAGES.length).fill(DEFAULT_H);
+  var loaded  = new Array(PAGES.length).fill(false);
+  var lastY   = new Array(PAGES.length).fill(-1);
 
-  /* receive scroll height from injected wt-scroll script */
   window.addEventListener('message', function(e){
-    if(e.data && e.data.type === 'wt-height'){
-      pageH = Math.max(DEFAULT_H, e.data.h - VH);
+    if(!e.data) return;
+    if(e.data.type === 'wt-height'){
+      for(var i=0;i<PAGES.length;i++){
+        if(PAGES[i].file === e.data.src){
+          heights[i] = Math.max(0, e.data.h - VH); break;
+        }
+      }
     }
+    if(e.data.type === 'wt-play')  play();
+    if(e.data.type === 'wt-pause') playing = false;
   });
 
   function fit(){
@@ -108,13 +122,38 @@
   }
   window.addEventListener('resize',fit); fit();
 
+  function mount(i){
+    if(frames[i]) return;
+    var f = document.createElement('iframe');
+    f.className = 'layer';
+    f.style.zIndex = i+1;
+    f.src = PAGES[i].file;
+    f.addEventListener('load', function(){
+      loaded[i] = true;
+      try{
+        var doc=f.contentWindow.document;
+        var h=Math.max(doc.documentElement.scrollHeight,doc.body.scrollHeight);
+        heights[i] = Math.max(0, h - VH);
+      }catch(err){}
+    });
+    stage.insertBefore(f, outro);
+    frames[i] = f;
+  }
+  function unmount(i){
+    if(frames[i]){ frames[i].remove(); frames[i]=null; loaded[i]=false; heights[i]=DEFAULT_H; lastY[i]=-1; }
+  }
+
   function smooth(x){ return x<=0?0:x>=1?1:x*x*(3-2*x); }
 
-  function currentLabel(frac){
-    var label = SECTIONS[0].label;
-    for(var i=0;i<SECTIONS.length;i++){
-      if(frac >= SECTIONS[i].frac) label = SECTIONS[i].label;
-    }
+  function activeIndexAt(t){
+    for(var i=PAGES.length-1;i>=0;i--){ if(t>=starts[i]) return i; }
+    return 0;
+  }
+
+  function currentLabel(ai, frac){
+    var secs = PAGES[ai].sections;
+    var label = secs[0].label;
+    for(var i=0;i<secs.length;i++){ if(frac>=secs[i].frac) label=secs[i].label; }
     return label;
   }
 
@@ -122,39 +161,55 @@
     var inOutro = t >= (TOTAL - OUTRO);
     outro.style.opacity = inOutro ? smooth((t-(TOTAL-OUTRO))/0.6) : 0;
 
-    var scrollT = Math.min(t, TOTAL - OUTRO - 0.001);
-    var frac    = smooth(Math.max(0, Math.min(1, scrollT / (TOTAL - OUTRO))));
-    var y       = Math.round(pageH * frac);
+    var ai = activeIndexAt(Math.min(t, TOTAL - OUTRO - 0.001));
 
-    if(y !== lastY){
-      try{ site.contentWindow.postMessage({type:'wt-scroll', y:y}, '*'); }catch(err){}
-      lastY = y;
+    for(var k=0;k<PAGES.length;k++){
+      if(k>=ai-1 && k<=ai+1) mount(k); else unmount(k);
     }
 
-    urlText.textContent = currentLabel(frac);
+    for(var i=Math.max(0,ai-1);i<=Math.min(PAGES.length-1,ai+1);i++){
+      var s=starts[i], e=s+PAGES[i].dur;
+      var op=0;
+      if(t>=s && t<=e) op=1;
+      if(t<s  && t>=s-CF) op=(t-(s-CF))/CF;
+      if(t>e) op=(i===PAGES.length-1)?1:0;
+      if(inOutro && i===PAGES.length-1) op=1;
+      var fr=frames[i];
+      if(fr){
+        fr.style.opacity=Math.max(0,Math.min(1,op)).toFixed(3);
+        var frac=smooth(Math.max(0,Math.min(1,(t-s)/PAGES[i].dur)));
+        var y=Math.round(heights[i]*frac);
+        if(y!==lastY[i]){
+          try{ fr.contentWindow.postMessage({type:'wt-scroll',y:y},'*'); }catch(err){}
+          lastY[i]=y;
+        }
+      }
+    }
+
+    var frac2=smooth(Math.max(0,Math.min(1,(Math.min(t,TOTAL-OUTRO-0.001)-starts[ai])/PAGES[ai].dur)));
+    urlText.textContent = inOutro ? 'sl.wlnet.com' : currentLabel(ai, frac2);
   }
 
-  var playing=false, cur=0, last=0;
+  var playing=false, cur=0, last=0, restartPending=false;
 
   function tick(ts){
     if(!playing){ last=ts; return; }
     var dt=(ts-last)/1000; last=ts;
     cur+=dt;
-    if(cur>=TOTAL){ cur=TOTAL; playing=false; }
+    if(cur>=TOTAL){
+      cur=TOTAL; playing=false;
+      if(!restartPending){ restartPending=true; setTimeout(function(){ restartPending=false; play(); }, 3000); }
+    }
     render(cur);
     if(playing) requestAnimationFrame(tick);
   }
-  function play(){ if(cur>=TOTAL) cur=0; playing=true; last=performance.now(); requestAnimationFrame(tick); }
 
-  site.addEventListener('load', function(){
-    loaded=true;
-    try{
-      var doc=site.contentWindow.document;
-      var h=Math.max(doc.documentElement.scrollHeight, doc.body.scrollHeight);
-      if(h>VH) pageH=h-VH;
-    }catch(e){}
-  });
+  function play(){
+    if(cur>=TOTAL) cur=0;
+    playing=true; last=performance.now(); requestAnimationFrame(tick);
+  }
 
+  mount(0); mount(1);
   var booted=false;
   function boot(){
     if(booted) return; booted=true;
@@ -165,7 +220,7 @@
   }
   var t0=Date.now();
   var iv=setInterval(function(){
-    if(loaded||Date.now()-t0>4000){ clearInterval(iv); boot(); }
+    if(loaded[0]||Date.now()-t0>4000){ clearInterval(iv); boot(); }
   },150);
 })();
 </script>

@@ -11,7 +11,7 @@ function Work({ onOpen }) {
   const groups = [
     { k: "all", l: "All" }, { k: "branding", l: "Branding" }, { k: "motion", l: "Motion" },
     { k: "social", l: "Social · Paid" }, { k: "print", l: "Print" },
-    { k: "editorial", l: "Editorial" }, { k: "packaging", l: "Packaging" },
+    { k: "editorial", l: "Editorial" },
   ];
   const counts = (k) => k === "all" ? PROJECTS.length : PROJECTS.filter((p) => (p.groups || [p.group]).includes(k)).length;
   const list = PROJECTS.filter((p) => filter === "all" || (p.groups || [p.group]).includes(filter));
