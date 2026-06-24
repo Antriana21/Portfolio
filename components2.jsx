@@ -9,9 +9,9 @@ function Work({ onOpen }) {
   const pos = useRef({ x: innerWidth / 2, y: innerHeight / 2 });
 
   const groups = [
-    { k: "all", l: "All" }, { k: "branding", l: "Branding" }, { k: "motion", l: "Motion" },
-    { k: "social", l: "Social · Paid" }, { k: "print", l: "Print" },
-    { k: "editorial", l: "Editorial" },
+    { k: "all", l: "All" }, { k: "branding", l: "Brand Identity" }, { k: "motion", l: "Motion" },
+    { k: "social", l: "Social & Paid" }, { k: "print", l: "Print" },
+    { k: "web", l: "Web" }, { k: "editorial", l: "Editorial" },
   ];
   const counts = (k) => k === "all" ? PROJECTS.length : PROJECTS.filter((p) => (p.groups || [p.group]).includes(k)).length;
   const list = PROJECTS.filter((p) => filter === "all" || (p.groups || [p.group]).includes(filter));
@@ -251,17 +251,7 @@ function Contact() {
 
       </div>
 
-      <div className="ct-side">
-        <span className="ct-side-lbl">Elsewhere</span>
-        <a className="ct-social" href={SITE.linkedin} target="_blank" rel="noreferrer" data-cursor="hover">
-          LinkedIn <span aria-hidden="true">↗</span>
-        </a>
-        <a className="ct-social" href={CV_FILE} download="Antriana Panagi – CV.pdf" data-cursor="hover">
-          Download CV <span aria-hidden="true">↓</span>
-        </a>
-      </div>
-
-      <img className="bigA" src="assets/logo.png" alt="" />
+<img className="bigA" src="assets/logo.png" alt="" />
     </section>
   );
 }
@@ -294,12 +284,11 @@ function Overlay({ project, index, total, onClose, onNav }) {
             <button className="nxt" onClick={() => onNav(1)} data-cursor="hover"><div className="lab">Next →</div><div className="nm display">{nextP && nextP.title}</div></button>
           </div>
           <div className="ov-hero">
-            <div className="cat">{p.cat} · {p.year}</div>
+            <div className="cat">{p.cat} | {p.year}</div>
             <h2 className="display">{p.title}</h2>
             <div className="sub">
               <div><div className="k">Discipline</div><div className="v">{p.cat}</div></div>
               <div><div className="k">Year</div><div className="v">{p.year}</div></div>
-              <div><div className="k">Role</div><div className="v">{p.role || ('Design · ' + SITE.name)}</div></div>
             </div>
           </div>
           <div className="ov-body">
