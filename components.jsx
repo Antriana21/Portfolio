@@ -137,7 +137,7 @@ function Hero() {
   return (
     <section className="hero page" id="top" ref={ref}>
       <div className="hero-meta">
-        <div className="m"><div className="k">Designer</div><div className="v">{SITE.role}</div></div>
+        <div className="m" style={{alignSelf:"end"}}><div className="v">{SITE.role}</div></div>
         <div className="m" style={{gridColumn:3,textAlign:"right"}}><div className="k">Index</div><div className="v">{String(PROJECTS.length).padStart(2, "0")} Projects · ‘23–‘26</div></div>
       </div>
       <div className="hero-name">

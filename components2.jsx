@@ -95,9 +95,8 @@ function Row({ p, n, onOpen, onEnter }) {
 }
 
 /* ---------- CONTACT constants ---------- */
-const WEB3FORMS_KEY = "YOUR-ACCESS-KEY-HERE"; // paste your Web3Forms key (web3forms.com)
+const WEB3FORMS_KEY = "714a56cd-fd31-4079-aa5a-44d6d0005fbb";
 const CV_FILE = "Resume - Antriana Panagi.pdf";
-const CONTACT_REASONS = ["Hiring", "Freelance", "Other"];
 
 /* ---------- ABOUT ---------- */
 function About() {
@@ -176,12 +175,11 @@ function Contact() {
     const el = form.elements;
     const data = {
       access_key: WEB3FORMS_KEY,
-      subject: `Portfolio enquiry`,
+      subject: "Portfolio enquiry",
       from_name: "Antriana Panagi – Portfolio",
       name: el.name.value,
       email: el.email.value,
       message: el.message.value,
-      botcheck: el.botcheck.checked,
     };
     try {
       const res = await fetch("https://api.web3forms.com/submit", {
@@ -199,7 +197,7 @@ function Contact() {
       }
     } catch {
       setStatus("error");
-      setErrorMsg("Network error. Please try again or email me directly.");
+      setErrorMsg("Network error. Please try again.");
     }
   }
 
@@ -216,8 +214,6 @@ function Contact() {
 
       <div className="ct-grid">
         <form className="ct-form" onSubmit={handleSubmit} noValidate>
-          <input type="checkbox" name="botcheck" tabIndex="-1" autoComplete="off" style={{display:"none"}} />
-
           <div className="ct-field">
             <label htmlFor="ct-name">Name</label>
             <input id="ct-name" name="name" type="text" required placeholder="Your name" />
@@ -227,7 +223,6 @@ function Contact() {
             <label htmlFor="ct-email">Email</label>
             <input id="ct-email" name="email" type="email" required placeholder="you@email.com" />
           </div>
-
 
           <div className="ct-field">
             <label htmlFor="ct-msg">Message</label>
@@ -244,7 +239,7 @@ function Contact() {
           </div>
 
           <p className="ct-status" aria-live="polite">
-            {status === "success" && "Thanks — your message is on its way. I’ll be in touch."}
+            {status === "success" && "Thanks — your message is on its way. I'll be in touch."}
             {status === "error" && errorMsg}
           </p>
         </form>
