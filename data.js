@@ -127,11 +127,11 @@ var PROJECTS = window.PROJECTS = [
     img: "assets/sierra-leone/flag%20mockup4.jpg",
     imgs: [
       "assets/sierra-leone/SL%20video.mp4",
-      "assets/sierra-leone/flag%20mockup4.jpg",
+      {src:"assets/sierra-leone/Website%20Walkthrough.html"},
       "assets/sierra-leone/leaflet%20mockup.jpg",
       "assets/sierra-leone/roll%20up%20mockup.jpg",
       "assets/sierra-leone/roll%20up.jpg",
-      {src:"assets/sierra-leone/Website%20Walkthrough.html"},
+      "assets/sierra-leone/flag%20mockup4.jpg",
     ],
     desc: "A launch package for WorldLink's new office in Sierra Leone, marking the company's arrival in a new market.",
     body: ["Rather than build from scratch, Antriana adapted WorldLink's existing identity for the market, shifting the colour palette to suit Sierra Leone while keeping the brand recognisable. The system flexed to a new audience without losing what made it WorldLink: direct, confident and built to last.", "She produced the full launch set: the launch video, the rollups and leaflets for the opening, and a new website to give the office a home online. One adapted identity, carried cleanly across motion, print and digital."],
