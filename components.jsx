@@ -112,21 +112,40 @@ function Cursor() {
 
 /* ---------- header ---------- */
 function Header({ onToggleGrid, gridOn }) {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? 'hidden' : '';
+    const onResize = () => { if (window.innerWidth > 820) setMobileOpen(false); };
+    window.addEventListener('resize', onResize);
+    return () => { window.removeEventListener('resize', onResize); document.body.style.overflow = ''; };
+  }, [mobileOpen]);
+  const close = () => setMobileOpen(false);
   return (
-    <header className="site-head">
-      <a className="brand-logo" href="#top" data-cursor="link" data-label="Top">
-        <img src="assets/logo.png" alt="Antriana Panagi logo" />
-      </a>
-      <a className="brand" href="#top" data-cursor="link" data-label="Top">
-        <span className="nm">Antriana Panagi</span>
-      </a>
-      <nav>
-        <a className="nav-link" href="#work" data-cursor="hover"><span className="idx">01</span> Work</a>
-        <a className="nav-link" href="#about" data-cursor="hover"><span className="idx">02</span> About</a>
-        <a className="nav-link" href="#contact" data-cursor="hover"><span className="idx">03</span> Contact</a>
-        <button onClick={onToggleGrid} data-cursor="hover" title="Toggle the grid">{gridOn ? "Grid ●" : "I ♥ Grid"}</button>
+    <>
+      <header className="site-head">
+        <a className="brand-logo" href="#top" data-cursor="link" data-label="Top">
+          <img src="assets/logo.png" alt="Antriana Panagi logo" />
+        </a>
+        <a className="brand" href="#top" data-cursor="link" data-label="Top">
+          <span className="nm">Antriana Panagi</span>
+        </a>
+        <nav>
+          <a className="nav-link" href="#work" data-cursor="hover"><span className="idx">01</span> Work</a>
+          <a className="nav-link" href="#about" data-cursor="hover"><span className="idx">02</span> About</a>
+          <a className="nav-link" href="#contact" data-cursor="hover"><span className="idx">03</span> Contact</a>
+          <button className="grid-toggle" onClick={onToggleGrid} data-cursor="hover" title="Toggle the grid">{gridOn ? "Grid ●" : "I ♥ Grid"}</button>
+        </nav>
+      </header>
+      <button className={"nav-toggle" + (mobileOpen ? " open" : "")} onClick={() => setMobileOpen(o => !o)} aria-label={mobileOpen ? "Close menu" : "Open menu"}>
+        <span /><span /><span />
+      </button>
+      <nav className={"mobile-nav" + (mobileOpen ? " open" : "")} aria-hidden={!mobileOpen}>
+        <a href="#work" onClick={close}>Work</a>
+        <a href="#about" onClick={close}>About</a>
+        <a href="#contact" onClick={close}>Contact</a>
+        <span className="mn-footer">Antriana Panagi</span>
       </nav>
-    </header>
+    </>
   );
 }
 
@@ -174,9 +193,9 @@ function Marquee() {
           <span className="sb-n display">{s.l}</span>
         </div>
       ))}
-      <div style={{gridColumn:4, gridRow:1, borderLeft:"1px solid rgba(255,255,255,.25)"}} />
-      <div style={{gridColumn:7, gridRow:1, borderLeft:"1px solid rgba(255,255,255,.25)"}} />
-      <div style={{gridColumn:10, gridRow:1, borderLeft:"1px solid rgba(255,255,255,.25)"}} />
+      <div className="sb-div" style={{gridColumn:4, gridRow:1, borderLeft:"1px solid rgba(255,255,255,.25)"}} />
+      <div className="sb-div" style={{gridColumn:7, gridRow:1, borderLeft:"1px solid rgba(255,255,255,.25)"}} />
+      <div className="sb-div" style={{gridColumn:10, gridRow:1, borderLeft:"1px solid rgba(255,255,255,.25)"}} />
     </div>
   );
 }

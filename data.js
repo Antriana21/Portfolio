@@ -124,7 +124,7 @@ var PROJECTS = window.PROJECTS = [
     groups: ["branding", "motion", "web"],
     year: "2025",
     span: 6,
-    img: "assets/sierra-leone/flag%20mockup4.jpg",
+    img: "assets/sierra-leone/SL%20video.mp4",
     imgs: [
       "assets/sierra-leone/SL%20video.mp4",
       {src:"assets/sierra-leone/Website%20Walkthrough.html"},
